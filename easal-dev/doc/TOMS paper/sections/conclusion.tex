@@ -1,0 +1,43 @@
+\section{Conclusion}
+\label{conclusion}
+The EASAL software generates, describes, and explores key aspects of the
+topology and geometry of the configuration space of point-sets in
+$\mathbb{R}^3$. To achieve this, it uses three strategies, (i) EASAL partitions
+the realization space into active constraint regions each defined by the set of
+active constraints. The graph of active constraints called the active
+constraint graph is then used for analysis using generic combinatorial rigidity
+theory.  (ii) EASAL organizes the active constraint regions in a partial order
+called an atlas which establishes a parent child relationship between active
+constraint regions that generically differ by exactly one active constraint.
+To build the atlas, EASAL starts from the interior of an active constraint
+region and recursively finds boundaries of one dimension less.  (iii) To locate
+the boundary region satisfying exactly one additional constraint, EASAL uses
+the theory of Cayley convexifiability to map (many to one) a $d$-dimensional
+active constraint region to a convex region in $\mathbb{R}^d$ called the Cayley
+configuration space of the region.  This allows for efficient sampling and
+search. In addition, it is efficient to compute the inverse map from each point
+in the Cayley configuration space to its finitely many Cartesian realizations.
+With EASAL we obtain formal guarantees for quantitative accuracy and running
+times.  The EASAL software optionally provides a GUI which can be used for
+intuitive visual verification of results.
+
+In the context of molecular assembly, EASAL distinguishes assembly from other
+processes such as folding in that assembly admits to Cayley convexification of
+active constraint regions. More general methods like MC and MD, though
+applicable to a wider variety of molecular modeling problems, do not make this
+distinction and hence are not as efficient as EASAL in the context of molecular
+assembly.  For the problem of assembly, EASAL (i) directly atlases and
+navigates the complex topology of small assembly configuration spaces, crucial
+for understanding free-energy landscapes and assembly kinetics; (ii) avoids
+multiple sampling of configurational (boundary) regions, and minimizes rejected
+samples, both crucial for efficient and accurate computation of configurational
+volume and entropy and (iii) comes with rigorously provable efficiency,
+accuracy and tradeoff guarantees. To the
+best of our knowledge, no other current software provides such functionality.
+
+
+The paper reviews the key theoretical underpinnings, major algorithms and their
+implementation; outlines the main applications such as computation of
+free energy and kinetics of assembly of supramolecular structures or of
+clusters in colloidal and soft materials; and surveys select
+experimental results and comparisons.  

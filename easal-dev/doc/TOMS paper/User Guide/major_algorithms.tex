@@ -1,0 +1,23 @@
+\subsection{Algorithms Implemented in EASAL}
+\label{sec:algorithms}
+
+
+
+\textbf{sampleExplore}:
+The algorithm captures, stores, and labels the regions of the stratification of the configuration space.
+The regions of the atlas are stored as nodes of a directed acyclic graph,  whose edges represent immediate containment or reachability.
+Each region of the atlas is identified by a (small) \textit{activeConstraintGraph} $G_F$ where $F$ is the set of active constraints.
+Newly discovered $G_F$ is tested to ensure that it is not already present in the current \emph{atlas}.
+Only if $G_F$ is new is the region further explored; by default, this is done depth first.
+New active constraints and regions are added one by one.
+It samples the space at a desired level of refinement.\\
+
+\ruijin{(I would expect the convex parametrization(includes ordering of parameters) and chart range computation to be put here. )}
+
+%--------------------
+\textbf{detectActiveConstraint}: Detects newly active constraint, and a new region of the stratification in a stratum of smaller dimension. EASAL\ relies on grid-sampling to find the children of each active constraint region and hence to uncover the topology of the atlas.
+It exhaustively explores boundaries with step size $h$. When a new constraint becomes active, it recursively samples and explores the regions of its children.
+%
+However, the boundary detection is not guaranteed by grid-sampling alone.
+The threshold may not be large enough to allow ConstraintCheck to define a close by atom pair to be a distance constraint. Furthermore, neighboring Cayley points may be in violation of steric constraints.
+As a result, the boundary region would be missed since it is located in between a feasible point and a point violated by sterics. Exploration (by the way of binary search) is required to find any additional constraints that restrict the region, e.g.\ steric constraints that render a configuration infeasible.

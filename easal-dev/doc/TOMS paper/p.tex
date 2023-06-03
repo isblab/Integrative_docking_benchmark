@@ -1,0 +1,112 @@
+\documentclass[promode,acmtoms]{acmsmall} 
+
+% Package to generate and customize Algorithm as per ACM style
+\usepackage[ruled]{algorithm2e}
+\usepackage{setspace}
+
+\usepackage{comment}
+
+\usepackage{listings}
+
+%\linespread{2}
+\input{sections/defs.tex}
+
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+
+\begin{comment}
+% Metadata Information
+\acmVolume{9}
+\acmNumber{4}
+\acmArticle{39}
+\acmYear{2010}
+\acmMonth{3}
+\end{comment}
+
+% Document starts
+\begin{document}
+
+\input{sections/abstract}
+ 
+
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10003752.10010061.10010063</concept_id>
+<concept_desc>Theory of computation~Computational geometry</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10010405.10010444.10010087.10010098</concept_id>
+<concept_desc>Applied computing~Molecular structural biology</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Theory of computation~Computational geometry}
+\ccsdesc[300]{Applied computing~Molecular structural biology}
+
+ 
+% Title portion
+\title{AlgorithmXXX: Efficient Atlasing and Search of Configuration Spaces of Point-Sets Constrained by Distance Intervals.}
+\author{AYSEGUL OZKAN, RAHUL PRABHU, TROY BAKER, JAMES PENCE, JORG PETERS, MEERA SITHARAM
+\affil{Department of Computer \& Information Science \& Engineering, University of Florida}
+}
+
+\acmformat{Aysegul Ozkan, Rahul Prabhu, Troy Baker, James Pence, Jorg Peters and Meera Sitharam, 2016. EASAL: Software Functionalities and Architecture.}
+
+\begin{bottomstuff}
+This research was supported in part by NSF DMS-0714912, a University of Florida computational
+biology seed grant,   NSF CCF-1117695, NSF DMS-1563234, NSF DMS-1564480
+
+Author's addresses: University of Florida, Gainesville, FL, USA.
+
+\textbf{Note:}
+\begin{enumerate}
+		\item \EASAL~source code, optional GUI and user/developer guide are available at
+				\url{http://bitbucket.org/geoplexity/easal} \cite{easalSoftware}.
+		\item A video demonstrating \EASAL~in action is available at
+				\url{http://www.cise.ufl.edu/~rprabhu/EASALvideo.mpg} \cite{easalVideo}.
+		\item \EASAL~screen shots and movies have been used in the papers
+				\cite{sym8010005,Ozkan2011,Wu2012,Ozkan2014MainEasal,Ozkan2014MC,Ozkan2014Jacobian,Wu2014Virus}
+				to illustrate definitions and theoretical results.
+\end{enumerate}
+\end{bottomstuff}
+
+\maketitle
+
+
+
+
+\input{sections/introduction}
+\input{sections/Theory}
+\input{sections/AlgorithmicIdeas}
+\input{sections/Results}
+\input{sections/Architecture}
+\input{sections/conclusion}
+
+% Bibliography
+\bibliographystyle{ACM-Reference-Format-Journals}
+\bibliography{easal,stickysphere,nigms,jorg,Dmay04,intro}
+%\bibliography{easal}
+% Sample .bib file with references that match those in
+% the 'Specifications Document (V1.5)' as well containing
+% 'legacy' bibs and bibs with 'alternate codings'.
+% Gerry Murray - March 2012
+
+% History dates
+%\received{February 2007}{March 2009}{June 2009}
+
+% Electronic Appendix
+%\elecappendix
+
+\medskip
+
+
+\end{document}
+% End of v2-acmsmall-sample.tex (March 2012) - Gerry Murray, ACM

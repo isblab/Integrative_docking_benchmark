@@ -1,0 +1,11 @@
+prefix=/home/muskaan/easal-dev/include/glog
+exec_prefix=/home/muskaan/easal-dev/include/glog/bin
+libdir=/home/muskaan/easal-dev/include/glog/lib64
+includedir=/home/muskaan/easal-dev/include/glog/include
+
+Name: libglog
+Description: Google Log (glog) C++ logging framework
+Version: 0.7.0
+Libs: -L${libdir} -lglog
+Libs.private: -lpthread -lgflags
+Cflags: -I${includedir}

@@ -1,0 +1,7 @@
+-I/home/muskaan/easal-dev/include/Eigen/src/Eigen
+-I/home/muskaan/easal-dev/include/Eigen/src/Eigen-build
+-I/usr/include
+-DNDEBUG
+-o
+/home/muskaan/easal-dev/include/Eigen/src/Eigen-build/demos/mandelbrot/mandelbrot.moc
+/home/muskaan/easal-dev/include/Eigen/src/Eigen/demos/mandelbrot/mandelbrot.h

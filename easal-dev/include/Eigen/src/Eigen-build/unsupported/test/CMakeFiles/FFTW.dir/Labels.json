@@ -1,0 +1,16 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/muskaan/easal-dev/include/Eigen/src/Eigen/unsupported/test/FFTW.cpp"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"BuildUnsupported"
+		],
+		"name" : "FFTW"
+	}
+}

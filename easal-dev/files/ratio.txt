@@ -1,0 +1,25 @@
+dimension 0
+totall 17860240
+noOfMapleCalled 18006176
+ratio 100.817
+
+dimension 1
+totall 0
+noOfMapleCalled 0
+ratio -nan
+
+dimension 2
+totall 2029682328
+noOfMapleCalled 17367464
+ratio 0.855674
+
+dimension 3
+totall 32528
+noOfMapleCalled 0
+ratio 0
+
+dimension 4
+totall 17367656
+noOfMapleCalled 257
+ratio 0.00147976
+

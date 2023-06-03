@@ -1,0 +1,177 @@
+Performing C++ SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_4829a/fast && gmake[3]: Entering directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_4829a.dir/build.make CMakeFiles/cmTC_4829a.dir/build
+gmake[4]: Entering directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_4829a.dir/src.cxx.o
+/usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD  -fPIE -o CMakeFiles/cmTC_4829a.dir/src.cxx.o -c /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_4829a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4829a.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_4829a.dir/src.cxx.o -o cmTC_4829a 
+/usr/bin/ld: CMakeFiles/cmTC_4829a.dir/src.cxx.o: in function `main':
+src.cxx:(.text+0x2f): undefined reference to `pthread_create'
+/usr/bin/ld: src.cxx:(.text+0x3b): undefined reference to `pthread_detach'
+/usr/bin/ld: src.cxx:(.text+0x47): undefined reference to `pthread_cancel'
+/usr/bin/ld: src.cxx:(.text+0x58): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+gmake[4]: *** [CMakeFiles/cmTC_4829a.dir/build.make:106: cmTC_4829a] Error 1
+gmake[4]: Leaving directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+gmake[3]: *** [Makefile:140: cmTC_4829a/fast] Error 2
+gmake[3]: Leaving directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_5f4b6/fast && gmake[3]: Entering directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_5f4b6.dir/build.make CMakeFiles/cmTC_5f4b6.dir/build
+gmake[4]: Entering directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_5f4b6.dir/CheckFunctionExists.cxx.o
+/usr/bin/c++   -DCHECK_FUNCTION_EXISTS=pthread_create -fPIE -o CMakeFiles/cmTC_5f4b6.dir/CheckFunctionExists.cxx.o -c /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_5f4b6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5f4b6.dir/link.txt --verbose=1
+/usr/bin/c++  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_5f4b6.dir/CheckFunctionExists.cxx.o -o cmTC_5f4b6  -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+gmake[4]: *** [CMakeFiles/cmTC_5f4b6.dir/build.make:106: cmTC_5f4b6] Error 1
+gmake[4]: Leaving directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+gmake[3]: *** [Makefile:140: cmTC_5f4b6/fast] Error 2
+gmake[3]: Leaving directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function dladdr exists failed with the following output:
+Change Dir: /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_1e25a/fast && gmake[3]: Entering directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_1e25a.dir/build.make CMakeFiles/cmTC_1e25a.dir/build
+gmake[4]: Entering directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_1e25a.dir/CheckFunctionExists.cxx.o
+/usr/bin/c++   -DCHECK_FUNCTION_EXISTS=dladdr -fPIE -o CMakeFiles/cmTC_1e25a.dir/CheckFunctionExists.cxx.o -c /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CheckFunctionExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_1e25a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1e25a.dir/link.txt --verbose=1
+/usr/bin/c++  -DCHECK_FUNCTION_EXISTS=dladdr CMakeFiles/cmTC_1e25a.dir/CheckFunctionExists.cxx.o -o cmTC_1e25a 
+/usr/bin/ld: CMakeFiles/cmTC_1e25a.dir/CheckFunctionExists.cxx.o: in function `main':
+CheckFunctionExists.cxx:(.text+0x10): undefined reference to `dladdr'
+collect2: error: ld returned 1 exit status
+gmake[4]: *** [CMakeFiles/cmTC_1e25a.dir/build.make:106: cmTC_1e25a] Error 1
+gmake[4]: Leaving directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+gmake[3]: *** [Makefile:140: cmTC_1e25a/fast] Error 2
+gmake[3]: Leaving directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+
+
+
+Performing C++ SOURCE FILE Test HAVE_NO_UNNAMED_TYPE_TEMPLATE_ARGS failed with the following output:
+Change Dir: /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_6ae4f/fast && gmake[3]: Entering directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_6ae4f.dir/build.make CMakeFiles/cmTC_6ae4f.dir/build
+gmake[4]: Entering directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_6ae4f.dir/src.cxx.o
+/usr/bin/c++ -DHAVE_NO_UNNAMED_TYPE_TEMPLATE_ARGS  -fPIE   -Wunnamed-type-template-args -o CMakeFiles/cmTC_6ae4f.dir/src.cxx.o -c /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp/src.cxx
+c++: error: unrecognized command-line option '-Wunnamed-type-template-args'
+gmake[4]: *** [CMakeFiles/cmTC_6ae4f.dir/build.make:85: CMakeFiles/cmTC_6ae4f.dir/src.cxx.o] Error 1
+gmake[4]: Leaving directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+gmake[3]: *** [Makefile:140: cmTC_6ae4f/fast] Error 2
+gmake[3]: Leaving directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Determining if the pthread_threadid_np exist failed with the following output:
+Change Dir: /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_c60f4/fast && gmake[3]: Entering directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_c60f4.dir/build.make CMakeFiles/cmTC_c60f4.dir/build
+gmake[4]: Entering directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c60f4.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++   -fPIE -o CMakeFiles/cmTC_c60f4.dir/CheckSymbolExists.cxx.o -c /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘pthread_threadid_np’ was not declared in this scope; did you mean ‘pthread_tryjoin_np’?
+    8 |   return ((int*)(&pthread_threadid_np))[argc];
+      |                   ^~~~~~~~~~~~~~~~~~~
+      |                   pthread_tryjoin_np
+gmake[4]: *** [CMakeFiles/cmTC_c60f4.dir/build.make:85: CMakeFiles/cmTC_c60f4.dir/CheckSymbolExists.cxx.o] Error 1
+gmake[4]: Leaving directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+gmake[3]: *** [Makefile:140: cmTC_c60f4/fast] Error 2
+gmake[3]: Leaving directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+
+
+File /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_threadid_np
+  return ((int*)(&pthread_threadid_np))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the function UnDecorateSymbolName exists in the dbghelp failed with the following output:
+Change Dir: /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_b79d4/fast && gmake[3]: Entering directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_b79d4.dir/build.make CMakeFiles/cmTC_b79d4.dir/build
+gmake[4]: Entering directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_b79d4.dir/CheckFunctionExists.cxx.o
+/usr/bin/c++   -DCHECK_FUNCTION_EXISTS=UnDecorateSymbolName -fPIE -o CMakeFiles/cmTC_b79d4.dir/CheckFunctionExists.cxx.o -c /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_b79d4
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b79d4.dir/link.txt --verbose=1
+/usr/bin/c++  -DCHECK_FUNCTION_EXISTS=UnDecorateSymbolName CMakeFiles/cmTC_b79d4.dir/CheckFunctionExists.cxx.o -o cmTC_b79d4  -ldbghelp 
+/usr/bin/ld: cannot find -ldbghelp
+collect2: error: ld returned 1 exit status
+gmake[4]: *** [CMakeFiles/cmTC_b79d4.dir/build.make:106: cmTC_b79d4] Error 1
+gmake[4]: Leaving directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+gmake[3]: *** [Makefile:140: cmTC_b79d4/fast] Error 2
+gmake[3]: Leaving directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+
+
+
+Performing C++ SOURCE FILE Test HAVE___DECLSPEC failed with the following output:
+Change Dir: /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_83ea7/fast && gmake[3]: Entering directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_83ea7.dir/build.make CMakeFiles/cmTC_83ea7.dir/build
+gmake[4]: Entering directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_83ea7.dir/src.cxx.o
+/usr/bin/c++ -DHAVE___DECLSPEC  -fPIE -o CMakeFiles/cmTC_83ea7.dir/src.cxx.o -c /home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp/src.cxx
+/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp/src.cxx:2:11: error: expected constructor, destructor, or type conversion before ‘(’ token
+    2 | __declspec(selectany) int a;
+      |           ^
+gmake[4]: *** [CMakeFiles/cmTC_83ea7.dir/build.make:85: CMakeFiles/cmTC_83ea7.dir/src.cxx.o] Error 1
+gmake[4]: Leaving directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+gmake[3]: *** [Makefile:140: cmTC_83ea7/fast] Error 2
+gmake[3]: Leaving directory '/home/muskaan/easal-dev/include/glog/src/glog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+__declspec(selectany) int a;
+int main(void) { return 0; }
+

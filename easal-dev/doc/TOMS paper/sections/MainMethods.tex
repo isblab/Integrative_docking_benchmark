@@ -1,0 +1,196 @@
+\section{Main Methods}
+
+\subsection{sampleTheNode}
+The exploration of the atlas is done by the \textbf{sampleTheNode} algorithm.
+The input to this algorithm is an atlas node. Let $G_H$ be the active constraint
+graph of the atlas Node and $H$ be the set of active constraints.
+This algorithm recursively samples the atlas node till all its  descendants
+have been sampled. The algorithm proceeds as follows
+If active constraint graph $G_H$ of the root node is minimally rigid, we have
+no more sampling to do, return. This forms the base case of the recursion.
+If $G_H$ is not minimally rigid, find the set of parameters $F$ so that 
+adding $F$ to $H$ makes the graph minimally rigid. Find the convex chart for
+the parameters $F$. 
+Next we have two nested for loops. The outer for loop runs for each Cayley 
+point $p$ in the convex chart and computes the realization for each of these
+points. The inner for loop runs for each realization $r$ of the point $p$. 
+Though some Cayley points are realizable, they may violate some of the
+constraints set by the user input. So, we do a constraint check to see
+if anything is violated. If it is, we add the point to the violated set
+otherwise, we add the realization to the point.	Then we check
+if there is a witness point using the \textbf{boundaryDetection} algorithm.
+During the boundary detection, if a new constraint $e$ becomes active,
+we add create a new active constraint graph $G'(H)$ by adding $e$ to the
+set $H$. If $G'_H$ hasn't already been sampled, we recursively call
+sampleTheNode on $G'_H$.
+
+\begin{algorithm} [htbp]
+ \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+
+ {\bf sampleExplore}\\
+ \Input{atlasNode}
+ \Output{Complete sampling of the atlasNode and all its children}
+ \BlankLine
+
+	let $G_H$ be the activeConstraintGraph of the atlasNode with $H$ being active constraints\\
+	\If{ $G_H$ is minimally rigid}
+		{stop;	}
+	//This needs another pseudocode\\
+	find the parameters $F$ so that $G = (V, E = \{F\cup H\})$ is minimally rigid, i.e., complete 3-tree\\
+	
+	//This probably needs a pseudocode\\
+	compute the convexChart for the parameters $F$\\
+
+	\For{ each cayleyPoint $p$ within convexChart }
+	{
+		//This definitely needs a pseudocode\\
+		compute all the realizations of $p$ for each flip\\
+
+		\For{ each realization $r$ }
+		{
+			violated = ConstraintCheck($r$)\\
+			\If{!violated}
+			{
+
+				add $o$ to $p$;\\
+				get witness to boundary region if available through boundaryDetection(p);\\
+				\If{ a new constraint $e$ becomes active in witness point from collection C }
+				{
+					$G'$ := $G_H \cup \{e\}$ ;\\
+					\If{ $G'$ is not already present in the current atlas}
+					{
+						create child atlasNode labeled by $G'$\\
+						save the child atlasNode to atlas\\
+						sampleExplore(child);\\
+					}
+				}
+			}
+		}
+
+		save $p$ to activeConstraintRegion of the activeConstraintGraph\\
+	}
+
+	\caption{sampleExplore}
+\label{alg:sampleExplore}
+\end{algorithm}
+
+
+
+
+\subsection{boundaryDetection}
+
+The \textbf{boundaryDetection} algorithm takes as input a Cayley point and finds the boundary using binary search. For each neighboring point $p_n$ of the input Cayley point $p$, we halve the step size run a while loop till a new constraint becomes active. Within the while loop, we again halve the step size and check if the witness point violates any steric constraints. If it does, we walk through p with the new step size, else we walk through $p_n$ with the new step size.
+
+
+\begin{algorithm} [htbp]
+ \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+ {\bf boundaryDetection}\\
+ \Input{a Cayley point}
+ \Output{a witness point}
+ \BlankLine
+
+	\For{ each neighboring point $p_n$ around p }
+	{
+		\If{ $p_n$ violates sterics}
+		{
+			// find boundary region in between $p$ and $p_n$ using binary search \\
+
+			step\_size = step\_size/2;\\
+			witness = walk back through $p$ with step\_size ;\\
+
+			\While{ no new constraints in $G$ have become active }
+			{
+				step\_size = step\_size/2; 	\\
+				\eIf{ witness is violated by sterics }
+				{	witness = walk through $p$ with step\_size }
+				{	witness = walk through $p_n$ with step\_size }
+			}
+		}
+	}
+	return witness;\\
+
+\caption{ boundaryDetection
+\label{alg:boundaryDetection}}
+\end{algorithm}
+
+
+\subsection{computeRealization}
+
+The \textbf{computeRelization} algorithm, takes in an active constraint graph and its convex chart and generates all possible realizations for it. The active constraint graph can have eight flips we run a for loop for each of these eight flips. For each flip, we first check if the active constraint graph is a partial 3-tree. If it is, the computation of the realization is straightforward. We simply get the base tetrahedron and keep adding vertices to it till we get a complete 3-tree. If however the active constraint graph does not form a partial 3-tree, we drop a constraint and do ray tracing in one dimension higher.
+
+\begin{algorithm}
+\label{realization}
+\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+
+ {\bf computeRealization}\\
+ \Input{The active constraint graph, the convex chart}
+ \Output{All possible realizations}
+ \BlankLine
+ 	\For{each of the eight possible flips}
+ 	{
+ 		\If{partial 3 tree}{
+ 			Get the base tetrahedron\\
+ 			\While{The tetrahedron is not complete}{
+	 			Add a new vertex edge-connected to the face of a tetrahedron.\\
+	 			compute the Lengths of the edges connected to the new 	vertex\\
+ 			}
+ 		}
+ 		\Else{
+ 			Drop one constraint and do ray tracing in one dimension higher.
+ 		}
+ 	}
+
+ \caption{computeRealization}
+\end{algorithm}
+
+
+
+\subsection{A Posteriori Boundary Detection}
+This implements the a posteriori boundary detection discussed earlier.
+It is called as a subroutine from the `sampleExplore' method. In
+order to detect the (lower-dimensional) boundaries that always lie between a
+feasible region and a violated region, for each feasible Cayley point we check
+all Cayley parameter directions to see if the neighboring point is infeasible
+or not. If it is, then binary search will take place to find out the
+boundary point with the new active constraints. A boolean map of the grid that stores
+the statuses (feasible/violated/infeasible) of all neighboring points, would
+eliminate recreating neighbor points. However the size of the map would be
+prohibitive for nodes of higher dimension.
+
+\begin{algorithm} [htbp]
+ \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+
+ {\bf boundaryDetection}\\
+ \Input{cayleyPoint}
+ \Output{cayleyPoint}
+ \BlankLine
+
+	\For{ each neighboring point $p_n$ around p }
+	{
+		\If{ $p_n$ is violated by sterics}
+		{
+			// find boundary region in between $p$ and $p_n$ using binary search \\
+
+			step\_size = step\_size/2;\\
+			witness = walk back through $p$ with step\_size ;\\
+
+			\While{ no new constraints in $G$ have become active }
+			{
+				step\_size = step\_size/2; 	\\
+				\eIf{ witness is violated by sterics }
+				{	witness = walk through $p$ with step\_size }
+				{	witness = walk through $p_n$ with step\_size }
+			}
+		}
+	}
+	return witness;\\
+
+ \caption{ boundaryDetection
+\label{alg:boundaryDetection}}
+\end{algorithm}
+
+%--------------
+%(SpaceView -> ChartView)
+%is it good to keep the solver and data structure in same class, as in ACG or cayleyparametrization?
+%-------------
+
