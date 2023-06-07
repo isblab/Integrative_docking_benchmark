@@ -23,6 +23,18 @@ sudo dnf install qt-devel
 
 sudo dnf upgrade cmake 
 
+cd include
+mkdir Eigen
+mkdir include
+cp -r /usr/include/eigen3 ./
+
+cd ../../
+mkdir glog
+mkdir include
+cp -r /usr/include/glog/* ./
+
+cd ../../../
+
 mkdir build
 
 cd build
