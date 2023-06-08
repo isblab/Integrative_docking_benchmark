@@ -24,7 +24,7 @@ def extract_calpha_with_coordinates(input_pdb_file, output_pdb_file):
             line += str(atom.get_coord()[0]) + ' '
             line += str(atom.get_coord()[1]) + ' '
             line += str(atom.get_coord()[2]) + ' '
-            line += '3.8 \n'
+            line += '2.8 \n'
             f.write(line)
 
 
