@@ -7,7 +7,7 @@ Running EASAL on this benchmark
  Make sure your code is robust to handle alternate atom locations etc.
 
 ### Crosslinks
-Crosslinks for corresponding receptor-ligand complexes in crosslinks/
+Crosslinks for corresponding receptor-ligand complexes are in `input_to_easal/crosslinks/
 
 ### To generate a new set of crosslinks
 Use the `generate_xl.py` script to get any set of crosslinks where the CA's of the residues are within a certain distance cutoff.
