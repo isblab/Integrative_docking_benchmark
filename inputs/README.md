@@ -3,6 +3,7 @@ Running EASAL on this benchmark
 ### Input PDBs
  PDBs are in  `input_to_easal/`. We are taking the chain A, keeping it fixed, and docking chain B on it.
  Take the CA coordinates of all residues for these chains from these PDBs.
+ Assume each residue is a sphere of 2.8 A radius. 
  Make sure your code is robust to handle alternate atom locations etc.
 
 ### Crosslinks
