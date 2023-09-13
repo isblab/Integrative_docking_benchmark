@@ -1,0 +1,10 @@
+<Chain id=A>, <Residue GLY het=  resseq=193 icode= >, <Chain id=B>, <Residue ILE het=  resseq=64 icode= >
+<Chain id=A>, <Residue CYS het=  resseq=191 icode= >, <Chain id=B>, <Residue ARG het=  resseq=63 icode= >
+<Chain id=A>, <Residue GLN het=  resseq=192 icode= >, <Chain id=B>, <Residue ILE het=  resseq=64 icode= >
+<Chain id=A>, <Residue PHE het=  resseq=41 icode= >, <Chain id=B>, <Residue ARG het=  resseq=65 icode= >
+<Chain id=A>, <Residue TYR het=  resseq=217 icode= >, <Chain id=B>, <Residue PRO het=  resseq=61 icode= >
+<Chain id=A>, <Residue GLY het=  resseq=219 icode= >, <Chain id=B>, <Residue PRO het=  resseq=61 icode= >
+<Chain id=A>, <Residue TRP het=  resseq=215 icode= >, <Chain id=B>, <Residue TYR het=  resseq=62 icode= >
+<Chain id=A>, <Residue GLN het=  resseq=192 icode= >, <Chain id=B>, <Residue ARG het=  resseq=63 icode= >
+<Chain id=A>, <Residue TRP het=  resseq=215 icode= >, <Chain id=B>, <Residue ARG het=  resseq=63 icode= >
+<Chain id=A>, <Residue GLY het=  resseq=216 icode= >, <Chain id=B>, <Residue PRO het=  resseq=61 icode= >
