@@ -46,6 +46,10 @@ def get_distance(c1, c2):
 
 
 def select_random_entries(input_list, num_out):
+    if num_out > len(input_list):
+        raise Exception(
+            f"Not enough crosslinks within the distance threshold found: {num_out}>{len(input_list)}"
+        )
     random.shuffle(input_list)
     outlist = []
     while len(outlist) < num_out:
@@ -88,13 +92,6 @@ class CAlphaAtom:
             if atom.get_name() == "CA":
                 coords = atom.get_coord()
         return coords
-
-
-class Crosslink:
-    def __init__(self, rca, lca, distance) -> None:
-        self.rca = rca
-        self.lca = lca
-        self.distance = distance
 
 
 ##########################################################################################################################################
@@ -153,16 +150,16 @@ for model in structure[0]:  # Assuming only one model in the PDB
 crosslinks = []
 noncrosslinks = []
 
-for ri, rres in enumerate(rchain_calphas[0]):  #TODO remove assumption Assuming a single receptor chain
-    for li, lres in enumerate(lchain_calphas[0]):  #TODO remove assumotion Assuming a single ligand chain
-        distance = get_distance(rres.coords, lres.coords)  # TODO test
+for rchain in rchain_calphas:
+    for lchain in lchain_calphas:
+        for rres in rchain:
+            for lres in lchain:
+                distance = get_distance(rres.coords, lres.coords)  # TODO test
 
-        if distance <= args.dt:
-            crosslinks.append(
-                Crosslink(rres, lres, distance)
-            )  # enough to store the indices of the lists
-        else:
-            noncrosslinks.append(Crosslink(rres, lres, distance))
+                if distance <= args.dt:
+                    crosslinks.append((rres, lres, distance))
+                else:
+                    noncrosslinks.append((rres, lres, distance))
 
 ## STEP 3. Select a random subset of entries and save in file
 num_false_xl = args.fp
@@ -173,16 +170,9 @@ false_xls = select_random_entries(noncrosslinks, num_false_xl)
 all_xls.extend(false_xls)
 random.shuffle(all_xls)
 
-"""
-with open(f"xl_{args.pdb_file}_d{args.dt}.txt", "w") as outf:
+with open(f"xl_{args.pdb_file.split('/')[-1]}_d{args.dt}.txt", "w") as outf:
     for lnk in all_xls:
-        # ri, li = lnk[0], lnk[1]
-        # outf.write(
-        #     f"{rcoords[ri][1]},{rcoords[ri][0]},{lcoords[li][1]},{lcoords[li][0]}"
-        #     + "\n"
-        # )
-"""
-with open(f"xl_{args.pdb_file}_d{args.dt}.txt", "w") as outf:
-    for lnk in all_xls:
-        rca, lca = lnk.rca, lnk.lca
-        outf.write(f"{rca.chain}, {rca.residue}, {lca.chain}, {lca.residue}\n") #TODO get chain_name  and get_residue_number 
+        rca, lca = lnk[0], lnk[1]
+        outf.write(
+            f"{rca.chain.get_id()}, {rca.residue.get_id()[1]}, {lca.chain.get_id()}, {lca.residue.get_id()[1]}\n"
+        )
