@@ -153,8 +153,8 @@ for model in structure[0]:  # Assuming only one model in the PDB
 crosslinks = []
 noncrosslinks = []
 
-for ri, rres in enumerate(rchain_calphas[0]):  # Assuming a single receptor chain
-    for li, lres in enumerate(lchain_calphas[0]):  # Assuming a single ligand chain
+for ri, rres in enumerate(rchain_calphas[0]):  #TODO remove assumption Assuming a single receptor chain
+    for li, lres in enumerate(lchain_calphas[0]):  #TODO remove assumotion Assuming a single ligand chain
         distance = get_distance(rres.coords, lres.coords)  # TODO test
 
         if distance <= args.dt:
@@ -185,4 +185,4 @@ with open(f"xl_{args.pdb_file}_d{args.dt}.txt", "w") as outf:
 with open(f"xl_{args.pdb_file}_d{args.dt}.txt", "w") as outf:
     for lnk in all_xls:
         rca, lca = lnk.rca, lnk.lca
-        outf.write(f"{rca.chain}, {rca.residue}, {lca.chain}, {lca.residue}\n")
+        outf.write(f"{rca.chain}, {rca.residue}, {lca.chain}, {lca.residue}\n") #TODO get chain_name  and get_residue_number 
