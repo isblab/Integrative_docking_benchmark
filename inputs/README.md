@@ -15,5 +15,5 @@ Use the `generate_xl.py` script to get any set of crosslinks where the CA's of t
 E.g.
 
 
-`python generate_xl.py --pdb_file 1AVX.pdb -dt 6 --receptor_chains A --ligand_chains B --total_xl 10
+`python generate_xl_v2.py --pdb_file 1AVX.pdb -dt 6 --receptor_chains A --ligand_chains B --total_xl 10
 `
