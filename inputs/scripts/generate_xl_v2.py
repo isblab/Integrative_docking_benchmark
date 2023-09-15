@@ -116,36 +116,6 @@ for chain in structure[0].get_chains():  # Assuming only one model in the PDB
         print(f"Ligand chain found {chain}")
         lchain_calphas.append(get_calphas_for_a_chain(chain))
 
-"""
-for model in structure[0]:  # Assuming only one model in the PDB
-    for chain in model:
-        if (
-            chain not in rchains and chain not in lchains
-        ):  # TODO test if string membership is recorded this way
-            continue
-
-        for residue in chain:
-            if residue.has_id("CA"):
-                atom = residue["CA"]
-
-                # get residue number
-                # get chain name
-                # get coordinates
-                atom_entry = (
-                    atom.get_full_id()[3][1],
-                    atom.get_full_id()[2],
-                    atom.get_coord(),
-                )  # TODO test
-
-                # If that does not work try the below for the chain name
-                # str(atom.get_parent().get_parent().get_id())
-
-                if chain in rchains:
-                    rcoords.append(atom_entry)
-                elif chain in lchains:
-                    lcoords.append(atom_entry)
-
-"""
 
 crosslinks = []
 noncrosslinks = []
@@ -171,8 +141,9 @@ all_xls.extend(false_xls)
 random.shuffle(all_xls)
 
 with open(f"xl_{args.pdb_file.split('/')[-1]}_d{args.dt}.txt", "w") as outf:
+    outf.write("res1, prot1, res2, prot2\n")
     for lnk in all_xls:
         rca, lca = lnk[0], lnk[1]
         outf.write(
-            f"{rca.chain.get_id()}, {rca.residue.get_id()[1]}, {lca.chain.get_id()}, {lca.residue.get_id()[1]}\n"
+            f"{rca.residue.get_id()[1]}, {rca.chain.get_id()}, {lca.residue.get_id()[1]}, {lca.chain.get_id()}\n"
         )
