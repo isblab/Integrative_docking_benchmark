@@ -1,0 +1,12 @@
+##################
+##################
+syntax: glob
+
+# temporary files
+*~
+
+# LaTeX compilation stuff
+*.aux
+*.dvi
+*.log
+*.bbl

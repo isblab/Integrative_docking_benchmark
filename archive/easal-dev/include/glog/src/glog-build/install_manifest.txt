@@ -1,0 +1,16 @@
+/home/muskaan/easal-dev/include/glog/lib64/libglog.so.0.7.0
+/home/muskaan/easal-dev/include/glog/lib64/libglog.so.1
+/home/muskaan/easal-dev/include/glog/lib64/libglog.so
+/home/muskaan/easal-dev/include/glog/include/glog/export.h
+/home/muskaan/easal-dev/include/glog/include/glog/logging.h
+/home/muskaan/easal-dev/include/glog/include/glog/raw_logging.h
+/home/muskaan/easal-dev/include/glog/include/glog/stl_logging.h
+/home/muskaan/easal-dev/include/glog/include/glog/vlog_is_on.h
+/home/muskaan/easal-dev/include/glog/include/glog/log_severity.h
+/home/muskaan/easal-dev/include/glog/include/glog/platform.h
+/home/muskaan/easal-dev/include/glog/lib64/pkgconfig/libglog.pc
+/home/muskaan/easal-dev/include/glog/lib64/cmake/glog/glog-modules.cmake
+/home/muskaan/easal-dev/include/glog/lib64/cmake/glog/glog-config.cmake
+/home/muskaan/easal-dev/include/glog/lib64/cmake/glog/glog-config-version.cmake
+/home/muskaan/easal-dev/include/glog/lib64/cmake/glog/glog-targets.cmake
+/home/muskaan/easal-dev/include/glog/lib64/cmake/glog/glog-targets-noconfig.cmake

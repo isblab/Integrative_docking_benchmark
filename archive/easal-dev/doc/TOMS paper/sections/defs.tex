@@ -1,0 +1,154 @@
+%\usepackage{epsfig}
+%\usepackage{subfigure}
+
+
+\begin{comment}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\end{comment}
+
+
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{flafter}
+\usepackage{psfrag}
+\usepackage{overpic}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{array}
+
+\usepackage{amsmath}
+
+%\usepackage{graphicx}
+%\usepackage{caption}
+%\DeclareCaptionType{copyrightbox}
+%\usepackage{subcaption}
+%\usepackage[on]{auto-pst-pdf} % enable psfrag for pdflatex
+%\usepackage{xcolor}
+
+
+\usepackage{epsfig}
+
+
+
+\usepackage{color}% Include colors for document elements (required for psfrag)
+
+\newcommand{\psdir}{./sections}
+\newcommand{\ldir}{./sections}
+\newcommand{\fig}{./sections/fig}
+\newcommand{\comm}[1]{}
+
+
+\def\IL{{\it left}}
+\def\IM{{\it middle}}
+\def\IR{{\it right}}
+\def\IB{{\it bottom}}
+\def\IT{{\it top}}
+
+
+\newcommand{\algref}[1]{Algorithm~\ref{#1}}
+\newcommand{\defref}[1]{Definition~\ref{#1}}
+\newcommand{\secref}[1]{Section~\ref{#1}}
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\exref}[1]{Ex.~#1}
+\newcommand{\tabref}[1]{Table~\ref{#1}}
+\newcommand{\thmref}[1]{Theorem~\ref{#1}}
+\newcommand{\propref}[1]{Proposition~\ref{#1}}
+\newcommand{\efct}[1]{$\langle$ #1 $\rangle$}
+
+\newcommand{\chapref}[1]{Chapter~\ref{#1}}
+
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+\newcommand{\atlasMgrid}{Atlas MultiGrid}
+\newcommand{\cg}{$\cal{G}$}
+\newcommand{\cgraph}{active constraint graph}
+\newcommand{\sgraph}{stratification graph}
+\newcommand{\cs}{$\cal{S}$}
+\newcommand{\cd}{colldet}
+\newcommand{\pconfig}{parametrized configuration}
+\newcommand{\orient}{pose}
+\newcommand{\point}{point}
+\newcommand{\helix}{molecular composite}
+\newcommand{\atom}{atom marker}
+\newcommand{\dumbell}{dumbell}
+\newcommand{\EASAL}{\texttt{EASAL}}
+\newcommand{\Cr}{Cartesian realization}
+
+\newcommand{\tns}{T} %total number of samples
+\newcommand{\C}{C} %the collection of interesting atom pairs
+\newcommand{\m}{m} %size of S
+\newcommand{\stp}{s}
+
+
+\newcommand{\tol}{$\tau$}
+\newcommand{\AC}{A}
+\newcommand{\mU}{M}
+\newcommand{\aU}{atom marker}
+\newcommand{\acg}{G}
+
+\newcommand{\distall}{$C_1$}
+\newcommand{\distexist}{$C_2$}
+
+\newcommand{\acgW}{active constraint graph}
+\newcommand{\acr}{active constraint region}
+\newcommand{\distcons}{Distance Constraints}
+%\def\acr{active constraint region}
+
+
+\newcommand{\cover}{boundaries}
+
+
+\newcommand{\aview}{atlas view}
+\newcommand{\pview}{parametrized chart view}
+\newcommand{\rview}{realization view} %configuration space view
+\newcommand{\param}{parameter}
+\newcommand{\idialog}{intervention dialog}
+\newcommand{\ndialog}{node selection dialog}
+\newcommand{\atlas}{\textit{atlas}}
+\newcommand{\threeRealizable}{$3$-realizable}
+\newcommand{\chart}{chart}
+\newcommand{\toytwod}{Toy3}
+%\newcommand{\toytwod}{Toy$\mathbb{R}^2$}
+\newcommand{\toyCayley}{Toy2DCayleyExample}
+\newcommand{\toyhelix}{6Atom}
+\newcommand{\bighelix}{Toy20}
+%\newcommand{\bighelix}{20Atom}
+\newcommand{\ctwo}{\ref{eqn:preferredConstraints}}
+\newcommand{\cone}{\ref{eqn:constraints}}
+\newcommand{\MC}{MC~}
+\newcommand{\MD}{MD~}
+\newcommand{\custo}{region-specific}
+% for lists
+\renewcommand{\labelitemi}{$\bullet$}
+
+
+
+\def\jorg#1{\textcolor{blue}{#1}}
+\definecolor{brown}{RGB}{150,50,50}
+\definecolor{pink}{RGB}{219, 48, 122}
+\def\old#1{\textcolor{brown}{#1}}
+% \def\aysegul#1{\textcolor{red}{#1}}
+\def\mred#1{\textcolor{red}{#1}}
+
+
+% for review
+\definecolor{seagreen}{RGB}{48,178,139}
+\definecolor{yelloworange}{RGB}{200,146,0}
+\definecolor{purple}{RGB}{123,104,238}
+%\definecolor{purple}{RGB}{147,112,219}
+\definecolor{grayoned}{RGB}{0,0,255}
+\definecolor{green2d}{RGB}{0,150,0}
+\definecolor{plum}{RGB}{127,0,126}
+
+\newcommand{\aysegul}[1]{{\color{blue}#1}}
+\newcommand{\meera}[1]{{\color{magenta}#1}}
+\newcommand{\troy}[1]{{\color{seagreen}#1}}
+\newcommand{\rahul}[1]{{\color{cyan}#1}}
+\newcommand{\joel}[1]{{\color{yelloworange}#1}}
+\newcommand{\ruijin}[1]{{\color{plum}#1}}

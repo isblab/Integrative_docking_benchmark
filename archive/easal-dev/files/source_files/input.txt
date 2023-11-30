@@ -1,0 +1,59 @@
+restart:
+e1 := cosa^2 + sina^2 - 1: 
+e2 := cosb^2 + sinb^2 - 1: 
+e3 := cosc^2 + sinc^2 - 1:
+Ra := matrix( [ [ 1,     0,     0 ],
+[ 0,  cosa, -sina ],
+[ 0,  sina,  cosa ]  ]):
+Rb := matrix( [ [ cosb,  0,  sinb], 
+[ 0,  1,     0],
+[ -sinb,  0,  cosb ] ]):
+Rc := matrix( [ [ cosc,  -sinc,   0], 
+[ sinc,   cosc,   0],
+[ 0,      0,   1 ]   ]):
+R := evalm(Ra &* Rb &* Rc):
+T :=vector([ t1, t2, t3 ] ):
+
+Po1 :=vector( [ 13.162, -1.394, 103.696] ):
+Po2 :=vector( [ 13.162, -1.394, 103.696] ):
+Po3 :=vector( [ 7.863, 3.291, 100.015] ):
+Po4 :=vector( [ 17.632, -2.557, 105.285] ):
+Po5 :=vector( [ 8.031, 3.401, 95.249] ):
+Po6 :=vector( [ 5.751, 2.918, 99.189] ):
+Pn1 := evalm( R &* Po1 ) + T:
+Pn2 := evalm( R &* Po2 ) + T:
+Pn3 := evalm( R &* Po3 ) + T:
+Pn4 := evalm( R &* Po4 ) + T:
+Pn5 := evalm( R &* Po5 ) + T:
+Pn6 := evalm( R &* Po6 ) + T:
+M1 := matrix([[1, 0, 0] ]):
+M2 := matrix([[0, 1, 0] ]):
+M3 := matrix([[0, 0, 1] ]):
+i1 := evalm( M1  &* Pn1 )[1]:
+j1 := evalm( M2  &* Pn1 )[1]:
+k1 := evalm( M3  &* Pn1 )[1]:
+i2 := evalm( M1  &* Pn2 )[1]:
+j2 := evalm( M2  &* Pn2 )[1]:
+k2 := evalm( M3  &* Pn2 )[1]:
+i3 := evalm( M1  &* Pn3 )[1]:
+j3 := evalm( M2  &* Pn3 )[1]:
+k3 := evalm( M3  &* Pn3 )[1]:
+i4 := evalm( M1  &* Pn4 )[1]:
+j4 := evalm( M2  &* Pn4 )[1]:
+k4 := evalm( M3  &* Pn4 )[1]:
+i5 := evalm( M1  &* Pn5 )[1]:
+j5 := evalm( M2  &* Pn5 )[1]:
+k5 := evalm( M3  &* Pn5 )[1]:
+i6 := evalm( M1  &* Pn6 )[1]:
+j6 := evalm( M2  &* Pn6 )[1]:
+k6 := evalm( M3  &* Pn6 )[1]:
+
+eq1 := (i1-(-30.9572))^2 + (j1-(14.4515))^2 + (k1-(4.81099))^2 - (2.50375)^2 :
+eq2 := (i2-(-25.0262))^2 + (j2-(13.6935))^2 + (k2-(6.92899))^2 - (2.77114)^2 :
+eq3 := (i3-(-19.8862))^2 + (j3-(9.5365))^2 + (k3-(-1.75501))^2 - (3.51452)^2 :
+eq4 := (i4-(-30.9572))^2 + (j4-(14.4515))^2 + (k4-(4.81099))^2 - (3.15937)^2 :
+eq5 := (i5-(-19.8862))^2 + (j5-(9.5365))^2 + (k5-(-1.75501))^2 - (3.55175)^2 :
+eq6 := (i6-(-20.9802))^2 + (j6-(9.0135))^2 + (k6-(3.28099))^2 - (3.20068)^2 :
+interface(prettyprint=0):  
+with(RealDomain):  
+solution := timelimit(60, solve( {eq1=0, eq2=0, eq3=0, eq4=0, eq5=0, eq6=0, e1=0, e2=0, e3=0}, {t1, t2, t3, sina, sinb, sinc, cosa, cosb, cosc} ) );
