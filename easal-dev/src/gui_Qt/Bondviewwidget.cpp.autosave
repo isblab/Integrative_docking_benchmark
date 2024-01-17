@@ -1,6 +1,0 @@
-#include "Bondviewwidget.h"
-
-BondViewWidget::BondViewWidget(QWidget *parent) : QWidget(parent)
-{
-
-}
