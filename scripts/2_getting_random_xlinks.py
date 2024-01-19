@@ -7,7 +7,6 @@ xlinker = sys.argv[3]
 
 output_directory = os.path.dirname(input_file)
 output_file_path = os.path.join(output_directory, f"{os.path.splitext(os.path.basename(input_file))[0].split('_')[0]}_{xlinker}_{num_xlinks}.csv")
-
 df = pd.read_csv(input_file)
 
 selected_rows = df.sample(num_xlinks)

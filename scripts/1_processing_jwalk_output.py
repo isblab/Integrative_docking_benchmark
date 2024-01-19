@@ -18,7 +18,7 @@ for file in glob.glob(os.path.join(input_folder, '*.txt')):
             filtered_df["Atom2"].str.split('-').str[2].rename('prot2'),
         ], axis=1)
 
-        output_filename = os.path.splitext(os.path.basename(file))[0] + '_interprotein_crosslinks.csv'
+        output_filename = os.path.splitext(os.path.basename(file))[0][0:4] + '_interprotein.csv'
         output_path = os.path.join(input_folder, output_filename)
 
         df2.to_csv(output_path, index=False)
