@@ -1,7 +1,13 @@
 #!/bin/bash
 
+xlinker = $1
+
+cd  '/home/muskaan/easal_benchmark_JWALK_results/JWALK_results_'$xlinker  
+
+if $xlinker == "EDC"
+then 
 # for EDC
-#go to /home/muskaan/easal_benchmark_JWALK_results/JWALK_results_EDC/ directory and run the following:
+
 patterns=(
     "1clv 8 EDC"
     "1r0r 6 EDC"
@@ -15,12 +21,12 @@ patterns=(
 # Iterate over the patterns and execute the Python script
 for pattern in "${patterns[@]}"; do
     set -- $pattern
-    pdb_file="${1}_interprotein.csv"
+    pdb_file="${1}_interprotein.csv" #TODO change name of csv file 
     python ~/EASAL/scripts/2_getting_random_xlinks.py "$pdb_file" "$2" "$3"
 done
 
-# for DSSO
-#go to /home/muskaan/easal_benchmark_JWALK_results/JWALK_results_DSSO/ directory and run the following:
+elif  $xlinker == "DSSO" 
+then  
 # patterns=(
 #     "1clv 2 DSSO"
 #     "1clv 6 DSSO"
@@ -45,6 +51,7 @@ done
 # # Iterate over the patterns and execute the Python script
 # for pattern in "${patterns[@]}"; do
 #     set -- $pattern
-#     pdb_file="${1}_crosslink_list_interprotein_crosslinks.csv"
+#     pdb_file="${1}_crosslink_list_interprotein_crosslinks.csv" #TODO change name of csv file 
 #     python ~/EASAL/scripts/2_getting_random_xlinks.py "$pdb_file" "$2" "$3"
 # done
+fi 
