@@ -1,7 +1,7 @@
 # Simulated crosslinks on experimental structures of protein complexes
 
 ## Structures
-Obtained from cMNXL dataset (DOI: ) which is a subset of ZDOCK benchmark (link). 
+Obtained from cMNXL dataset (DOI: 10.1016/j.str.2018.04.016 ) which is a subset of ZDOCK benchmark (https://zlab.umassmed.edu/benchmark/). 
 
 ## Simulating crosslinks on protein complexes
 
