@@ -21,7 +21,7 @@ To filter the interprotein crosslinks:
 Run `python ~/EASAL/scripts/1_processing_jwalk_output.py Jwalk_results/`
 
 To get a set of `n` random crosslinks:
-Run `python ~/EASAL/scripts/2_getting_random_xlinks.py 1dfj_interprotein_crosslinks.csv 4` where n=4
+Run `python ~/EASAL/scripts/2_getting_random_xlinks.py 1dfj_interprotein_crosslinks.csv DSSO 4` where n=4
 
 You can use master script `master_script.sh` to get different combination of number of crosslinks and crosslinker. 
 
