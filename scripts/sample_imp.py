@@ -92,7 +92,6 @@ xl_length = float(sys.argv[6])
 xlink_file = glob.glob('*.csv')[0]
 
 pdb = glob.glob('*.pdb')[0]
-# lpdb = data_direc+f'{lpdb_chain}.pdb'
 
 receptor_color = "blue"
 ligand_color = "red"
@@ -153,7 +152,6 @@ kw.set_residue2_key("res2")
 xldb = IMP.pmi.io.crosslink.CrossLinkDataBase(kw)
 xldb.create_set_from_file(xlink_file)
 
-#xlr = IMP.pmi.restraints.crosslinking.CrossLinkingMassSpectrometryRestraint(root_hier=root_hier,CrossLinkDataBase=xldb,length=18.0,label="XLDSS",filelabel='dss',resolution=1,slope=0.05)
 xlr = IMP.pmi.restraints.crosslinking.CrossLinkingMassSpectrometryRestraint(root_hier=root_hier,length=xl_length,label=crosslinker,database=xldb,linker=ihm.ChemDescriptor(crosslinker),resolution=1,slope=0.05)
 xlr.add_to_model()
 output_objects.append(xlr)
@@ -161,7 +159,7 @@ display_restraints.append(xlr)
 
 ######################## SAMPLING #####################
 ## First shuffle the system
-#IMP.pmi.tools.shuffle_configuration(root_hier.get_children()[0].get_children()[1],max_translation=500)
+IMP.pmi.tools.shuffle_configuration(root_hier.get_children()[0].get_children()[1],max_translation=50)
 
 if runType == "prod":
     nframes = 20000
