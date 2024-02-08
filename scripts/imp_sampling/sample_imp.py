@@ -138,7 +138,7 @@ for mol in mols:
 
 # Excluded volume - automatically more efficient due to rigid bodies
 evr = IMP.pmi.restraints.stereochemistry.ExcludedVolumeSphere(included_objects = mols)
-evr.set_weight(0.03)
+evr.set_weight(0.5)
 evr.add_to_model()
 output_objects.append(evr)
 
@@ -162,7 +162,7 @@ display_restraints.append(xlr)
 IMP.pmi.tools.shuffle_configuration(root_hier.get_children()[0].get_children()[1],max_translation=50)
 
 if runType == "prod":
-    nframes = 20000
+    nframes = 10000
 
 elif runType == "test":
     nframes = 600

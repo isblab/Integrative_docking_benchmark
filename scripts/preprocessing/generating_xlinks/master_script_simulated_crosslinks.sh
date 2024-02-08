@@ -18,7 +18,7 @@ if [[ $xlinker == "EDC" ]]; then
     for pattern in "${patterns[@]}"; do
         set -- $pattern
         pdb_file="${1}_interprotein.csv"
-        python ~/EASAL/scripts/2_getting_random_xlinks.py "$pdb_file" "$2" "$3"
+        python ~/EASAL/scripts/preprocessing/generating_xlinks/2_getting_random_xlinks.py "$pdb_file" "$2" "$3"
     done
 
 elif [[ $xlinker == "DSSO" ]]; then
@@ -45,7 +45,7 @@ elif [[ $xlinker == "DSSO" ]]; then
 
     for pattern in "${patterns[@]}"; do
         set -- $pattern
-        pdb_file="${1}_interprotein.csv" 
-        python ~/EASAL/scripts/2_getting_random_xlinks.py "$pdb_file" "$2" "$3"
+        pdb_file="${1}_interprotein.csv"
+        python ~/EASAL/scripts/preprocessing/generating_xlinks/2_getting_random_xlinks.py "$pdb_file" "$2" "$3"
     done
 fi

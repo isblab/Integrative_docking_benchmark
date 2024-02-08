@@ -15,6 +15,7 @@ import analysis_trajectories
 
 nproc = 30
 top_dir = sys.argv[1]
+xlinker = sys.argv[2]
 analys_dir = './model_analysis/'
 
 # Check if analysis dir exists
@@ -31,8 +32,11 @@ out_dirs = glob.glob(top_dir+'/'+dir_head+'*/')
 ################################
 # Read the total score, plot
 # and check for score convengence
-XLs_cutoffs = {'DSS0':42.0}
-
+if xlinker == 'DSSO':
+    XLs_cutoffs = {'DSS0':35.0}
+elif xlinker == 'EDC':
+    XLs_cutoffs = {'EDC':25.0}
+    
 # Load module
 AT = analysis_trajectories.AnalysisTrajectories(out_dirs,
                           dir_name=dir_head,
