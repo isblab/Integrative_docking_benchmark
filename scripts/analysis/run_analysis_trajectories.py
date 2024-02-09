@@ -36,7 +36,7 @@ if xlinker == 'DSSO':
     XLs_cutoffs = {'DSS0':35.0}
 elif xlinker == 'EDC':
     XLs_cutoffs = {'EDC':25.0}
-    
+
 # Load module
 AT = analysis_trajectories.AnalysisTrajectories(out_dirs,
                           dir_name=dir_head,
@@ -55,7 +55,7 @@ AT.write_models_info()
 AT.get_psi_stats()
 
 # What scores do we cluster on?
-AT.hdbscan_clustering(['EV_sum', 'XLs_sum'], min_cluster_size = 100, min_samples = 5, skip = 2)
+AT.hdbscan_clustering(['EV_sum', 'XLs_sum'], min_cluster_size = 500, min_samples = 50, skip = 5)
 AT.summarize_XLs_info(ambiguous_XLs_restraint = True)
 
 exit()

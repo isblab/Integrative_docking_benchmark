@@ -1,7 +1,7 @@
 #!/bin/bash
 # ###DSSO
 cd DSSO
-for protein in 1clv_2 1clv_6 1dfj_3 1dfj_9 1dfj_12 1kxp_4 1kxp_7 1kxp_11 1r0r_3 1r0r_7 2ayo_4 2ayo_8 2ayo_13 2b42_5 2b42_10 2hle_5 2hle_10 2hle_14 gata_gatc gcvpa_gcvpb phes_phet rocs_putc sucd_succ; do
+for protein in 1clv_2 1clv_6 1dfj_3 1dfj_9 1dfj_12 1kxp_4 1kxp_7 1kxp_11 1r0r_3 1r0r_7 2ayo_4 2ayo_8 2ayo_13 2b42_5 2b42_10 2hle_5 2hle_10 2hle_14 gata_gatc gcvpa_gcvpb phes_phet roca_putc sucd_succ; do
     cd "$protein"
 
     if [[ "$protein" == 1clv* ]]; then
@@ -16,7 +16,7 @@ for protein in 1clv_2 1clv_6 1dfj_3 1dfj_9 1dfj_12 1kxp_4 1kxp_7 1kxp_11 1r0r_3 
     elif [[ "$protein" == 1r0r* ]]; then
         chainA="E"
         chainB="I"
-    elif [[ "$protein" == 2ayo* || "$protein" == 2b42* || "$protein" == 2hle* ]]; then
+    elif [[ "$protein" == 2ayo* || "$protein" == 2b42* || "$protein" == 2hle* || "$protein" == gata_gatc || "$protein" == gcvpa_gcvpb || "$protein" == phes_phet || "$protein" == roca_putc || "$protein" == sucd_succ]]; then
         chainA="A"
         chainB="B"
     fi

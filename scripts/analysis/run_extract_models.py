@@ -11,7 +11,7 @@ from analysis_trajectories import *
 #################################
 ########### MAIN ################
 #################################
-nproc = 50
+nproc = 30
 top_dir = sys.argv[1]
 analys_dir = './model_analysis/'
 
