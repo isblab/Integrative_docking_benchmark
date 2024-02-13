@@ -12,12 +12,10 @@ import analysis_trajectories
 #################################
 ########### MAIN ################
 #################################
-
-nproc = 30
+nproc = 20
 top_dir = sys.argv[1]
 xlinker = sys.argv[2]
 analys_dir = './model_analysis/'
-
 # Check if analysis dir exists
 if not os.path.isdir(analys_dir):
     os.makedirs(analys_dir)
@@ -55,7 +53,7 @@ AT.write_models_info()
 AT.get_psi_stats()
 
 # What scores do we cluster on?
-AT.hdbscan_clustering(['EV_sum', 'XLs_sum'], min_cluster_size = 8000, min_samples = 100, skip = 6)
+AT.hdbscan_clustering(['EV_sum', 'XLs_sum'], min_cluster_size = 12000, min_samples = 300, skip = 5)
 AT.summarize_XLs_info(ambiguous_XLs_restraint = True)
 
 exit()

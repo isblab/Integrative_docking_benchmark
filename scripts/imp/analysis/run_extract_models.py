@@ -33,10 +33,10 @@ AT = AnalysisTrajectories(
 )
 
 HA = AT.get_models_to_extract(
-        analys_dir + "good_scoring_models_A_cluster" + str(c) + "_detailed.csv")
+        analys_dir + "selected_models_A_cluster" + str(c) + "_detailed.csv")
 
 HB = AT.get_models_to_extract(
-        analys_dir + "good_scoring_models_B_cluster" + str(c) + "_detailed.csv")
+        analys_dir + "selected_models_B_cluster" + str(c) + "_detailed.csv")
 
 rmf_file_out_A = "A_models_clust" + str(c) + ".rmf3"
 rmf_file_out_B = "B_models_clust" + str(c) + ".rmf3"
