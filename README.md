@@ -10,7 +10,7 @@ chain_A, chain_B: chain name in pdb file.
 [Sampling]
 stepSize: step size of sampling, smaller means finer (and slower) sample procedure.
 [Constraint]
-activeUpperDelta: change the upper limit to 32 or 20 here
+activeUpperDelta: change the upper limit to 32 or 20 here. 
 crossLinkCount: total count of cross links in input file
 crossLinkSatisfyThres: threshold of taking a configuration into account. If no configuration has this many cross links feasible, no configuration will be stored. 
 crossLinks: list of all cross links in the form of {A1, B1, A2, B2, ...} corresponding to cross link file you sent me before.
