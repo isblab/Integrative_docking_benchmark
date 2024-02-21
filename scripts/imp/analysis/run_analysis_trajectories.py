@@ -12,7 +12,7 @@ import analysis_trajectories
 #################################
 ########### MAIN ################
 #################################
-nproc = 20
+nproc = 1
 top_dir = sys.argv[1]
 xlinker = sys.argv[2]
 analys_dir = './model_analysis/'
@@ -31,9 +31,9 @@ out_dirs = glob.glob(top_dir+'/'+dir_head+'*/')
 # Read the total score, plot
 # and check for score convengence
 if xlinker == 'DSSO':
-    XLs_cutoffs = {'DSS0':35.0}
+    XLs_cutoffs = {'DSS0':32.0}
 elif xlinker == 'EDC':
-    XLs_cutoffs = {'EDC':25.0}
+    XLs_cutoffs = {'EDC':20.0}
 
 # Load module
 AT = analysis_trajectories.AnalysisTrajectories(out_dirs,
@@ -53,7 +53,7 @@ AT.write_models_info()
 AT.get_psi_stats()
 
 # What scores do we cluster on?
-AT.hdbscan_clustering(['EV_sum', 'XLs_sum'], min_cluster_size = 12000, min_samples = 300, skip = 5)
+AT.hdbscan_clustering(['EV_sum', 'XLs_sum'], min_cluster_size = 4000, min_samples = 50, skip = 3)
 AT.summarize_XLs_info(ambiguous_XLs_restraint = True)
 
 exit()

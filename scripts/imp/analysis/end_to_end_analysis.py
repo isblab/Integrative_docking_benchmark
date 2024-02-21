@@ -9,6 +9,7 @@ import sys
 import os
 import shutil
 import subprocess
+import glob
 
 ############ This is the way ############
 ##-------------------------------------##
@@ -19,7 +20,7 @@ imp_path = "/home/muskaan/imp-clean/build/setup_environment.sh"
 pdb_id = sys.argv[1]
 xlinker = sys.argv[2]
 modeling_dir_path = f"../../{xlinker}/{pdb_id}/"
-density_file ="./density*.txt"
+density_file =glob.glob('density*.txt')[0]
 
 def return_major_cluster():
 	file = "model_analysis/summary_hdbscan_clustering.dat"
