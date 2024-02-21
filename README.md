@@ -2,7 +2,7 @@
 
 To compare methods for integrative docking of complexes based on crosslinking. We compare EASAL and IMP.
 
-Download EASAL from 
+Download EASAL from `https://bitbucket.org/geoplexity/easal-dev/branch/shruthi`
 
 [Input]
 file: name of pdb file containing two proteins
