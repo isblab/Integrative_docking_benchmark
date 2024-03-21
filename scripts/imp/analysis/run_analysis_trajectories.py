@@ -53,7 +53,7 @@ AT.write_models_info()
 AT.get_psi_stats()
 
 # What scores do we cluster on?
-AT.hdbscan_clustering(['EV_sum', 'XLs_sum'], min_cluster_size = 4000, min_samples = 50, skip = 3)
+AT.hdbscan_clustering(['EV_sum', 'XLs_sum'], min_cluster_size = 2000, min_samples = 40, skip = 3)
 AT.summarize_XLs_info(ambiguous_XLs_restraint = True)
 
 exit()
