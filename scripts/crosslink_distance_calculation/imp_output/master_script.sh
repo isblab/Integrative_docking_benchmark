@@ -1,3 +1,6 @@
+#TODO rename file to be more descriptive and unambigious. master_script.sh means what? 
+
+
 #!/bin/bash
 ###DSSO
 ##simulated

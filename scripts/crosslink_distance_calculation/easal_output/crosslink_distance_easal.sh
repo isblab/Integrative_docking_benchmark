@@ -1,3 +1,8 @@
+#TODO consistent naming of all wrapper scripts.Consider adding the name wrapper to the script file name to disambiguate from the script that
+# calculates actual distances in the model 
+# crosslink_distances_easal_wrapper.sh 
+
+
 #!/bin/bash
 ###DSSO
 #simulated
