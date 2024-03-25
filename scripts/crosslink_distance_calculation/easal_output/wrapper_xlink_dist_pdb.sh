@@ -40,7 +40,7 @@ for dir in "${directories[@]}"; do
     fi
 
     csv_file="$HOME/EASAL/benchmark/simulated/DSSO/$direc2/${filename}_DSSO_${number}.csv"
-    python /home/muskaan/EASAL/scripts/crosslink_distance_calculation/easal_output/calc_xlink_distance_pdb.py "$chainA" "$chainB" "$csv_file"
+    python /home/muskaan/EASAL/scripts/crosslink_distance_calculation/easal_output/calc_xlink_dist_pdb.py "$chainA" "$chainB" "$csv_file"
 
     cd ../../..
 done
@@ -57,7 +57,7 @@ for dir in "${directories[@]}"; do
     number=$(echo "$dir" | sed 's/.*_cl\([0-9]*\)/\1/')
 
     csv_file="$HOME/EASAL/benchmark/experimental/crosslinks/${filename}_DSSO_${number}.csv"
-    python /home/muskaan/EASAL/scripts/crosslink_distance_calculation/easal_output/calc_xlink_distance_pdb.py "A" "B" "$csv_file"
+    python /home/muskaan/EASAL/scripts/crosslink_distance_calculation/easal_output/calc_xlink_dist_pdb.py "A" "B" "$csv_file"
 
     cd ../../..
 done
@@ -87,7 +87,7 @@ for dir in "${directories[@]}"; do
     fi
 
     csv_file="$HOME/EASAL/benchmark/simulated/EDC/${filename}_EDC_${number}.csv"
-    python /home/muskaan/EASAL/scripts/crosslink_distance_calculation/easal_output/calc_xlink_distance_pdb.py "$chainA" "$chainB" "$csv_file"
+    python /home/muskaan/EASAL/scripts/crosslink_distance_calculation/easal_output/calc_xlink_dist_pdb.py "$chainA" "$chainB" "$csv_file"
 
     cd ../../
 done

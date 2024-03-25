@@ -33,15 +33,24 @@ def process_csv(pdb_file, chain_A, chain_B, xlink_file, output_file):
 
 def main():
     chain_A, chain_B, xlink_file = sys.argv[1:4]
-    output_directory = os.path.expanduser('~/easal_output_muskaan/crosslink_distances/')
-    os.makedirs(output_directory, exist_ok=True)
     xlink_filename = os.path.splitext(os.path.basename(xlink_file))[0]
-    output_file = os.path.join(output_directory, f'{xlink_filename}_distances.txt')
+    output_file = os.path.join('/home/muskaan/easal_output_muskaan/crosslink_distances/', f'{xlink_filename}_distances.txt')
+    xl_satisfaction = os.path.join('/home/muskaan/easal_output_muskaan/xl_satisfaction/', f'{xlink_filename}_perc_satisfied.txt')
 
     for pdb_file in os.listdir(os.getcwd()):
         if pdb_file.endswith(".pdb"):
+            xl_satisfied = pdb_file.split('_')[2]
             process_csv(pdb_file, chain_A, chain_B, xlink_file, output_file)
             #TODO change file name to something more meaningful such as calc xlink distances for pdb
+
+    #Calculate percentage of xlinks satisfied based on 0 and 1 in the pdb file name
+    perc = 0
+    for xl in xl_satisfied:
+        if xl == '1':
+            perc += 1
+
+    with open(xl_satisfaction, 'w') as perc_satisfied:
+        perc_satisfied.write(f'{xlink_filename} {perc/len(xl_satisfied) *100}\n')
 
 if __name__ == "__main__":
     main()
