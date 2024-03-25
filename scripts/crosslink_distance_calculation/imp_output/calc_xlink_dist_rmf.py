@@ -49,8 +49,8 @@ with open(xl_dist, 'w') as output_file, open(percentage_satisfied, 'w') as perc_
         perc = 0
         for xl in all_xls:
             c1, c2 = set_coords(xl)
-            distance = IMP.core.get_distance(IMP.core.XYZ(c1), IMP.core.XYZ(mdl, c2))
-            if distance <0:
+            distance = IMP.core.get_distance(IMP.core.XYZ(c1), IMP.core.XYZ(c2))
+            if distance < 0:
                 distance = 0
             output_file.write(f'{frame} {distance}\n')
             if distance < threshold:
