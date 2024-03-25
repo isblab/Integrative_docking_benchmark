@@ -43,12 +43,18 @@ xl_dist = os.path.join('/home/muskaan/easal_imp/crosslink_distances/', f'{xlink_
 percentage_satisfied = os.path.join('/home/muskaan/easal_imp/xl_satisfaction/', f'{xlink_filename}_percentage_satisfied.txt')
 
 with open(xl_dist, 'w') as output_file, open(percentage_satisfied, 'w') as perc_satisfied:
+    #TODO both are output files, why call one alone as output file? 
+    #TODO maybe one can be output_dist_fil, another output_perc_sat_file or something
+    
     for frame in tqdm(range(rmf_fh.get_number_of_frames())):
         IMP.rmf.load_frame(rmf_fh, frame)
         mdl.update()
         perc = 0
         for xl in all_xls:
             c1, c2 = set_coords(xl)
+            #TODO why not just return distance from the above function?
+            #TODO the function name says set_coords but it is misleading: it is returning a pair of particles
+            
             distance = IMP.core.get_distance(IMP.core.XYZ(c1), IMP.core.XYZ(c2))
             if distance < 0:
                 distance = 0
