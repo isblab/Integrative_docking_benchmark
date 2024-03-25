@@ -1,6 +1,6 @@
 #TODO consistent naming of all wrapper scripts.Consider adding the name wrapper to the script file name to disambiguate from the script that
-# calculates actual distances in the model 
-# crosslink_distances_easal_wrapper.sh 
+# calculates actual distances in the model
+# crosslink_distances_easal_wrapper.sh
 
 
 #!/bin/bash
@@ -40,7 +40,7 @@ for dir in "${directories[@]}"; do
     fi
 
     csv_file="$HOME/EASAL/benchmark/simulated/DSSO/$direc2/${filename}_DSSO_${number}.csv"
-    python ~/easal_imp/scripts/calculate_distance_easal_output.py "$chainA" "$chainB" "$csv_file"
+    python /home/muskaan/EASAL/scripts/crosslink_distance_calculation/easal_output/calc_xlink_distance_pdb.py "$chainA" "$chainB" "$csv_file"
 
     cd ../../..
 done
@@ -57,7 +57,7 @@ for dir in "${directories[@]}"; do
     number=$(echo "$dir" | sed 's/.*_cl\([0-9]*\)/\1/')
 
     csv_file="$HOME/EASAL/benchmark/experimental/crosslinks/${filename}_DSSO_${number}.csv"
-    python ~/easal_imp/scripts/calculate_distance_easal_output.py "A" "B" "$csv_file"
+    python /home/muskaan/EASAL/scripts/crosslink_distance_calculation/easal_output/calc_xlink_distance_pdb.py "A" "B" "$csv_file"
 
     cd ../../..
 done
@@ -87,7 +87,7 @@ for dir in "${directories[@]}"; do
     fi
 
     csv_file="$HOME/EASAL/benchmark/simulated/EDC/${filename}_EDC_${number}.csv"
-    python ~/easal_imp/scripts/calculate_distance_easal_output.py "$chainA" "$chainB" "$csv_file"
+    python /home/muskaan/EASAL/scripts/crosslink_distance_calculation/easal_output/calc_xlink_distance_pdb.py "$chainA" "$chainB" "$csv_file"
 
     cd ../../
 done
