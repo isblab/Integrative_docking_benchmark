@@ -11,7 +11,7 @@ xl_file = sys.argv[2]
 threshold = float(sys.argv[3])
 
 
-def set_coords(xl):
+def calculate_distance(xl):
     r1, p1, r2, p2 = xl.split(',')
     c1 = IMP.atom.Selection(hierarchy=hier,
                             molecule=p1,
@@ -23,8 +23,8 @@ def set_coords(xl):
                             resolution=1,
                             residue_index=int(r2)).get_selected_particles()
 
-
-    return c1[0], c2[0]
+    dist = IMP.core.get_distance(IMP.core.XYZ(c1[0]), IMP.core.XYZ(c2[0]))
+    return dist
 
 mdl = IMP.Model()
 rmf_fh = RMF.open_rmf_file_read_only(all_mdls_fname)
@@ -42,23 +42,17 @@ xlink_filename = os.path.splitext(os.path.basename(xl_file))[0]
 xl_dist = os.path.join('/home/muskaan/easal_imp/crosslink_distances/', f'{xlink_filename}_distances.txt')
 percentage_satisfied = os.path.join('/home/muskaan/easal_imp/xl_satisfaction/', f'{xlink_filename}_percentage_satisfied.txt')
 
-with open(xl_dist, 'w') as output_file, open(percentage_satisfied, 'w') as perc_satisfied:
-    #TODO both are output files, why call one alone as output file? 
-    #TODO maybe one can be output_dist_fil, another output_perc_sat_file or something
-    
+with open(xl_dist, 'w') as output_dist_file, open(percentage_satisfied, 'w') as output_perc_sat_file:
+
     for frame in tqdm(range(rmf_fh.get_number_of_frames())):
         IMP.rmf.load_frame(rmf_fh, frame)
         mdl.update()
         perc = 0
         for xl in all_xls:
-            c1, c2 = set_coords(xl)
-            #TODO why not just return distance from the above function?
-            #TODO the function name says set_coords but it is misleading: it is returning a pair of particles
-            
-            distance = IMP.core.get_distance(IMP.core.XYZ(c1), IMP.core.XYZ(c2))
+            distance = calculate_distance(xl)
             if distance < 0:
                 distance = 0
-            output_file.write(f'{frame} {distance}\n')
+            output_dist_file.write(f'{frame} {distance}\n')
             if distance < threshold:
                 perc += 1
-        perc_satisfied.write(f'{frame} {perc/len(all_xls) *100}\n')
+        output_perc_sat_file.write(f'{frame} {perc/len(all_xls) *100}\n')
