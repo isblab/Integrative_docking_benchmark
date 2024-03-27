@@ -5,9 +5,6 @@ import csv
 
 def calculate_distance(structure, model_A, model_B, residue1, residue2):
 
-    #TODO same problem here as in IMP script. parsing the structure for each xlink obtained
-    # TODO write down the algo on paper first, spot inefficiencies and then program it
-
     ca_atom1 = model_A[residue1]['CA']
     ca_atom2 = model_B[residue2]['CA']
     distance = ca_atom1 - ca_atom2
@@ -41,16 +38,14 @@ def main():
         if pdb_file.endswith(".pdb"):
             xl_satisfied = pdb_file.split('_')[2]
             process_csv(pdb_file, chain_A, chain_B, xlink_file, output_file)
-            #TODO change file name to something more meaningful such as calc xlink distances for pdb
 
-    #Calculate percentage of xlinks satisfied based on 0 and 1 in the pdb file name
-    perc = 0
-    for xl in xl_satisfied:
-        if xl == '1':
-            perc += 1
+            perc = 0
+            for xl in xl_satisfied:
+                if xl == '1':
+                    perc += 1
 
-    with open(xl_satisfaction, 'w') as perc_satisfied:
-        perc_satisfied.write(f'{xlink_filename} {perc/len(xl_satisfied) *100}\n')
+            with open(xl_satisfaction, 'a') as perc_satisfied:
+                perc_satisfied.write(f'{pdb_file} {perc/len(xl_satisfied) *100}\n')
 
 if __name__ == "__main__":
     main()

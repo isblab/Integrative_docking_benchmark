@@ -11,8 +11,6 @@ def plot_crosslink_distances(ax, file_path, label, color, name):
             distances.append(distance)
 
     counts, bins = np.histogram(distances, bins=np.arange(min(distances), max(distances) + 1, 1))
-
-    # Plot line connecting the histogram edges
     ax.plot(bins[:-1], counts, color=color, label=label, linewidth=2)
 
     ax.set_title(f'{name}')
@@ -25,7 +23,6 @@ def file_parsing(name, ax):
     file1_path = os.path.join('/home/muskaan/easal_imp/crosslink_distances/', name + '_distances.txt')
     file2_path = os.path.join('/home/muskaan/easal_output_muskaan/crosslink_distances/', name + '_distances.txt')
 
-    # Adjust colors if desired
     plot_crosslink_distances(ax, file1_path, 'IMP', color='blue', name=name)
     plot_crosslink_distances(ax, file2_path, 'EASAL', color='orange',name=name)
 

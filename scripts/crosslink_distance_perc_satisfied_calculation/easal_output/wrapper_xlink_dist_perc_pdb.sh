@@ -1,9 +1,7 @@
-#TODO consistent naming of all wrapper scripts.Consider adding the name wrapper to the script file name to disambiguate from the script that
-# calculates actual distances in the model
-# crosslink_distances_easal_wrapper.sh
-
-
 #!/bin/bash
+
+# run it in /home/muskaan/easal_output_muskaan/
+
 ###DSSO
 #simulated
 directories=("1clv_cl2" "1clv_cl6" "1dfj_cl3" "1dfj_cl9" "1dfj_cl12" "1kxp_cl4" "1kxp_cl7" "1kxp_cl11" "1r0r_cl3" "1r0r_cl7" "2ayo_cl4" "2ayo_cl8" "2ayo_cl13" "2b42_cl5" "2b42_cl10" "2hle_cl5" "2hle_cl10" "2hle_cl14")
@@ -40,7 +38,7 @@ for dir in "${directories[@]}"; do
     fi
 
     csv_file="$HOME/EASAL/benchmark/simulated/DSSO/$direc2/${filename}_DSSO_${number}.csv"
-    python /home/muskaan/EASAL/scripts/crosslink_distance_calculation/easal_output/calc_xlink_dist_pdb.py "$chainA" "$chainB" "$csv_file"
+    python /home/muskaan/EASAL/scripts/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_perc_pdb.py "$chainA" "$chainB" "$csv_file"
 
     cd ../../..
 done
@@ -57,7 +55,7 @@ for dir in "${directories[@]}"; do
     number=$(echo "$dir" | sed 's/.*_cl\([0-9]*\)/\1/')
 
     csv_file="$HOME/EASAL/benchmark/experimental/crosslinks/${filename}_DSSO_${number}.csv"
-    python /home/muskaan/EASAL/scripts/crosslink_distance_calculation/easal_output/calc_xlink_dist_pdb.py "A" "B" "$csv_file"
+    python /home/muskaan/EASAL/scripts/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_perc_pdb.py "A" "B" "$csv_file"
 
     cd ../../..
 done
@@ -87,7 +85,7 @@ for dir in "${directories[@]}"; do
     fi
 
     csv_file="$HOME/EASAL/benchmark/simulated/EDC/${filename}_EDC_${number}.csv"
-    python /home/muskaan/EASAL/scripts/crosslink_distance_calculation/easal_output/calc_xlink_dist_pdb.py "$chainA" "$chainB" "$csv_file"
+    python /home/muskaan/EASAL/scripts/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_pdb.py "$chainA" "$chainB" "$csv_file"
 
     cd ../../
 done

@@ -1,6 +1,3 @@
-#TODO rename file to be more descriptive and unambigious. master_script.sh means what?
-
-
 #!/bin/bash
 ###DSSO
 ##simulated
@@ -19,7 +16,7 @@ for dir in "${directories[@]}"; do
   fi
   csv_file="$HOME/EASAL/benchmark/simulated/DSSO/$direc2/${filename}_DSSO_${number}.csv"
 
-  ~/imp-clean/build/setup_environment.sh python ~/EASAL/scripts/crosslink_distance_calculation/imp_output/calc_xlink_dist_rmf.py "DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "32"
+  ~/imp-clean/build/setup_environment.sh python ~/EASAL/scripts/crosslink_distance_calculation/imp_output/calc_xlink_dist_perc_rmf.py "DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "32"
 
 done
 
@@ -33,7 +30,7 @@ for dir in "${directories[@]}"; do
     number=$(echo "$dir" | cut -d'_' -f3)
 
     csv_file="$HOME/EASAL/benchmark/experimental/crosslinks/${filename}_DSSO_${number}.csv"
-    ~/imp-clean/build/setup_environment.sh python ~/EASAL/scripts/crosslink_distance_calculation/imp_output/calc_xlink_dist_rmf.py "DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "32"
+    ~/imp-clean/build/setup_environment.sh python ~/EASAL/scripts/crosslink_distance_calculation/imp_output/calc_xlink_dist_perc_rmf.py "DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "32"
 done
 
 ###EDC
@@ -44,6 +41,6 @@ for dir in "${directories[@]}"; do
   number=$(echo "$dir" | cut -d'_' -f2)
   csv_file="$HOME/EASAL/benchmark/simulated/EDC/${filename}_EDC_${number}.csv"
 
-  ~/imp-clean/build/setup_environment.sh python ~/EASAL/scripts/crosslink_distance_calculation/imp_output/calc_xlink_dist_rmf.py "EDC_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "20"
+  ~/imp-clean/build/setup_environment.sh python ~/EASAL/scripts/crosslink_distance_calculation/imp_output/calc_xlink_dist_perc_rmf.py "EDC_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "20"
 
 done
