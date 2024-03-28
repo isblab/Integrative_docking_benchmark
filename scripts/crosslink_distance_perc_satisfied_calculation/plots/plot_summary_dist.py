@@ -26,10 +26,8 @@ def file_parsing(name):
 
     try:
         num = int(name.split('_')[2])
-        labels = name.split('_')[0]+name.split('_')[2]
     except:
         num = int(name.split('_')[3])
-        labels = name.split('_')[0]+'_'+name.split('_')[1]+name.split('_')[3]
 
     avg_imp = get_avg_dist(file1_path, num)
     avg_easal = get_avg_dist(file2_path, num)
@@ -42,26 +40,28 @@ def file_parsing(name):
         color = 'green'
 
     plt.scatter(avg_imp, avg_easal, marker=marker, color=color)
-    plt.annotate(labels, (avg_imp, avg_easal), textcoords="offset points", xytext=(10,-10), ha='center')
+    # plt.annotate(labels, (avg_imp, avg_easal), textcoords="offset points", xytext=(10,-10), ha='center')
 
 input_cases = ["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5", "2hle_DSSO_5",
     "1dfj_EDC_4", "1clv_EDC_8", "1kxp_EDC_7", "1r0r_EDC_6", "2ayo_EDC_5", "2b42_EDC_10", "2hle_EDC_9",
     "1dfj_DSSO_9", "1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "2b42_DSSO_10", "2hle_DSSO_10",
     "1dfj_DSSO_12", "1kxp_DSSO_11", "2ayo_DSSO_13", "2hle_DSSO_14",
-    "gata_gatc_DSSO_3", "gcvpa_gcvpb_DSSO_5","roca_putc_DSSO_2", "sucd_succ_DSSO_4"]
+    "gata_gatc_DSSO_3", "gcvpa_gcvpb_DSSO_5","roca_putc_DSSO_2", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"]
 
 for case in input_cases:
     file_parsing(case)
 
 # plt.rcParams['font.family'] = 'Arial'
-plt.xlabel('Average Crosslink Distance in IMP Ensemble (Å)',fontname='Arial')
-plt.ylabel('Average Crosslink Distance in EASAL Ensemble (Å)',fontname='Arial')
+plt.xlabel('Average Crosslink Distance in IMP Ensemble (Å)')
+plt.ylabel('Average Crosslink Distance in EASAL Ensemble (Å)')
+plt.tick_params(axis='both', which='major', labelsize=12)
 plt.xlim(10, 50)
 plt.ylim(10, 50)
+
 
 legend_elements = [Line2D([0], [0], marker='o', color='red', label='DSSO', markersize=10, linestyle='None'),
                    Line2D([0], [0], marker='^', color='green', label='EDC', markersize=10, linestyle='None')]
 
 plt.legend(handles=legend_elements)
-plt.savefig('/home/muskaan/easal/plots/summary_plot_dist.png')
+plt.savefig('/home/muskaan/easal/plots/summary_plot_dist.png',dpi=600)
 plt.show()

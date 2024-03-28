@@ -37,7 +37,6 @@ def main():
     xlink_filename = os.path.splitext(os.path.basename(xlink_file))[0]
     output_file = os.path.join('/home/muskaan/easal/easal_output/crosslink_distances/', f'{xlink_filename}_distances.txt')
     xl_satisfaction = os.path.join('/home/muskaan/easal/easal_output/xl_satisfaction/', f'{xlink_filename}_perc_satisfied.txt')
-    avg_xlink_dist = os.path.join('/home/muskaan/easal/easal_output/avg_dist/', f'{xlink_filename}.txt')
 
     for pdb_file in os.listdir(os.getcwd()):
         avg_across_xlinks = []
@@ -52,12 +51,6 @@ def main():
 
             with open(xl_satisfaction, 'a') as perc_satisfied:
                 perc_satisfied.write(f'{pdb_file} {(perc/len(xl_satisfied)) *100}\n')
-
-        avg_across_xlinks.append(np.mean(avg_dist))
-    avg_across_models = np.mean(avg_across_xlinks)
-
-    with open(avg_xlink_dist, 'w') as avg_xlink_dist_file:
-        avg_xlink_dist_file.write(avg_across_models)
 
 if __name__ == "__main__":
     main()
