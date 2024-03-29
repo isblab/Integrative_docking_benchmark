@@ -49,6 +49,9 @@ input_cases = ["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo
     "gata_gatc_DSSO_3", "gcvpa_gcvpb_DSSO_5","roca_putc_DSSO_2", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"]
 
 for case in input_cases:
+    #TODO make the function name more descriptive of what it is doing than file parsing. 
+    #TODO again do all plotting in 1 function so that the plt object is in one place. 
+    
     file_parsing(case)
 
 # plt.rcParams['font.family'] = 'Arial'
