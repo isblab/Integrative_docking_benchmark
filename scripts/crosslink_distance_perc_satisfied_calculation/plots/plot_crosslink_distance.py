@@ -19,6 +19,7 @@ def plot_crosslink_distances(ax, file_path, label, color, name):
     ax.tick_params(axis='both', which='major', labelsize=12)
 
 
+#TODO see comments for the plot_crosslink_perc_satisfied and follow the same
 
 def file_parsing(name, ax):
     file1_path = os.path.join('/home/muskaan/easal/imp_output/crosslink_distances/', name + '_distances.txt')
