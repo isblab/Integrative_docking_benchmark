@@ -15,7 +15,7 @@ def plot_crosslink_distances(ax, file_path, label, color, name):
     ax.violinplot(distances, showmeans=False, showmedians=False)
     ax.set_title(f'{name}')
     ax.set_xlabel('Density',fontsize=14)
-    ax.set_ylabel('Distance (Å)',fontsize=14)
+    ax.set_ylabel('Distance between crosslinked residues in model (Å)',fontsize=14)
     ax.tick_params(axis='both', which='major', labelsize=12)
 
 
