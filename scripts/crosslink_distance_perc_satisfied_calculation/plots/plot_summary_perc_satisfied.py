@@ -20,6 +20,10 @@ def get_perc_across_models(file_path):
 
 
 def file_parsing(name):
+    #TODO more descriptive function name than file parsing: try something likw: get_max_xlinks_satisfied_and_corresponding_models
+    #TODO weird to call the plot functions for the same figure in 2 functions, because plt is usually an object. 
+    #TODO just return numbers from this and do all plotting in main function
+    
     file1_path = os.path.join('/home/muskaan/easal/imp_output/xl_satisfaction/', name + '_perc_satisfied.txt')
     file2_path = os.path.join('/home/muskaan/easal/easal_output/xl_satisfaction/', name + '_perc_satisfied.txt')
 
