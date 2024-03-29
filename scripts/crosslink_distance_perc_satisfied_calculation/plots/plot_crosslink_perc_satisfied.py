@@ -15,6 +15,8 @@ def plot_crosslink_satisfaction(ax, file_path, label, color, name):
     ax.violinplot(percentages, showmeans=False, showmedians=False)
     ax.set_title(f'{name}')
     ax.set_ylabel('Percentage',fontsize=14)
+    #TODO what percentage is this? Say "percentage of crosslinks" or "percentage of models" or something like that  
+    
     ax.set_xlabel('Density',fontsize=14)
     ax.tick_params(axis='both', which='major', labelsize=12)
 
@@ -25,6 +27,7 @@ def file_parsing(name, ax):
     plot_crosslink_satisfaction(ax, file1_path, 'IMP', color='blue', name=name)
     plot_crosslink_satisfaction(ax, file2_path, 'EASAL', color='orange', name=name)
 
+#TODO instead of commenting out, use sys.argv to choose what to plot each time. Reduces human errors. 
 input_cases = ["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5", "2hle_DSSO_5"] #DSSO less than 5
 # input_cases = ["1dfj_DSSO_9", "1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "2b42_DSSO_10", "2hle_DSSO_10"] #DSSO 6-10
 # input_cases = ["1dfj_DSSO_12", "1kxp_DSSO_11", "2ayo_DSSO_13", "2hle_DSSO_14"] #DSSO more than 10
@@ -37,6 +40,8 @@ for idx, case in enumerate(input_cases):
     row = idx // 3
     col = idx % 3
     file_parsing(case, axs[row, col])
+    #TODO make the function name more descriptive, and do all plotting here instead of in called functions. 
+    
     axs[row, col].legend(handles=[mpatches.Patch(color='blue'), mpatches.Patch(color='orange')], labels=['IMP', 'EASAL'])
 
 plt.savefig(f'/home/muskaan/easal/plots/percentage_satisfied/{sys.argv[1]}.png')
