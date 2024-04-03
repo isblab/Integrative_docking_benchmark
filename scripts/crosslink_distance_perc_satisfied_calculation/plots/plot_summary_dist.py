@@ -20,7 +20,7 @@ def get_avg_dist(file_path, num):
 
     return np.mean(avg_distances) #This is avg distance across all models
 
-def file_parsing(name):
+def read_file_and_get_dist(name):
     file1_path = os.path.join('/home/muskaan/easal/imp_output/crosslink_distances/', name + '_distances.txt')
     file2_path = os.path.join('/home/muskaan/easal/easal_output/crosslink_distances/', name + '_distances.txt')
 
@@ -32,15 +32,8 @@ def file_parsing(name):
     avg_imp = get_avg_dist(file1_path, num)
     avg_easal = get_avg_dist(file2_path, num)
 
-    if 'DSSO' in name:
-        marker = 'o'
-        color = 'red'
-    elif 'EDC' in name:
-        marker = '^'
-        color = 'green'
+    return avg_imp, avg_easal
 
-    plt.scatter(avg_imp, avg_easal, marker=marker, color=color)
-    # plt.annotate(labels, (avg_imp, avg_easal), textcoords="offset points", xytext=(10,-10), ha='center')
 
 input_cases = ["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5", "2hle_DSSO_5",
     "1dfj_EDC_4", "1clv_EDC_8", "1kxp_EDC_7", "1r0r_EDC_6", "2ayo_EDC_5", "2b42_EDC_10", "2hle_EDC_9",
@@ -49,10 +42,19 @@ input_cases = ["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo
     "gata_gatc_DSSO_3", "gcvpa_gcvpb_DSSO_5","roca_putc_DSSO_2", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"]
 
 for case in input_cases:
-    #TODO make the function name more descriptive of what it is doing than file parsing. 
-    #TODO again do all plotting in 1 function so that the plt object is in one place. 
-    
-    file_parsing(case)
+    #TODO make the function name more descriptive of what it is doing than file parsing.
+    #TODO again do all plotting in 1 function so that the plt object is in one place.
+
+    avg_imp, avg_easal = read_file_and_get_dist(case)
+
+    if 'DSSO' in case:
+        marker = 'o'
+        color = 'red'
+    elif 'EDC' in case:
+        marker = '^'
+        color = 'green'
+
+    plt.scatter(avg_imp, avg_easal, marker=marker, color=color)
 
 # plt.rcParams['font.family'] = 'Arial'
 plt.xlabel('Average Crosslink Distance in IMP Ensemble (Å)')
