@@ -1,11 +1,10 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import os
 import sys
 import matplotlib.patches as mpatches
 import argparse
 
-def calc_crosslink_distances(ax, file_path, label, color, name):
+def calc_crosslink_distances(file_path):
     distances = []
     with open(file_path, 'r') as file:
         for line in file:
@@ -16,12 +15,12 @@ def calc_crosslink_distances(ax, file_path, label, color, name):
 
 #TODO see comments for the plot_crosslink_perc_satisfied and follow the same
 
-def read_file_and_get_dist(name, ax):
+def read_file_and_get_dist(name):
     file1_path = os.path.join('/home/muskaan/easal/imp_output/crosslink_distances/', name + '_distances.txt')
     file2_path = os.path.join('/home/muskaan/easal/easal_output/crosslink_distances/', name + '_distances.txt')
 
-    dist_imp = calc_crosslink_distances(ax, file1_path, 'IMP', color='blue', name=name)
-    dist_easal = calc_crosslink_distances(ax, file2_path, 'EASAL', color='orange',name=name)
+    dist_imp = calc_crosslink_distances(file1_path)
+    dist_easal = calc_crosslink_distances(file2_path)
 
     return dist_imp, dist_easal
 
@@ -55,15 +54,15 @@ fig, axs = plt.subplots(3, 3, figsize=(20, 20), gridspec_kw={'wspace': 0.5, 'hsp
 for idx, case in enumerate(input_cases):
     row = idx // 3
     col = idx % 3
-    dist_imp, dist_easal = read_file_and_get_dist(case, axs[row, col])
+    dist_imp, dist_easal = read_file_and_get_dist(case)
 
-    axs[row,col].violinplot(dist_imp, showmeans=False, showmedians=False)
-    axs[row,col].violinplot(dist_easal, showmeans=False, showmedians=False)
-    axs[row,col].set_title(f'{case}')
-    axs[row,col].set_xlabel('Density',fontsize=14)
-    axs[row,col].set_ylabel('Distance between\n crosslinked residues\n in model (Å)',fontsize=14)
-    axs[row,col].tick_params(axis='both', which='major', labelsize=12)
+    axs[row, col].violinplot(dist_imp, showmeans=False, showmedians=False)
+    axs[row, col].violinplot(dist_easal, showmeans=False, showmedians=False)
+    axs[row, col].set_title(f'{case}')
+    axs[row, col].set_xlabel('Density',fontsize=14)
+    axs[row, col].set_ylabel('Distance between\n crosslinked residues\n in model (Å)',fontsize=14)
+    axs[row, col].tick_params(axis='both', which='major', labelsize=12)
     axs[row, col].legend(handles=[mpatches.Patch(color='blue'), mpatches.Patch(color='orange')], labels=['IMP', 'EASAL'])
 
-plt.savefig(f'/home/muskaan/easal/plots/distance_distribution/{sys.argv[1]}.png', dpi=600)
+plt.savefig(f'/home/muskaan/easal/plots/distance_distribution/{sys.argv[1]}.png')
 plt.show()

@@ -25,22 +25,29 @@ def get_xlink_dist(pdb_file, chain_A, chain_B, xlink_file, output_file):
         output.write('\n'.join(distances) + '\n')
 
 def main():
-    chain_A, chain_B, xlink_file = sys.argv[1:4]
+    chain_A, chain_B, xlink_file, flag = sys.argv[1:5]
     xlink_filename = os.path.splitext(os.path.basename(xlink_file))[0]
-    output_file = os.path.join('/home/muskaan/easal/easal_output/crosslink_distances/', f'{xlink_filename}_distances.txt')
-    output_xl_satisfaction = os.path.join('/home/muskaan/easal/easal_output/xl_satisfaction/', f'{xlink_filename}_perc_satisfied.txt')
+
+    if flag != 'native':
+        output_file = os.path.join('/home/muskaan/easal/easal_output/crosslink_distances/', f'{xlink_filename}_distances.txt')
+        output_xl_satisfaction = os.path.join('/home/muskaan/easal/easal_output/xl_satisfaction/', f'{xlink_filename}_perc_satisfied.txt')
+    else:
+        output_file = os.path.join('/home/muskaan/easal/native_pdb_distances/', f'{xlink_filename}_true_structure_distances.txt')
 
     for pdb_file in os.listdir(os.getcwd()):
         if pdb_file.endswith(".pdb"):
-            xl_satisfied = pdb_file.split('_')[2] #EASAL outputs pdb file names have a binary string denoting "1" for satisfied and "0" for unsatisfied xlinks.
-            get_xlink_dist(pdb_file, chain_A, chain_B, xlink_file, output_file)
-            perc = 0
-            for xl in xl_satisfied:
-                if xl == '1':
-                    perc += 1
 
-            with open(output_xl_satisfaction, 'a') as perc_satisfied:
-                perc_satisfied.write(f'{pdb_file} {(perc/len(xl_satisfied)) *100}\n')
+            get_xlink_dist(pdb_file, chain_A, chain_B, xlink_file, output_file)
+
+            if flag != 'native': #flag could be easal or native; native structure won't have 0 or 1 in the pdb file name
+                xl_satisfied = pdb_file.split('_')[2] #EASAL output pdb file names have a binary string denoting "1" for satisfied and "0" for not satisfied xlinks.
+                perc = 0
+                for xl in xl_satisfied:
+                    if xl == '1':
+                        perc += 1
+
+                with open(output_xl_satisfaction, 'a') as perc_satisfied:
+                    perc_satisfied.write(f'{pdb_file} {(perc/len(xl_satisfied)) *100}\n')
 
 if __name__ == "__main__":
     main()
