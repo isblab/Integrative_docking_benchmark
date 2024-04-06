@@ -60,9 +60,9 @@ for idx, case in enumerate(input_cases):
     axs[row,col].violinplot(dist_easal, showmeans=False, showmedians=False)
     axs[row,col].set_title(f'{case}')
     axs[row,col].set_xlabel('Density',fontsize=14)
-    axs[row,col].set_ylabel('Difference in crosslink\n distances between native\n structure and models (Å)',fontsize=14)
+    axs[row,col].set_ylabel('Crosslink distance diff\n in native structure\n vs model (Å)',fontsize=14)
     axs[row,col].tick_params(axis='both', which='major', labelsize=12)
     axs[row, col].legend(handles=[mpatches.Patch(color='blue'), mpatches.Patch(color='orange')], labels=['IMP', 'EASAL'])
 
-plt.savefig(f'/home/muskaan/easal/plots/distance_distribution/{sys.argv[1]}.png')
+plt.savefig(f'/home/muskaan/easal/plots/compare_xlink_dist_native/{sys.argv[1]}.png')
 plt.show()
