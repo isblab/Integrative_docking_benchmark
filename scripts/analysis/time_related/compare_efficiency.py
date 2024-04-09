@@ -41,22 +41,22 @@ for case in input_cases:
         file = '/home/muskaan/easal/imp_output/EDC/'+case.split('EDC')[0] + case.split('_')[-1]+ '/run_1/stat_replica.0.out'
 
     time = os.path.getmtime(file)-os.path.getatime(file)
-    time_total = (time/60) * 20 #In minutes; per run 4 replica; for 20 runs, multiply by 20
+    time_total = (time/60) * 20 * 4 #In minutes; per run for 4 replica and 20 runs, multiply by 20 *4
     time_points_imp.append(time_total)
 
     # print(case, time_total)
 
 fig, ax = plt.subplots(figsize=(8, 8))
 # print(time_points_imp, time_points_easal)
-plt.hist(time_points_imp)
-plt.hist(time_points_easal)
-plt.xlabel('Runtime (minutes)', fontsize=14)
-plt.ylabel('Number of cases', fontsize=14)
+# plt.hist(time_points_imp)
+# plt.hist(time_points_easal)
+# plt.xlabel('Runtime (minutes)', fontsize=14)
+# plt.ylabel('Number of cases', fontsize=14)
 
-# plt.scatter(time_points_imp, time_points_easal)
-# plt.xlabel('Runtime for IMP (minutes)', fontsize=14)
-# plt.ylabel('Runtime for EASAL (minutes)', fontsize=14)
-# plt.tick_params(axis='both', which='major', labelsize=12)
+plt.scatter(time_points_imp, time_points_easal)
+plt.xlabel('Runtime for IMP (minutes)', fontsize=14)
+plt.ylabel('Runtime for EASAL (minutes)', fontsize=14)
+plt.tick_params(axis='both', which='major', labelsize=12)
 # plt.xlim(0, 3500)
 # plt.ylim(0, 3500)
 plt.savefig('/home/muskaan/easal/plots/time_taken_min.png',dpi=600)

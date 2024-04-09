@@ -48,11 +48,15 @@ elif args.selected:
     input_cases = ["1dfj_DSSO_9", "2hle_EDC_9", "roca_putc_DSSO_2", "2b42_DSSO_5"]
 
 #Plotting
-fig, axs = plt.subplots(3, 3, figsize=(20, 20), gridspec_kw={'wspace': 0.5, 'hspace': 0.5})
+if len(input_cases) == 4:
+    fig, axs = plt.subplots(2, 2, figsize=(20, 20), gridspec_kw={'wspace': 0.5, 'hspace': 0.5})
+else:
+    fig, axs = plt.subplots(3, 3, figsize=(20, 20), gridspec_kw={'wspace': 0.5, 'hspace': 0.5})
 
 for idx, case in enumerate(input_cases):
-    row = idx // 3
-    col = idx % 3
+    row = idx // 3 if len(input_cases) > 4 else idx // 2
+    col = idx % 3 if len(input_cases) > 4 else idx % 2
+
     perc_imp, perc_easal = reading_file_and_get_perc(case)
 
     axs[row, col].violinplot(perc_imp, showmeans=False, showmedians=False)
@@ -62,6 +66,16 @@ for idx, case in enumerate(input_cases):
     axs[row, col].set_xlabel('Density', fontsize=14)
     axs[row, col].tick_params(axis='both', which='major', labelsize=12)
     axs[row, col].legend(handles=[mpatches.Patch(color='blue'), mpatches.Patch(color='orange')], labels=['IMP', 'EASAL'])
+
+# Remove empty subplots
+if len(input_cases) == 5:
+    fig.delaxes(axs[1,2])
+    fig.delaxes(axs[2,0])
+    fig.delaxes(axs[2,1])
+    fig.delaxes(axs[2,2])
+elif len(input_cases) > 5:
+    fig.delaxes(axs[2,1])
+    fig.delaxes(axs[2,2])
 
 plt.savefig(f'/home/muskaan/easal/plots/percentage_satisfied/{sys.argv[1]}.png')
 plt.show()

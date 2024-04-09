@@ -5,6 +5,7 @@ import RMF
 import IMP.rmf
 import IMP.core
 import IMP.atom
+import IMP.pmi.analysis
 import numpy as np
 from tqdm import tqdm
 import matplotlib.pyplot as plt
@@ -20,7 +21,6 @@ def get_coord_from_pdb(pdb_file, chain_B):
             if chain.id == chain_B:
                 for residue in chain:
                     if 'CA' in residue and residue.get_id()[0] == ' ':
-                        # print(residue)
                         coord.append(residue['CA'].get_coord())
     return coord
 
@@ -31,7 +31,7 @@ def calc_rmsd(mdl, native):
     rmsd = np.sqrt(np.mean(np.sum((coord1-coord2) ** 2, axis =1)))
     return rmsd
 
-def get_rmsd_imp_easal(native_pdbfile, chain_B, rmf_file, easal_output_direc):
+def get_rmsd_imp_easal(native_pdbfile, chain_A, chain_B, rmf_file, easal_output_direc):
     ## Native structure
     ts = get_coord_from_pdb(native_pdbfile, chain_B)
 
@@ -44,28 +44,59 @@ def get_rmsd_imp_easal(native_pdbfile, chain_B, rmf_file, easal_output_direc):
     for frame in tqdm(range(rmf_fh.get_number_of_frames())):
         IMP.rmf.load_frame(rmf_fh, frame)
         mdl.update()
+
+        #Get transformations for each rmf
+
+        pdb_ca_mdl = IMP.Model()
+        pdb_ca = IMP.atom.read_pdb(native_pdbfile,pdb_ca_mdl,IMP.atom.CAlphaPDBSelector())
+        pdb_ca_mdl.update()
+
+        coords_pdb_ca = {}
+        coords_ccm = {}
+
+        sel_ca_pdb = IMP.atom.Selection(pdb_ca,resolution=1,chain_id=chain_A).get_selected_particles()
+        sel_ccm = IMP.atom.Selection(hier,resolution=1,molecule=chain_A).get_selected_particles()
+
+        coords_pdb_ca[chain_A] = [IMP.core.XYZ(i).get_coordinates() for i in sel_ca_pdb]
+        # print(coords_pdb_ca[chain_A])
+        coords_ccm[chain_A] = [IMP.core.XYZ(i).get_coordinates() for i in sel_ccm]
+        # print(coords_ccm[chain_A])
+        # print(len(coords_pdb_ca), len(coords_ccm))
+
+        _, transformation = IMP.pmi.analysis.Alignment(query=coords_pdb_ca, template=coords_ccm).align()
+        # print(transformation)
+        IMP.atom.transform(pdb_ca, transformation)
+        # IMP.atom.write_pdb(pdb_ca,"transformed.pdb")
+        # transformed_pdb_A = IMP.atom.Selection(pdb_ca,resolution=1,chain_id=chain_A).get_selected_particles()
+        transformed_pdb_B = IMP.atom.Selection(pdb_ca,resolution=1,chain_id=chain_B).get_selected_particles()
+        # transformed_pdb_coord_A = [IMP.core.XYZ(i).get_coordinates() for i in transformed_pdb_A]
+        transformed_pdb_coord_B = [IMP.core.XYZ(i).get_coordinates() for i in transformed_pdb_B]
+        # print(transformed_pdb_coord_A, '----------------------------',transformed_pdb_coord_B)
+
         mdl_coord = []
         c1 = IMP.atom.Selection(hierarchy=hier,
                                 molecule=chain_B,
                                 resolution=1).get_selected_particles()
         for x in range(len(c1)):
             mdl_coord.append(IMP.core.XYZ.get_coordinates(IMP.core.XYZ(c1[x])))
-        rmsd_imp.append(calc_rmsd(mdl_coord, ts))
+        rmsd_imp.append(calc_rmsd(mdl_coord, transformed_pdb_coord_B))
+        # print(rmsd_imp)
+        # exit()
 
-    ##EASAL models
+
+    # ##EASAL models
     rmsd_easal = []
     for pdb_file in os.listdir(easal_output_direc):
         if pdb_file.endswith(".pdb"):
             pdbfile_path = os.path.join(os.path.expanduser(easal_output_direc), pdb_file)
             rmsd_easal.append(calc_rmsd(get_coord_from_pdb(pdbfile_path, chain_B),ts))
-
     return rmsd_imp, rmsd_easal
 
 
 def main():
     best_rmsd_imp, best_rmsd_easal= [],[]
 
-    input_cases = [ "1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5", "2hle_DSSO_5",
+    input_cases = ["1r0r_DSSO_3","1clv_DSSO_2", "1kxp_DSSO_4", "2ayo_DSSO_4", "2b42_DSSO_5", "1dfj_DSSO_3", "2hle_DSSO_5",
         "1dfj_EDC_4", "1clv_EDC_8", "1kxp_EDC_7", "1r0r_EDC_6", "2ayo_EDC_5", "2b42_EDC_10", "2hle_EDC_9",
         "1dfj_DSSO_9", "1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "2b42_DSSO_10", "2hle_DSSO_10",
         "1dfj_DSSO_12", "1kxp_DSSO_11", "2ayo_DSSO_13", "2hle_DSSO_14",
@@ -84,23 +115,33 @@ def main():
             rmf_file = '/home/muskaan/easal/imp_output/DSSO_analysis/' + case.split('DSSO')[0] + case.split('_')[-1]+ '/sampcon_0_extracted.rmf3'
             easal_output_direc = '/home/muskaan/easal/easal_output/DSSO/experimental/'+case.split('DSSO')[0]+ 'cl'+ case.split('_')[-1]+'/'
 
-        if '1dfj' in case or '1clv' in case or '1r0r' in case:
+        if '1dfj' in case or '1r0r' in case:
             native_pdbfile = f'/home/muskaan/easal-dev/scripts/pdbfile/{case[0:4]}.pdb'
+            chain_A = 'E'
             chain_B = 'I'
 
         elif '1kxp' in case:
             native_pdbfile = '/home/muskaan/easal-dev/scripts/pdbfile/1kxp.pdb'
+            chain_A = 'A'
             chain_B = 'D'
 
         elif '2hle' in case or '2b42' in case or '2ayo' in case:
             native_pdbfile = f'/home/muskaan/easal-dev/scripts/pdbfile/{case[0:4]}.pdb'
+            chain_A = 'A'
             chain_B = 'B'
+
+        elif '1clv' in case:
+            native_pdbfile = f'/home/muskaan/easal-dev/scripts/pdbfile/{case[0:4]}.pdb'
+            chain_A = 'A'
+            chain_B = 'I'
+
         else:
             native_pdbfile = '/home/muskaan/easal-dev/scripts/pdbfile/'+case.split('_DSSO')[0]+'.pdb'
+            chain_A = 'A'
             chain_B = 'B'
 
         # print(native_pdbfile, rmf_file, easal_output_direc)
-        all_rmsd_imp, all_rmsd_easal = get_rmsd_imp_easal(native_pdbfile, chain_B, rmf_file, easal_output_direc)
+        all_rmsd_imp, all_rmsd_easal = get_rmsd_imp_easal(native_pdbfile, chain_A, chain_B, rmf_file, easal_output_direc)
         best_rmsd_imp.append(min(all_rmsd_imp))
         best_rmsd_easal.append(min(all_rmsd_easal))
 
@@ -109,11 +150,11 @@ def main():
     plt.xlabel('Minimum RMSD in IMP Ensemble (Å)', fontsize=14)
     plt.ylabel('Minimum RMSD in EASAL Ensemble (Å)', fontsize=14)
     plt.tick_params(axis='both', which='major', labelsize=12)
-    plt.xlim(0, 80)
-    plt.ylim(0, 80)
-    plt.savefig('/home/muskaan/easal/plots/best_rmsd.png',dpi=600)
+    # plt.xlim(0, 80)
+    # plt.ylim(0, 80)
+    plt.savefig('/home/muskaan/easal/plots/structure_related/best_rmsd.png',dpi=600)
     plt.show()
-    # plot_rmsd_in_all_models(case, all_rmsd_imp, all_rmsd_easal)
+    plot_rmsd_in_all_models(case, all_rmsd_imp, all_rmsd_easal)
 
 
 if __name__ == "__main__":

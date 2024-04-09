@@ -36,7 +36,6 @@ def main():
 
     for pdb_file in os.listdir(os.getcwd()):
         if pdb_file.endswith(".pdb"):
-
             get_xlink_dist(pdb_file, chain_A, chain_B, xlink_file, output_file)
 
             if flag != 'native': #flag could be easal or native; native structure won't have 0 or 1 in the pdb file name

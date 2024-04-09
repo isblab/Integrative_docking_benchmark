@@ -55,24 +55,12 @@ cluster = return_major_cluster()
 ############ Model Extraction ###########
 ##-------------------------------------##
 print("\n<-----------Model Extraction----------->")
-# if int( cluster[1] ) >= 30000:
-# 	print(">30000 models....\n using Variable filter \n")
-# 	var_filter_path = "./Variable_filter"
-# 	os.mkdir( var_filter_path )
-#
-# 	subprocess.call( ["python", "variable_filter_v1.py", "-c", f"{cluster[0]}"] )
-# 	subprocess.call( [f"{imp_path}", "python", "run_extract_models.py", f"{modeling_dir_path}", f"{cluster[0]}"] )
-#
-# 	os.rename( "ignore.KS_Test.txt", f"{var_filter_path}/ignore.KS_Test.txt" )
-# 	os.rename( "ignore.Score_Hist_A.txt", f"{var_filter_path}/ignore.Score_Hist_A.txt" )
-# 	os.rename( "ignore.Score_Hist_B.txt", f"{var_filter_path}/ignore.Score_Hist_B.txt" )
-# 	os.rename( "var_filt_out.log", f"{var_filter_path}/var_filt_out.log" )
-# 	os.rename( "var_filt_out.png", f"{var_filter_path}/var_filt_out.png" )
-# 	os.rename( "variable_filter_v1.py", f"{var_filter_path}/variable_filter_v1.py" )
-# else:
 if int( cluster[1] ) >= 30000:
-	print("need variable filter")
-	exit()
+	print(">30000 models....\n using Variable filter \n")
+
+	subprocess.call( ["python", "/home/muskaan/EASAL/scripts/imp/analysis/variable_filter_v1.py", "-c", f"{cluster[0]}", "-g", "model_analysis"] )
+	subprocess.call( [f"{imp_path}", "python", "/home/muskaan/EASAL/scripts/imp/analysis/run_extract_models.py", f"{modeling_dir_path}", f"{cluster[0]}"] )
+	
 else:
 	subprocess.call( [f"{imp_path}", "python", "/home/muskaan/EASAL/scripts/imp/analysis/run_extract_models.py", f"{modeling_dir_path}", f"{cluster[0]}"] )
 
