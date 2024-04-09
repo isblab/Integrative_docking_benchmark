@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import os
 import sys
-import argparse
 import matplotlib.patches as mpatches
 import numpy as np
 from matplotlib.lines import Line2D
@@ -63,11 +62,11 @@ if flag == 'summary':
 
     colors = ['r', 'g', 'b', 'm', 'orange']
 
-    legend_elements = [Line2D([0], [0], color='red', label='Less than 5'),
-                       Line2D([0], [0], color='green', label='6-10'),
-                       Line2D([0], [0], color='blue', label='More than 10'),
-                       Line2D([0], [0], color='magenta', label='EDC'),
-                       Line2D([0], [0], color='orange', label='Experimental')]
+    legend_elements = [Line2D([0], [0], color='red', label='DSSO simulated less than 5'),
+                       Line2D([0], [0], color='green', label='DSSO simulated 6-10'),
+                       Line2D([0], [0], color='blue', label='DSSO simulated more than 10'),
+                       Line2D([0], [0], color='magenta', label='EDC simulated'),
+                       Line2D([0], [0], color='orange', label='DSSO experimental')]
 
     for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
         for idx, case in enumerate(ic):
