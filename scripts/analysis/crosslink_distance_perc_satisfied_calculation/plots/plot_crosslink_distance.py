@@ -49,34 +49,26 @@ elif args.selected:
     input_cases = ["1dfj_DSSO_9", "1clv_DSSO_2", "1dfj_EDC_4", "gcvpa_gcvpb_DSSO_5"]
 
 #Plotting
-if len(input_cases) == 4:
-    fig, axs = plt.subplots(2, 2, figsize=(20, 20), gridspec_kw={'wspace': 0.5, 'hspace': 0.5})
-else:
-    fig, axs = plt.subplots(3, 3, figsize=(20, 20), gridspec_kw={'wspace': 0.5, 'hspace': 0.5})
+
+fig, axs = plt.subplots(3, 3, figsize=(20, 20), gridspec_kw={'wspace': 0.5, 'hspace': 0.5})
 
 for idx, case in enumerate(input_cases):
-    row = idx // 3 if len(input_cases) > 4 else idx // 2
-    col = idx % 3 if len(input_cases) > 4 else idx % 2
+    row = idx // 3
+    col = idx % 3
 
     dist_imp, dist_easal = read_file_and_get_dist(case)
 
     axs[row, col].violinplot(dist_imp, showmeans=False, showmedians=False)
     axs[row, col].violinplot(dist_easal, showmeans=False, showmedians=False)
-    axs[row, col].set_title(f'{case}')
-    axs[row, col].set_xlabel('Density', fontsize=14)
-    axs[row, col].set_ylabel('Distance between\n crosslinked residues\n in model (Å)', fontsize=14)
-    axs[row, col].tick_params(axis='both', which='major', labelsize=12)
-    axs[row, col].legend(handles=[mpatches.Patch(color='blue'), mpatches.Patch(color='orange')], labels=['IMP', 'EASAL'])
+    axs[row, col].set_title(f'{case}', fontsize=20)
+    axs[row, col].set_xlabel('Density', fontsize=18)
+    axs[row, col].set_ylabel('Distance between\n crosslinked residues\n in model (Å)', fontsize=18)
+    axs[row, col].tick_params(axis='both', which='major', labelsize=14)
+    axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
 
 # Remove empty subplots
-if len(input_cases) == 5:
-    fig.delaxes(axs[1,2])
-    fig.delaxes(axs[2,0])
-    fig.delaxes(axs[2,1])
-    fig.delaxes(axs[2,2])
-elif len(input_cases) > 5:
-    fig.delaxes(axs[2,1])
-    fig.delaxes(axs[2,2])
+for i in range(len(case), 9):
+    fig.delaxes(axs.flatten()[i])
 
 
 plt.savefig(f'/home/muskaan/easal/plots/distance_distribution/{sys.argv[1]}.png')

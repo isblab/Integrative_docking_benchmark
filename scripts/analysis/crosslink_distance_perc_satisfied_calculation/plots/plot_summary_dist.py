@@ -41,6 +41,8 @@ input_cases = ["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo
     "1dfj_DSSO_12", "1kxp_DSSO_11", "2ayo_DSSO_13", "2hle_DSSO_14",
     "gata_gatc_DSSO_3", "gcvpa_gcvpb_DSSO_5","roca_putc_DSSO_2", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"]
 
+fig, ax = plt.subplots(figsize=(8, 8))
+
 for case in input_cases:
     #TODO make the function name more descriptive of what it is doing than file parsing.
     #TODO again do all plotting in 1 function so that the plt object is in one place.
@@ -55,18 +57,18 @@ for case in input_cases:
         color = 'green'
 
     plt.scatter(avg_imp, avg_easal, marker=marker, color=color)
-
+    print(case, avg_imp, avg_easal)
 # plt.rcParams['font.family'] = 'Arial'
-plt.xlabel('Average Crosslink Distance in IMP Ensemble (Å)')
-plt.ylabel('Average Crosslink Distance in EASAL Ensemble (Å)')
+plt.xlabel('Average Crosslink Distance in IMP Ensemble (Å)', fontsize=14)
+plt.ylabel('Average Crosslink Distance in EASAL Ensemble (Å)', fontsize=14)
 plt.tick_params(axis='both', which='major', labelsize=12)
-plt.xlim(10, 50)
-plt.ylim(10, 50)
+plt.xlim(10, 60)
+plt.ylim(10, 60)
 
 
 legend_elements = [Line2D([0], [0], marker='o', color='red', label='DSSO', markersize=10, linestyle='None'),
                    Line2D([0], [0], marker='^', color='green', label='EDC', markersize=10, linestyle='None')]
 
 plt.legend(handles=legend_elements)
-plt.savefig('/home/muskaan/easal/plots/summary_plot_dist.png',dpi=600)
+plt.savefig('/home/muskaan/easal/plots/F3.xlink_dist_summary.png',dpi=600)
 plt.show()

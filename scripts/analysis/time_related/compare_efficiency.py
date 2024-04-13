@@ -1,5 +1,6 @@
 import os, sys
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 
 # easal
 
@@ -45,20 +46,12 @@ for case in input_cases:
     time_points_imp.append(time_total)
 
     # print(case, time_total)
-
-fig, ax = plt.subplots(figsize=(8, 8))
-# print(time_points_imp, time_points_easal)
-# plt.hist(time_points_imp)
-# plt.hist(time_points_easal)
-# plt.xlabel('Runtime (minutes)', fontsize=14)
-# plt.ylabel('Number of cases', fontsize=14)
-
-plt.scatter(time_points_imp, time_points_easal)
-plt.xlabel('Runtime for IMP (minutes)', fontsize=14)
-plt.ylabel('Runtime for EASAL (minutes)', fontsize=14)
-plt.tick_params(axis='both', which='major', labelsize=12)
-# plt.xlim(0, 3500)
-# plt.ylim(0, 3500)
-plt.legends()
-plt.savefig('/home/muskaan/easal/plots/time_taken_min.png',dpi=600)
+fig, ax = plt.subplots(figsize=(10, 8))
+plt.violinplot(time_points_imp, showmeans=False, showmedians=False)
+plt.violinplot(time_points_easal, showmeans=False, showmedians=False)
+plt.xlabel('Density', fontsize=18)
+plt.ylabel('Runtime (minutes)', fontsize=18)
+plt.tick_params(axis='both', which='major', labelsize=14)
+plt.legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
+plt.savefig('/home/muskaan/easal/plots/time_related/F6.runtime.png',dpi=600)
 plt.show()

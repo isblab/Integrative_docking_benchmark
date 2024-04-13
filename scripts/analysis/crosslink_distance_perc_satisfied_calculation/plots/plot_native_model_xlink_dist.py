@@ -72,6 +72,7 @@ if flag == 'summary':
         for idx, case in enumerate(ic):
             dist_imp, dist_easal = read_file_and_get_dist(case, flag)
             plt.scatter(dist_imp, dist_easal, color=color)
+            print(case, dist_imp, dist_easal)
 
     plt.xlabel('Crosslink distance difference in\n the native structure vs IMP model (Å)',fontsize=14)
     plt.ylabel('Crosslink distance difference in\n the native structure vs EASAL model (Å)',fontsize=14)
@@ -79,7 +80,7 @@ if flag == 'summary':
     plt.xlim(0, 50)
     plt.ylim(0, 50)
     plt.legend(handles=legend_elements)
-    plt.savefig('/home/muskaan/easal/plots/summary/F4.xlink_dsit_to_native_summary.png',dpi=600)
+    plt.savefig('/home/muskaan/easal/plots/summary/F4.xlink_dist_to_native_summary.png',dpi=600)
     plt.show()
 
 elif flag == 'complexwise':
@@ -92,10 +93,10 @@ elif flag == 'complexwise':
 
         axs[row,col].violinplot(dist_imp, showmeans=False, showmedians=False)
         axs[row,col].violinplot(dist_easal, showmeans=False, showmedians=False)
-        axs[row,col].set_title(f'{case}')
-        axs[row,col].set_xlabel('Density',fontsize=14)
-        axs[row,col].set_ylabel('Crosslink distance diff\n in native structure\n vs model (Å)',fontsize=14)
-        axs[row,col].tick_params(axis='both', which='major', labelsize=12)
-        axs[row, col].legend(handles=[mpatches.Patch(color='blue'), mpatches.Patch(color='orange')], labels=['IMP', 'EASAL'])
+        axs[row,col].set_title(f'{case}',fontsize=18)
+        axs[row,col].set_xlabel('Density',fontsize=16)
+        axs[row,col].set_ylabel('Crosslink distance diff\n in native structure\n vs model (Å)',fontsize=16)
+        axs[row,col].tick_params(axis='both', which='major', labelsize=14)
+        axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
     plt.savefig('/home/muskaan/easal/plots/compare_xlink_dist_native/F4.xlink_dsit_to_native_complexwise.png')
     plt.show()

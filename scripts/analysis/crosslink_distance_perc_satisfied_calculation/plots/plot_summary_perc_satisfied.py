@@ -33,10 +33,10 @@ def get_max_xlinks_satisfied_and_corres_mdls(name):
 
     #For imp models
     max_xlink_perc_imp, max_models_imp = get_perc_across_models(file1_path)
-
+    # print(name, max_xlink_perc_imp, max_models_imp)
     #For easal models
     max_xlink_perc_easal, max_models_easal = get_perc_across_models(file2_path)
-
+    # print(name, max_xlink_perc_easal, max_models_easal)
     return max_xlink_perc_imp, max_models_imp, max_xlink_perc_easal, max_models_easal
 
 fig, ax = plt.subplots(figsize=(8, 8))
@@ -52,11 +52,11 @@ for case in input_cases:
     plt.scatter(max_xlink_perc_imp, max_models_imp, color = 'blue')
     plt.scatter(max_xlink_perc_easal, max_models_easal, color = 'orange')
 
-plt.xlabel('Percentage of maximum crosslinks\nsatisfied by any model', fontsize=12)
-plt.ylabel('Percentage of models at\nmaximum crosslink percentage',fontsize=12)
+plt.xlabel('Percentage of maximum crosslinks\nsatisfied by any model', fontsize=14)
+plt.ylabel('Percentage of models at\nmaximum crosslink percentage',fontsize=14)
 plt.tick_params(axis='both', which='major', labelsize=12)
 plt.xlim(0, 105)
 plt.ylim(0, 105)
 plt.legend(handles=[mpatches.Patch(color='blue'), mpatches.Patch(color='orange')], labels=['IMP', 'EASAL'])
-plt.savefig('/home/muskaan/easal/plots/summary_plot_perc.png', dpi=600)
+plt.savefig('/home/muskaan/easal/plots/F2.xlink_per_sat_summary.png', dpi=600)
 plt.show()

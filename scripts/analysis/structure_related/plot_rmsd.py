@@ -28,7 +28,8 @@ input_cases = [["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ay
     ["1dfj_DSSO_9", "1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "2b42_DSSO_10", "2hle_DSSO_10"],
     ["1dfj_DSSO_12", "1kxp_DSSO_11", "2ayo_DSSO_13", "2hle_DSSO_14"],
     ["1dfj_EDC_4", "1clv_EDC_8", "1kxp_EDC_7", "1r0r_EDC_6", "2ayo_EDC_5", "2b42_EDC_10", "2hle_EDC_9"],
-    ["gata_gatc_DSSO_3", "gcvpa_gcvpb_DSSO_5","roca_putc_DSSO_2", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"]]
+    ["gata_gatc_DSSO_3", "gcvpa_gcvpb_DSSO_5","roca_putc_DSSO_2", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"],
+    ["roca_putc_DSSO_2", "phes_phet_DSSO_8", "1dfj_DSSO_3", "1dfj_DSSO_9", "1kxp_DSSO_7", "2b42_EDC_10"] ]
 
 #Input cases for complexwise plots
 # selected_cases = ["roca_putc_DSSO_2", "gcvpa_gcvpb_DSSO_5", "1clv_EDC_8", "1dfj_EDC_4", "1clv_DSSO_2", "2b42_DSSO_5", "1dfj_DSSO_9", "2hle_DSSO_14", "1dfj_DSSO_12"]
@@ -50,14 +51,14 @@ if flag == 'min':
     for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
         for idx, case in enumerate(ic):
             rmsd_imp, rmsd_easal = read_file_and_get_rmsd(case, flag)
-            print(rmsd_imp, rmsd_easal)
+            print(case, rmsd_imp, rmsd_easal)
             plt.scatter(rmsd_imp, rmsd_easal, color=color)
 
     plt.xlabel('Minimum RMSD in IMP model (Å)',fontsize=14)
     plt.ylabel('Minimum RMSD in EASAL model (Å)',fontsize=14)
     plt.tick_params(axis='both', which='major', labelsize=12)
-    plt.xlim(0, 60)
-    plt.ylim(0, 60)
+    plt.xlim(0, 80)
+    plt.ylim(0, 80)
     plt.legend(handles=legend_elements)
     plt.savefig('/home/muskaan/easal/plots/structure_related/F5.minimum_rmsd.png',dpi=600)
     plt.show()
@@ -73,11 +74,11 @@ elif flag == 'all':
 
             axs[row,col].violinplot(rmsd_imp, showmeans=False, showmedians=False)
             axs[row,col].violinplot(rmsd_easal, showmeans=False, showmedians=False)
-            axs[row,col].set_title(f'{case}')
-            axs[row,col].set_xlabel('Density',fontsize=14)
-            axs[row,col].set_ylabel('Crosslink distance diff\n in native structure\n vs model (Å)',fontsize=14)
-            axs[row,col].tick_params(axis='both', which='major', labelsize=12)
-            axs[row, col].legend(handles=[mpatches.Patch(color='blue'), mpatches.Patch(color='orange')], labels=['IMP', 'EASAL'])
+            axs[row,col].set_title(f'{case}', fontsize=18)
+            axs[row,col].set_xlabel('Density',fontsize=16)
+            axs[row,col].set_ylabel('Crosslink distance diff\n in native structure\n vs model (Å)',fontsize=16)
+            axs[row,col].tick_params(axis='both', which='major', labelsize=14)
+            axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
         for i in range(len(cases), 9):
             fig.delaxes(axs.flatten()[i])
         plt.savefig(f'/home/muskaan/easal/plots/structure_related/F5.{idx}.png')
