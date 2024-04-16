@@ -52,7 +52,7 @@ input_cases = [["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ay
     ["gata_gatc_DSSO_3", "gcvpa_gcvpb_DSSO_5","roca_putc_DSSO_2", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"]]
 
 #Input cases for complexwise plots
-selected_cases = ["roca_putc_DSSO_2", "gcvpa_gcvpb_DSSO_5", "1clv_EDC_8", "1dfj_EDC_4", "1clv_DSSO_2", "2b42_DSSO_5", "1dfj_DSSO_9", "2hle_DSSO_14", "1dfj_DSSO_12"]
+selected_cases = ["1dfj_EDC_4", "2b42_DSSO_5", "2hle_DSSO_14", "roca_putc_DSSO_2"]
 flag = sys.argv[1] #Specify whether to plot 'summary' or 'complexwise'
 #Plotting
 
@@ -84,19 +84,20 @@ if flag == 'summary':
     plt.show()
 
 elif flag == 'complexwise':
-
-    fig, axs = plt.subplots(3, 3, figsize=(20, 20), gridspec_kw={'wspace': 0.5, 'hspace': 0.5})
-    for idx, case in enumerate(selected_cases):
-        row = idx // 3
-        col = idx % 3
-        dist_imp, dist_easal = read_file_and_get_dist(case, flag)
-
-        axs[row,col].violinplot(dist_imp, showmeans=False, showmedians=False)
-        axs[row,col].violinplot(dist_easal, showmeans=False, showmedians=False)
-        axs[row,col].set_title(f'{case}',fontsize=18)
-        axs[row,col].set_xlabel('Density',fontsize=16)
-        axs[row,col].set_ylabel('Crosslink distance diff\n in native structure\n vs model (Å)',fontsize=16)
-        axs[row,col].tick_params(axis='both', which='major', labelsize=14)
-        axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
-    plt.savefig('/home/muskaan/easal/plots/compare_xlink_dist_native/F4.xlink_dsit_to_native_complexwise.png')
-    plt.show()
+    for i, case in enumerate(input_cases):
+        fig, axs = plt.subplots(3, 3, figsize=(20, 20), gridspec_kw={'wspace': 0.5, 'hspace': 0.5})
+        for idx, case in enumerate(case):
+            row = idx // 3
+            col = idx % 3
+            dist_imp, dist_easal = read_file_and_get_dist(case, flag)
+            title = '/'.join(case.split('_'))
+            axs[row,col].violinplot(dist_imp, showmeans=False, showmedians=False)
+            axs[row,col].violinplot(dist_easal, showmeans=False, showmedians=False)
+            axs[row,col].set_title(f'{title}',fontsize=20)
+            axs[row,col].set_xlabel('Density',fontsize=18)
+            axs[row, col].set_ylim(0, 110)
+            axs[row,col].set_ylabel('Crosslink distance diff\n in native structure\n vs model (Å)',fontsize=18)
+            axs[row,col].tick_params(axis='both', which='major', labelsize=14)
+            axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
+        plt.savefig(f'/home/muskaan/easal/plots/compare_xlink_dist_native/SF3.xlink_dist_to_native_{i}.png')
+        plt.show()

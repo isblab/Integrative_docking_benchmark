@@ -9,7 +9,7 @@ def calc_crosslink_satisfaction(file_path):
     percentages = []
     with open(file_path, 'r') as file:
         for line in file:
-            percentage = float(line.split(' ')[1])
+            percentage = float(line.split(' ')[1].strip())
             percentages.append(percentage)
 
     return percentages
@@ -45,7 +45,7 @@ elif args.experimental:
 elif args.edc:
     input_cases = ["1dfj_EDC_4", "1clv_EDC_8", "1kxp_EDC_7", "1r0r_EDC_6", "2ayo_EDC_5", "2b42_EDC_10", "2hle_EDC_9"]
 elif args.selected:
-    input_cases = ["1dfj_DSSO_9", "2hle_EDC_9", "roca_putc_DSSO_2", "2b42_DSSO_5"]
+    input_cases = ["2b42_DSSO_5", "1dfj_DSSO_9", "roca_putc_DSSO_2", "2hle_EDC_9"]
 
 #Plotting
 
@@ -56,18 +56,20 @@ for idx, case in enumerate(input_cases):
     col = idx % 3
 
     perc_imp, perc_easal = reading_file_and_get_perc(case)
-
+    title = '/'.join(case.split('_'))
     axs[row, col].violinplot(perc_imp, showmeans=False, showmedians=False)
     axs[row, col].violinplot(perc_easal, showmeans=False, showmedians=False)
-    axs[row, col].set_title(f'{case}', fontsize=20)
-    axs[row, col].set_ylabel('Percentage of\n Crosslinks', fontsize=18)
+    axs[row, col].set_title(f'{title}', fontsize=20)
+    axs[row, col].set_ylabel('Percentage of\n crosslinks satisfied', fontsize=18)
     axs[row, col].set_xlabel('Density', fontsize=18)
+    # axs[row, col].set_xlim(0, 100)
+    axs[row, col].set_ylim(0, 110)
     axs[row, col].tick_params(axis='both', which='major', labelsize=14)
     axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
 
 # Remove empty subplots
 for i in range(len(case), 9):
     fig.delaxes(axs.flatten()[i])
-    
+
 plt.savefig(f'/home/muskaan/easal/plots/percentage_satisfied/{sys.argv[1]}.png')
 plt.show()

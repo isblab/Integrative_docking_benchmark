@@ -23,7 +23,11 @@ Note: Run scripts in `crosslink_distance_perc_satisfied_calculation/plots/` for 
 Run `crosslink_distance_perc_satisfied_calculation/plots/plot_native_model_xlink_dist.py complexwise` with 'complexwise' flag to plot violin plots of the selected cases and 'summary' flag to plot the average crosslink distances in models and native structure.
 
 ## RMSD in IMP models, EASAL models and native structure
-Run `structure_related/calc_and_plot_rmsd.py` to plot the minimum rmsd in IMP and EASAL models with respect to the native structure.
+1. Run `structure_related/calc_rmsd.py` to calculate and store the rmsd in IMP and EASAL models with respect to the native structure.
+
+Use `structure_related/wrapper_calc_rmsd.sh` to do the above task for all the benchmark cases.
+
+2. Run `structure_related/plot_rmsd.py arg` to plot the minimum rmsd with 'min' argument and plot rmsd in all the models with 'all' argument. 
 
 ## Comparison of time taken in IMP and EASAL sampling
 Run `time_related/compare_efficiency.py` to plot the time taken (in minutes) to sample models in each case.

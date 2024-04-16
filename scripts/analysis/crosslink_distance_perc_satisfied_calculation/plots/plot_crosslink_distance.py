@@ -8,7 +8,7 @@ def calc_crosslink_distances(file_path):
     distances = []
     with open(file_path, 'r') as file:
         for line in file:
-            distance = float(line.split()[1])
+            distance = float(line.split()[1].strip())
             distances.append(distance)
 
     return distances
@@ -57,18 +57,19 @@ for idx, case in enumerate(input_cases):
     col = idx % 3
 
     dist_imp, dist_easal = read_file_and_get_dist(case)
-
+    title = '/'.join(case.split('_'))
     axs[row, col].violinplot(dist_imp, showmeans=False, showmedians=False)
     axs[row, col].violinplot(dist_easal, showmeans=False, showmedians=False)
-    axs[row, col].set_title(f'{case}', fontsize=20)
+    axs[row, col].set_title(f'{title}', fontsize=20)
     axs[row, col].set_xlabel('Density', fontsize=18)
-    axs[row, col].set_ylabel('Distance between\n crosslinked residues\n in model (Å)', fontsize=18)
+    axs[row, col].set_ylabel('Crosslink\n distances(Å)', fontsize=18)
+    axs[row, col].set_ylim(0, 120)
     axs[row, col].tick_params(axis='both', which='major', labelsize=14)
     axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
 
 # Remove empty subplots
-for i in range(len(case), 9):
-    fig.delaxes(axs.flatten()[i])
+    for i in range(len(case), 9):
+        fig.delaxes(axs.flatten()[i])
 
 
 plt.savefig(f'/home/muskaan/easal/plots/distance_distribution/{sys.argv[1]}.png')
