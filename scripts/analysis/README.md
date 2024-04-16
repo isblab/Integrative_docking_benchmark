@@ -14,16 +14,14 @@ Run the following wrapper script for 30 cases:
 ```
 wrapper_xlink_dist_perc_rmf.sh  
 ```
-
-Note: Run scripts in `crosslink_distance_perc_satisfied_calculation/plots/` for summary and complexwise plots.
-
+Run scripts in `crosslink_distance_perc_satisfied_calculation/plots/` for summary (#TODO which scripts) and complex-wise plots (#TODO which scripts).
 
 ## Comparison of crosslink distances in native structure and models
 
 Run `crosslink_distance_perc_satisfied_calculation/plots/plot_native_model_xlink_dist.py complexwise` with 'complexwise' flag to plot violin plots of the selected cases and 'summary' flag to plot the average crosslink distances in models and native structure.
 
 ## RMSD in IMP models, EASAL models and native structure
-Run `structure_related/calc_and_plot_rmsd.py` to plot the minimum rmsd in IMP and EASAL models with respect to the native structure.
+Run `structure_related/calc_and_plot_rmsd.py` to plot the minimum RMSD in IMP and EASAL models with respect to the native structure.
 
 ## Comparison of time taken in IMP and EASAL sampling
 Run `time_related/compare_efficiency.py` to plot the time taken (in minutes) to sample models in each case.
