@@ -14,9 +14,11 @@ Run the following wrapper script for 30 cases:
 ```
 wrapper_xlink_dist_perc_rmf.sh  
 ```
-Run scripts in `crosslink_distance_perc_satisfied_calculation/plots/` for summary (#TODO which scripts) and complex-wise plots (#TODO which scripts).
+Run scripts in `crosslink_distance_perc_satisfied_calculation/plots/` for summary (#TODO which scripts) and complex-wise plots (#TODO which scripts). 
 
 ## Comparison of crosslink distances in native structure and models
+
+#TODO say how distances in native were calculated? did we have wrapper for it? 
 
 Run `crosslink_distance_perc_satisfied_calculation/plots/plot_native_model_xlink_dist.py complexwise` with 'complexwise' flag to plot violin plots of the selected cases and 'summary' flag to plot the average crosslink distances in models and native structure.
 
