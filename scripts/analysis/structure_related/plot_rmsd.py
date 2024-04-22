@@ -83,4 +83,4 @@ elif flag == 'all':
         for i in range(len(cases), 9):
             fig.delaxes(axs.flatten()[i])
         plt.savefig(f'/home/muskaan/easal/plots/structure_related/F5.{idx}.png')
-        plt.show()
+        # plt.show()

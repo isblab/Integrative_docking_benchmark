@@ -68,7 +68,7 @@ for idx, case in enumerate(input_cases):
     axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
 
 # Remove empty subplots
-for i in range(len(case), 9):
+for i in range(len(input_cases), 9):
     fig.delaxes(axs.flatten()[i])
 
 plt.savefig(f'/home/muskaan/easal/plots/percentage_satisfied/{sys.argv[1]}.png')
