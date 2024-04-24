@@ -26,26 +26,32 @@ def reading_file_and_get_perc(name):
 #Input cases
 parser = argparse.ArgumentParser(description='Input cases.')
 
-parser.add_argument('--less_than_5', help='DSSO less than 5')
-parser.add_argument('--between_6_to_10', help='DSSO 6-10')
-parser.add_argument('--more_than_10', help='DSSO more than 10')
-parser.add_argument('--experimental', help='DSSO experimental')
-parser.add_argument('--edc', help='EDC')
-parser.add_argument('--selected', help='Selected cases')
+parser.add_argument('--lt5', action='store_true', help='DSSO less than 5')
+parser.add_argument('--b6_10', action='store_true', help='DSSO 6-10')
+parser.add_argument('--mt10', action='store_true', help='DSSO more than 10')
+parser.add_argument('--exp', action='store_true', help='DSSO experimental')
+parser.add_argument('--edc', action='store_true', help='EDC')
+parser.add_argument('--sel', action='store_true', help='Selected cases')
 
 args = parser.parse_args()
-if args.less_than_5:
+if args.lt5:
     input_cases = ["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5", "2hle_DSSO_5"]
-elif args.between_6_to_10:
+    outf = 'S1.less_than_5'
+elif args.b6_10:
     input_cases = ["1dfj_DSSO_9", "1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "2b42_DSSO_10", "2hle_DSSO_10"]
-elif args.more_than_10:
+    outf = 'S1.between_6_to_10'
+elif args.mt10:
     input_cases = ["1dfj_DSSO_12", "1kxp_DSSO_11", "2ayo_DSSO_13", "2hle_DSSO_14"]
-elif args.experimental:
+    outf = 'S1.more_than_10'
+elif args.exp:
     input_cases = ["gata_gatc_DSSO_3", "gcvpa_gcvpb_DSSO_5", "roca_putc_DSSO_2", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"]
+    outf = 'S1.experimental'
 elif args.edc:
     input_cases = ["1dfj_EDC_4", "1clv_EDC_8", "1kxp_EDC_7", "1r0r_EDC_6", "2ayo_EDC_5", "2b42_EDC_10", "2hle_EDC_9"]
-elif args.selected:
+    outf = 'S1.EDC'
+elif args.sel:
     input_cases = ["2b42_DSSO_5", "1dfj_DSSO_9", "roca_putc_DSSO_2", "2hle_EDC_9"]
+    outf = 'F2.xlink_per_sat_complexwise'
 
 #Plotting
 
@@ -60,8 +66,8 @@ for idx, case in enumerate(input_cases):
     axs[row, col].violinplot(perc_imp, showmeans=False, showmedians=False)
     axs[row, col].violinplot(perc_easal, showmeans=False, showmedians=False)
     axs[row, col].set_title(f'{title}', fontsize=20)
-    axs[row, col].set_ylabel('Percentage of\n crosslinks satisfied', fontsize=18)
-    axs[row, col].set_xlabel('Density', fontsize=18)
+    axs[row, col].set_ylabel('Percentage of\n crosslinks satisfied (%)', fontsize=18)
+    axs[row, col].set_xlabel('Density (A.U.)', fontsize=18)
     # axs[row, col].set_xlim(0, 100)
     axs[row, col].set_ylim(0, 110)
     axs[row, col].tick_params(axis='both', which='major', labelsize=14)
@@ -71,5 +77,5 @@ for idx, case in enumerate(input_cases):
 for i in range(len(input_cases), 9):
     fig.delaxes(axs.flatten()[i])
 
-plt.savefig(f'/home/muskaan/easal/plots/percentage_satisfied/{sys.argv[1]}.png')
-plt.show()
+plt.savefig(f'/home/muskaan/easal/plots/percentage_satisfied/{outf}.png')
+# plt.show()

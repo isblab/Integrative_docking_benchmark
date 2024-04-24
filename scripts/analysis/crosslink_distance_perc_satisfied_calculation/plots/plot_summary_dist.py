@@ -42,23 +42,29 @@ input_cases = ["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo
     "gata_gatc_DSSO_3", "gcvpa_gcvpb_DSSO_5","roca_putc_DSSO_2", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"]
 
 fig, ax = plt.subplots(figsize=(8, 8))
+sat_imp, sat_easal = 0,0
 
 for case in input_cases:
-    #TODO make the function name more descriptive of what it is doing than file parsing.
-    #TODO again do all plotting in 1 function so that the plt object is in one place.
-
     avg_imp, avg_easal = read_file_and_get_dist(case)
-
     if 'DSSO' in case:
         marker = 'o'
         color = 'red'
+        if avg_imp < 32:
+            sat_imp+=1
+        if avg_easal < 32:
+            sat_easal += 1
     elif 'EDC' in case:
         marker = '^'
         color = 'green'
+        if avg_imp < 20:
+            sat_imp+=1
+        if avg_easal < 20:
+            sat_easal += 1
 
     plt.scatter(avg_imp, avg_easal, marker=marker, color=color)
-    print(case, avg_imp, avg_easal)
-# plt.rcParams['font.family'] = 'Arial'
+    # print(case, avg_imp, avg_easal)
+print(sat_imp, sat_easal) # Number of cases with avg distance within the cutoff
+
 plt.xlabel('Average Crosslink Distance in IMP Ensemble (Å)', fontsize=14)
 plt.ylabel('Average Crosslink Distance in EASAL Ensemble (Å)', fontsize=14)
 plt.tick_params(axis='both', which='major', labelsize=12)

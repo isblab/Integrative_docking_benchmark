@@ -10,30 +10,16 @@ import numpy as np
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 
-
-def get_coord_from_pdb(pdb_file, chain_B):
-
-    parser = PDBParser(QUIET=True)
-    structure = parser.get_structure('protein', pdb_file)
-    coord = []
-    for model in structure:
-        for chain in model:
-            if chain.id == chain_B:
-                for residue in chain:
-                    if 'CA' in residue and residue.get_id()[0] == ' ':
-                        coord.append(residue['CA'].get_coord())
-    return coord
-
-
-def calc_rmsd(mdl, native):
-    coord1 = np.array(mdl)
-    coord2 = np.array(native)
-    rmsd = np.sqrt(np.mean(np.sum((coord1-coord2) ** 2, axis =1)))
-    return rmsd
-
 def get_rmsd_imp_easal(native_pdbfile, chain_A, chain_B, rmf_file, easal_output_direc):
-    ## Native structure
-    ts = get_coord_from_pdb(native_pdbfile, chain_B)
+
+    #Native structure
+    pdb_ca_mdl = IMP.Model()
+    pdb_ca = IMP.atom.read_pdb(native_pdbfile,pdb_ca_mdl,IMP.atom.CAlphaPDBSelector())
+    pdb_ca_mdl.update()
+
+    # Selecting chain A and B in pdb
+    pdb_A = IMP.atom.Selection(pdb_ca,resolution=1,chain_id=chain_A).get_selected_particles()
+    pdb_B = IMP.atom.Selection(pdb_ca,resolution=1,chain_id=chain_B).get_selected_particles()
 
     ##IMP models
     mdl = IMP.Model()
@@ -45,48 +31,67 @@ def get_rmsd_imp_easal(native_pdbfile, chain_A, chain_B, rmf_file, easal_output_
         IMP.rmf.load_frame(rmf_fh, frame)
         mdl.update()
 
-        #Get transformations for each rmf
+        # Selecting chain A and B in rmf
+        rmf_A = IMP.atom.Selection(hier,resolution=1,molecule=chain_A).get_selected_particles()
+        rmf_B = IMP.atom.Selection(hier,resolution=1,molecule=chain_B).get_selected_particles()
 
-        pdb_ca_mdl = IMP.Model()
-        pdb_ca = IMP.atom.read_pdb(native_pdbfile,pdb_ca_mdl,IMP.atom.CAlphaPDBSelector())
-        pdb_ca_mdl.update()
+        # for sel1 in rmf_A:
+        #     hier_A = IMP.atom.Hierarchy.setup_particle(sel1)
+        #     # print(IMP.atom.get_representation(hier_A))
+        #     rb_A = IMP.core.RigidBody.add_member(sel1)
+        #     print(type(rb_A))
+        # exit()
+        #
+        #
+        # for sel2 in rmf_B:
+        #     hier_B = IMP.atom.Hierarchy.setup_particle(sel2)
+        #
+        # coords_pdb[chain_A] = [IMP.core.XYZ(i).get_coordinates() for i in pdb_A]
+        # coords_pdb[chain_B] = [IMP.core.XYZ(i).get_coordinates() for i in pdb_B]
+        #
+        # coords_rmf[chain_A] = [IMP.core.XYZ(i).get_coordinates() for i in rmf_A]
+        # coords_rmf[chain_B] = [IMP.core.XYZ(i).get_coordinates() for i in rmf_B]
 
-        coords_pdb_ca = {}
-        coords_ccm = {}
+        #Get transformations for each rmf and calculate rmsd
+        rmsd_imp.append(IMP.atom.get_pairwise_rmsd_score(pdb_A, pdb_B,rmf_A, rmf_B))
+        #
+        # # Aligning chain A
+        # _, transformation = IMP.pmi.analysis.Alignment(query=coords_rmf, template=coords_pdb).align()
+        # # print(transformation)
+        #
+        # # Transformation on both chains in rmf file
+        # IMP.atom.transform(hier_A,transformation)
+        # IMP.atom.transform(hier_B,transformation)
+        #
+        # # exit()
+        # transformed_rmf_B = IMP.atom.Selection(hier_B,resolution=1,chain_id=chain_B).get_selected_particles()
+        # print(IMP.core.RigidBody.get_coordinates(hier_B))
+        #
+        #
+        # # RMSD calculation
+        # rmsd_imp.append(IMP.atom.get_rmsd(transformed_rmf_B,pdb_B))
+        # print(rmsd_imp)
 
-        sel_ca_pdb = IMP.atom.Selection(pdb_ca,resolution=1,chain_id=chain_A).get_selected_particles()
-        sel_ccm = IMP.atom.Selection(hier,resolution=1,molecule=chain_A).get_selected_particles()
-
-        coords_pdb_ca[chain_A] = [IMP.core.XYZ(i).get_coordinates() for i in sel_ca_pdb]
-        # print(coords_pdb_ca[chain_A])
-        coords_ccm[chain_A] = [IMP.core.XYZ(i).get_coordinates() for i in sel_ccm]
-        # print(coords_ccm[chain_A])
-        # print(len(coords_pdb_ca), len(coords_ccm))
-
-        _, transformation = IMP.pmi.analysis.Alignment(query=coords_pdb_ca, template=coords_ccm).align()
-        # print(transformation)
-        IMP.atom.transform(pdb_ca, transformation)
-        # IMP.atom.write_pdb(pdb_ca,"transformed.pdb")
-        transformed_pdb_B = IMP.atom.Selection(pdb_ca,resolution=1,chain_id=chain_B).get_selected_particles()
-        transformed_pdb_coord_B = [IMP.core.XYZ(i).get_coordinates() for i in transformed_pdb_B]
-
-        #Calculate rmsd with tranformed pdb
-        mdl_coord = []
-        c1 = IMP.atom.Selection(hierarchy=hier,
-                                molecule=chain_B,
-                                resolution=1).get_selected_particles()
-        for x in range(len(c1)):
-            mdl_coord.append(IMP.core.XYZ.get_coordinates(IMP.core.XYZ(c1[x])))
-        rmsd_imp.append(calc_rmsd(mdl_coord, transformed_pdb_coord_B))
         # exit()
 
-
+    print('imp done')
     # ##EASAL models
     rmsd_easal = []
     for pdb_file in os.listdir(easal_output_direc):
         if pdb_file.endswith(".pdb"):
             pdbfile_path = os.path.join(os.path.expanduser(easal_output_direc), pdb_file)
-            rmsd_easal.append(calc_rmsd(get_coord_from_pdb(pdbfile_path, chain_B),ts))
+
+            pdb = IMP.Model()
+            pdbfile = IMP.atom.read_pdb(pdbfile_path,pdb,IMP.atom.CAlphaPDBSelector())
+            pdb.update()
+
+            pdb_easal_A = IMP.atom.Selection(pdbfile,resolution=1,chain_id=chain_A).get_selected_particles()
+            pdb_easal_B = IMP.atom.Selection(pdbfile,resolution=1,chain_id=chain_B).get_selected_particles()
+
+            rmsd_easal.append(IMP.atom.get_pairwise_rmsd_score(pdb_A, pdb_B, pdb_easal_A, pdb_easal_B))
+
+    print('easal done')
+
     return rmsd_imp, rmsd_easal
 
 

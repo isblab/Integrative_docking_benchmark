@@ -24,7 +24,7 @@ def get_xlink_dist_diff(mdl, native, num, flag):
         diff = mdl_dist[i] - nat_dist[nat_index]
         diff_dist.append(abs(diff))
 
-    if flag == 'complexwise':
+    if flag == 'complexwise' or flag == 'selected':
         return diff_dist
     else:
         return np.mean(diff_dist)
@@ -44,6 +44,29 @@ def read_file_and_get_dist(name, flag):
 
     return dist_imp, dist_easal
 
+def plotting_violins(cases,num):
+    for i, case in enumerate(cases):
+        fig, axs = plt.subplots(num, num, figsize=(20, 20), gridspec_kw={'wspace': 0.5, 'hspace': 0.5})
+        for idx, case in enumerate(case):
+            row = idx // num
+            col = idx % num
+            dist_imp, dist_easal = read_file_and_get_dist(case, flag)
+            title = '/'.join(case.split('_'))
+            axs[row,col].violinplot(dist_imp, showmeans=False, showmedians=False)
+            axs[row,col].violinplot(dist_easal, showmeans=False, showmedians=False)
+            axs[row,col].set_title(f'{title}',fontsize=22)
+            axs[row,col].set_xlabel('Density (A.U.)',fontsize=18)
+            axs[row, col].set_ylim(0, 110)
+            axs[row,col].set_ylabel('Crosslink distance diff\n in native structure\n vs model (Å)',fontsize=18)
+            axs[row,col].tick_params(axis='both', which='major', labelsize=14)
+            axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
+
+        if num == 3:
+            for j in range(len(input_cases), 9):
+                fig.delaxes(axs.flatten()[j])
+        plt.savefig(f'/home/muskaan/easal/plots/compare_xlink_dist_native/S3.xlink_dist_to_native_{i}.png')
+        # plt.show()
+
 #All input cases
 input_cases = [["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5", "2hle_DSSO_5"],
     ["1dfj_DSSO_9", "1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "2b42_DSSO_10", "2hle_DSSO_10"],
@@ -52,7 +75,7 @@ input_cases = [["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ay
     ["gata_gatc_DSSO_3", "gcvpa_gcvpb_DSSO_5","roca_putc_DSSO_2", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"]]
 
 #Input cases for complexwise plots
-selected_cases = ["1dfj_EDC_4", "2b42_DSSO_5", "2hle_DSSO_14", "roca_putc_DSSO_2"]
+selected_cases = [["2b42_DSSO_5", "roca_putc_DSSO_2" , "2hle_DSSO_14", "1dfj_EDC_4"]]
 flag = sys.argv[1] #Specify whether to plot 'summary' or 'complexwise'
 #Plotting
 
@@ -60,19 +83,19 @@ if flag == 'summary':
 
     fig, ax = plt.subplots(figsize=(8, 8))
 
-    colors = ['r', 'g', 'b', 'm', 'orange']
+    colors = ['#c1d11f','#6ec007', '#00610e', 'red', 'blue']
 
-    legend_elements = [Line2D([0], [0], color='red', label='DSSO simulated less than 5'),
-                       Line2D([0], [0], color='green', label='DSSO simulated 6-10'),
-                       Line2D([0], [0], color='blue', label='DSSO simulated more than 10'),
-                       Line2D([0], [0], color='magenta', label='EDC simulated'),
-                       Line2D([0], [0], color='orange', label='DSSO experimental')]
+    legend_elements = [Line2D([0], [0], color='#c1d11f', label='DSSO, 0-5 simulated crosslinks'),
+                       Line2D([0], [0], color='#6ec007', label='DSSO, 6-10 simulated crosslinks'),
+                       Line2D([0], [0], color='#00610e', label='DSSO, >10 simulated crosslinks'),
+                       Line2D([0], [0], color='red', label='EDC, simulated crosslinks '),
+                       Line2D([0], [0], color='blue', label='DSSO, experimental crosslinks')]
 
     for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
         for idx, case in enumerate(ic):
             dist_imp, dist_easal = read_file_and_get_dist(case, flag)
             plt.scatter(dist_imp, dist_easal, color=color)
-            print(case, dist_imp, dist_easal)
+            # print(case, dist_imp, dist_easal)
 
     plt.xlabel('Crosslink distance difference in\n the native structure vs IMP model (Å)',fontsize=14)
     plt.ylabel('Crosslink distance difference in\n the native structure vs EASAL model (Å)',fontsize=14)
@@ -81,23 +104,10 @@ if flag == 'summary':
     plt.ylim(0, 50)
     plt.legend(handles=legend_elements)
     plt.savefig('/home/muskaan/easal/plots/summary/F4.xlink_dist_to_native_summary.png',dpi=600)
-    plt.show()
+    # plt.show()
 
-elif flag == 'complexwise':
-    for i, case in enumerate(input_cases):
-        fig, axs = plt.subplots(3, 3, figsize=(20, 20), gridspec_kw={'wspace': 0.5, 'hspace': 0.5})
-        for idx, case in enumerate(case):
-            row = idx // 3
-            col = idx % 3
-            dist_imp, dist_easal = read_file_and_get_dist(case, flag)
-            title = '/'.join(case.split('_'))
-            axs[row,col].violinplot(dist_imp, showmeans=False, showmedians=False)
-            axs[row,col].violinplot(dist_easal, showmeans=False, showmedians=False)
-            axs[row,col].set_title(f'{title}',fontsize=20)
-            axs[row,col].set_xlabel('Density',fontsize=18)
-            axs[row, col].set_ylim(0, 110)
-            axs[row,col].set_ylabel('Crosslink distance diff\n in native structure\n vs model (Å)',fontsize=18)
-            axs[row,col].tick_params(axis='both', which='major', labelsize=14)
-            axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
-        plt.savefig(f'/home/muskaan/easal/plots/compare_xlink_dist_native/SF3.xlink_dist_to_native_{i}.png')
-        plt.show()
+else:
+    if flag == 'complexwise':
+        plotting_violins(input_cases,3)
+    if flag == 'selected':
+        plotting_violins(selected_cases,2)

@@ -7,21 +7,40 @@ from matplotlib.lines import Line2D
 def read_file_and_get_rmsd(name, flag):
     mdl = os.path.join('/home/muskaan/easal/plots/structure_related/rmsd/', name + '.txt')
 
+     # Initialize variables to store RMSD values
+    min_rmsd_imp = None
+    min_rmsd_easal = None
+    all_rmsd_imp = None
+    all_rmsd_easal = None
+
+
     with open(mdl, 'r') as f:
         for line in f:
-            if flag == 'min':
-                if 'min imp' in line:
-                    min_rmsd_imp = line.split(' ')[-1]
-                elif 'min easal' in line:
-                    min_rmsd_easal = line.split(' ')[-1]
-                    return float(min_rmsd_imp), float(min_rmsd_easal)
+            if 'min imp' in line:
+                min_rmsd_imp = float(line.split(' ')[-1])
+            if 'min easal' in line:
+                min_rmsd_easal = float(line.split(' ')[-1])
 
-            if flag == 'all':
-                if 'rmsd imp' in line:
-                    all_rmsd_imp = [float(x.strip(',[]')) for x in line.split()[3:]]  # Slice from index 3 to end and remove comma
-                elif 'rmsd easal' in line:
-                    all_rmsd_easal = [float(x.strip(',[]')) for x in line.split()[3:]]  # Slice from index 3 to end
-                    return all_rmsd_imp, all_rmsd_easal
+            if 'rmsd imp' in line:
+                all_rmsd_imp = [float(x.strip(',[]')) for x in line.split()[3:]]  # Slice from index 3 to end and remove comma
+                within_10A_count_imp = sum(1 for rmsd in all_rmsd_imp if abs(rmsd - min_rmsd_imp) <= 10)
+                # print(within_10A_count_imp, len(all_rmsd_imp))
+
+            if 'rmsd easal' in line:
+                all_rmsd_easal = [float(x.strip(',[]')) for x in line.split()[3:]]  # Slice from index 3 to end
+                within_10A_count_easal = sum(1 for rmsd in all_rmsd_easal if abs(rmsd - min_rmsd_easal) <= 10)
+                # print(within_10A_count_easal, len(all_rmsd_easal))
+
+    if flag == 'min':
+        return min_rmsd_imp, min_rmsd_easal
+
+    if flag == 'all':
+        return all_rmsd_imp, all_rmsd_easal
+
+    if flag == 'within_10A':
+        return min_rmsd_imp, (within_10A_count_imp/len(all_rmsd_imp))*100, min_rmsd_easal, (within_10A_count_easal/len(all_rmsd_easal))*100
+
+
 
 #All input cases
 input_cases = [["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5", "2hle_DSSO_5"],
@@ -32,8 +51,7 @@ input_cases = [["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ay
     ["1dfj_DSSO_9", "2ayo_EDC_5","1dfj_DSSO_12","phes_phet_DSSO_8"] ]
 
 #Input cases for complexwise plots
-# selected_cases = ["roca_putc_DSSO_2", "gcvpa_gcvpb_DSSO_5", "1clv_EDC_8", "1dfj_EDC_4", "1clv_DSSO_2", "2b42_DSSO_5", "1dfj_DSSO_9", "2hle_DSSO_14", "1dfj_DSSO_12"]
-flag = sys.argv[1] #Specify whether to plot 'summary' or 'complexwise'
+flag = sys.argv[1] #Specify whether to plot 'minimum_rmsd' or 'all rmsd'
 #Plotting
 
 if flag == 'min':
@@ -84,3 +102,21 @@ elif flag == 'all':
             fig.delaxes(axs.flatten()[i])
         plt.savefig(f'/home/muskaan/easal/plots/structure_related/F5.{idx}.png')
         # plt.show()
+
+elif flag == 'within_10A':
+
+    fig, ax = plt.subplots(figsize=(10, 8))
+
+    for idx, cases in enumerate(input_cases):
+        for case_idx, case in enumerate(cases):
+            min_rmsd_imp, num_mdls_imp, min_rmsd_easal, num_mdls_easal = read_file_and_get_rmsd(case, flag)
+            print(case, min_rmsd_imp, num_mdls_imp, min_rmsd_easal, num_mdls_easal)
+            plt.scatter(min_rmsd_imp, num_mdls_imp, color = 'blue', label='IMP')
+            plt.scatter(min_rmsd_easal, num_mdls_easal, color = 'orange', label='EASAL')
+
+    plt.xlabel('Minimum RMSD in models (Å)',fontsize=16)
+    plt.ylabel('Percentage of models\n within 10Å of minimum_rmsd (%)', fontsize=16)
+    plt.tick_params(axis='both', which='major', labelsize=14)
+    plt.legend(handles=[mpatches.Patch(color='blue'), mpatches.Patch(color='orange')], labels=['IMP', 'EASAL'])
+    plt.savefig('/home/muskaan/easal/plots/structure_related/F5.models_within_10_min_rmsd.png', dpi=600)
+    # plt.show()
