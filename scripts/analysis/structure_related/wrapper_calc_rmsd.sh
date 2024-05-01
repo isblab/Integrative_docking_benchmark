@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# "1r0r_DSSO_3" "1clv_DSSO_2" "1kxp_DSSO_4" "2ayo_DSSO_4" "2b42_DSSO_5" "1dfj_DSSO_3" "2hle_DSSO_5" "1dfj_EDC_4" "1clv_EDC_8" "1kxp_EDC_7" "1r0r_EDC_6" "2ayo_EDC_5" "2b42_EDC_10" "2hle_EDC_9" "1dfj_DSSO_9" "1clv_DSSO_6" "1kxp_DSSO_7" "1r0r_DSSO_7" "2ayo_DSSO_8" "2b42_DSSO_10" "2hle_DSSO_10" "1dfj_DSSO_12" "1kxp_DSSO_11" "2ayo_DSSO_13" "2hle_DSSO_14" "gata_gatc_DSSO_3" "gcvpa_gcvpb_DSSO_5" "roca_putc_DSSO_2" "sucd_succ_DSSO_4" "phes_phet_DSSO_8"
 
-for case in "1clv_DSSO_2" "1clv_DSSO_6" "1clv_EDC_8"; do
+for case in "1r0r_DSSO_3" "1clv_DSSO_2" "1kxp_DSSO_4" "2ayo_DSSO_4" "2b42_DSSO_5" "1dfj_DSSO_3" "2hle_DSSO_5" "1dfj_EDC_4" "1clv_EDC_8" "1kxp_EDC_7" "1r0r_EDC_6" "2ayo_EDC_5" "2b42_EDC_10" "2hle_EDC_9" "1dfj_DSSO_9" "1clv_DSSO_6" "1kxp_DSSO_7" "1r0r_DSSO_7" "2ayo_DSSO_8" "2b42_DSSO_10" "2hle_DSSO_10" "1dfj_DSSO_12" "1kxp_DSSO_11" "2ayo_DSSO_13" "2hle_DSSO_14" "gata_gatc_DSSO_3" "gcvpa_gcvpb_DSSO_5" "roca_putc_DSSO_2" "sucd_succ_DSSO_4" "phes_phet_DSSO_8"; do
     if [ ${#case} -lt 15 ]; then
         if [[ $case == *"DSSO"* ]]; then
             rmf_file="/home/muskaan/easal/imp_output/DSSO_analysis/${case%DSSO*}${case##*_}/sampcon_0_extracted.rmf3"

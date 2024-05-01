@@ -23,12 +23,12 @@ def read_file_and_get_rmsd(name, flag):
 
             if 'rmsd imp' in line:
                 all_rmsd_imp = [float(x.strip(',[]')) for x in line.split()[3:]]  # Slice from index 3 to end and remove comma
-                within_10A_count_imp = sum(1 for rmsd in all_rmsd_imp if abs(rmsd - min_rmsd_imp) <= 10)
+                within_10A_count_imp = sum(1 for rmsd in all_rmsd_imp if abs(rmsd - min_rmsd_imp) <= 5)
                 # print(within_10A_count_imp, len(all_rmsd_imp))
 
             if 'rmsd easal' in line:
                 all_rmsd_easal = [float(x.strip(',[]')) for x in line.split()[3:]]  # Slice from index 3 to end
-                within_10A_count_easal = sum(1 for rmsd in all_rmsd_easal if abs(rmsd - min_rmsd_easal) <= 10)
+                within_10A_count_easal = sum(1 for rmsd in all_rmsd_easal if abs(rmsd - min_rmsd_easal) <= 5)
                 # print(within_10A_count_easal, len(all_rmsd_easal))
 
     if flag == 'min':
@@ -37,41 +37,45 @@ def read_file_and_get_rmsd(name, flag):
     if flag == 'all':
         return all_rmsd_imp, all_rmsd_easal
 
-    if flag == 'within_10A':
+    if flag == 'within_5A':
         return min_rmsd_imp, (within_10A_count_imp/len(all_rmsd_imp))*100, min_rmsd_easal, (within_10A_count_easal/len(all_rmsd_easal))*100
 
 
 
 #All input cases
-input_cases = [["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5", "2hle_DSSO_5"],
-    ["1dfj_DSSO_9", "1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "2b42_DSSO_10", "2hle_DSSO_10"],
-    ["1dfj_DSSO_12", "1kxp_DSSO_11", "2ayo_DSSO_13", "2hle_DSSO_14"],
-    ["1dfj_EDC_4", "1clv_EDC_8", "1kxp_EDC_7", "1r0r_EDC_6", "2ayo_EDC_5", "2b42_EDC_10", "2hle_EDC_9"],
-    ["gata_gatc_DSSO_3", "gcvpa_gcvpb_DSSO_5","roca_putc_DSSO_2", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"],
-    ["1dfj_DSSO_9", "2ayo_EDC_5","1dfj_DSSO_12","phes_phet_DSSO_8"] ]
+input_cases = [["1clv_DSSO_2", "1dfj_DSSO_3", "1r0r_DSSO_3", "1kxp_DSSO_4", "2ayo_DSSO_4", "2b42_DSSO_5", "2hle_DSSO_5"],
+    ["1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "1dfj_DSSO_9","2b42_DSSO_10", "2hle_DSSO_10"],
+    [ "1kxp_DSSO_11", "1dfj_DSSO_12", "2ayo_DSSO_13", "2hle_DSSO_14"],
+    ["1dfj_EDC_4", "2ayo_EDC_5", "1r0r_EDC_6", "1kxp_EDC_7", "1clv_EDC_8", "2hle_EDC_9","2b42_EDC_10"],
+    ["roca_putc_DSSO_2", "gata_gatc_DSSO_3", "sucd_succ_DSSO_4", "gcvpa_gcvpb_DSSO_5", "phes_phet_DSSO_8"],
+    ["1dfj_DSSO_12", "2b42_EDC_10","2hle_DSSO_10","phes_phet_DSSO_8"] ]
 
 #Input cases for complexwise plots
 flag = sys.argv[1] #Specify whether to plot 'minimum_rmsd' or 'all rmsd'
 #Plotting
-
+count = 0
 if flag == 'min':
 
     fig, ax = plt.subplots(figsize=(8, 8))
 
-    colors = ['r', 'g', 'b', 'm', 'orange']
+    colors = ['#c1d11f','#6ec007', '#00610e', 'red', 'blue']
 
-    legend_elements = [Line2D([0], [0], color='red', label='DSSO simulated less than 5'),
-                       Line2D([0], [0], color='green', label='DSSO simulated 6-10'),
-                       Line2D([0], [0], color='blue', label='DSSO simulated more than 10'),
-                       Line2D([0], [0], color='magenta', label='EDC simulated'),
-                       Line2D([0], [0], color='orange', label='DSSO experimental')]
+    legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (D) crosslinks'),
+                       Line2D([0], [0], color='#6ec007', label='6-10 simulated (D) crosslinks'),
+                       Line2D([0], [0], color='#00610e', label='>10 simulated (D) crosslinks'),
+                       Line2D([0], [0], color='red', label='Simulated (E) crosslinks '),
+                       Line2D([0], [0], color='blue', label='Experimental (D) crosslinks')]
 
     for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
         for idx, case in enumerate(ic):
             rmsd_imp, rmsd_easal = read_file_and_get_rmsd(case, flag)
             print(case, rmsd_imp, rmsd_easal)
+
+            if rmsd_easal < 10:
+                count +=1
             plt.scatter(rmsd_imp, rmsd_easal, color=color)
 
+    print(count)
     plt.xlabel('Minimum RMSD in IMP model (Å)',fontsize=14)
     plt.ylabel('Minimum RMSD in EASAL model (Å)',fontsize=14)
     plt.tick_params(axis='both', which='major', labelsize=12)
@@ -89,13 +93,16 @@ elif flag == 'all':
             row = case_idx // 3
             col = case_idx % 3
             rmsd_imp, rmsd_easal = read_file_and_get_rmsd(case, flag)
-            title = '/'.join(case.split('_'))
+            if case.count('_') == 3:  # Checking if the case has 3 underscores
+                title = case.split('_')[0] + '_' +case.split('_')[1] + '/' +'/'.join(case.split('_')[2:])
+            elif case.count('_') == 2:
+                title = '/'.join(case.split('_'))
             axs[row,col].violinplot(rmsd_imp, showmeans=False, showmedians=False)
             axs[row,col].violinplot(rmsd_easal, showmeans=False, showmedians=False)
             axs[row,col].set_title(f'{title}', fontsize=20)
             axs[row,col].set_xlabel('Density',fontsize=18)
-            axs[row,col].set_ylabel('RMSD(Å)',fontsize=18)
-            axs[row, col].set_ylim(0, 130)
+            axs[row,col].set_ylabel('RMSD (Å)',fontsize=18)
+            axs[row, col].set_ylim(0, 140)
             axs[row,col].tick_params(axis='both', which='major', labelsize=16)
             axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
         for i in range(len(cases), 9):
@@ -103,7 +110,7 @@ elif flag == 'all':
         plt.savefig(f'/home/muskaan/easal/plots/structure_related/F5.{idx}.png')
         # plt.show()
 
-elif flag == 'within_10A':
+elif flag == 'within_5A':
 
     fig, ax = plt.subplots(figsize=(10, 8))
 
@@ -115,8 +122,8 @@ elif flag == 'within_10A':
             plt.scatter(min_rmsd_easal, num_mdls_easal, color = 'orange', label='EASAL')
 
     plt.xlabel('Minimum RMSD in models (Å)',fontsize=16)
-    plt.ylabel('Percentage of models\n within 10Å of minimum_rmsd (%)', fontsize=16)
+    plt.ylabel('Percentage of models\n within 5Å of minimum rmsd (%)', fontsize=16)
     plt.tick_params(axis='both', which='major', labelsize=14)
     plt.legend(handles=[mpatches.Patch(color='blue'), mpatches.Patch(color='orange')], labels=['IMP', 'EASAL'])
-    plt.savefig('/home/muskaan/easal/plots/structure_related/F5.models_within_10_min_rmsd.png', dpi=600)
-    # plt.show()
+    plt.savefig('/home/muskaan/easal/plots/structure_related/F5.models_within_5_min_rmsd.png', dpi=600)
+    plt.show()

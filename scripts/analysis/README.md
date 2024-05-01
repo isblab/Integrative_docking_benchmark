@@ -17,19 +17,22 @@ wrapper_xlink_dist_perc_rmf.sh
 Run scripts in `crosslink_distance_perc_satisfied_calculation/plots/` for summary (#TODO which scripts) and complex-wise plots (#TODO which scripts). 
 
 ## Comparison of crosslink distances in native structure and models
-
-#TODO say how distances in native were calculated? did we have wrapper for it? 
-
-Run `crosslink_distance_perc_satisfied_calculation/plots/plot_native_model_xlink_dist.py complexwise` with 'complexwise' flag to plot violin plots of the selected cases and 'summary' flag to plot the average crosslink distances in models and native structure.
+To calculate the difference in the crosslink distance in the native structure and the models and plot it,
+Run `crosslink_distance_perc_satisfied_calculation/plots/calc_and_plot_native_model_xlink_dist.py complexwise` with 'complexwise' flag to plot violin plots of the selected cases and 'summary' flag to plot the average crosslink distances in models and native structure.
 
 ## RMSD in IMP models, EASAL models and native structure
 1. Run `structure_related/calc_rmsd.py` to calculate and store the rmsd in IMP and EASAL models with respect to the native structure.
 
 Use `structure_related/wrapper_calc_rmsd.sh` to do the above task for all the benchmark cases.
 
-2. Run `structure_related/plot_rmsd.py arg` to plot the minimum rmsd with 'min' argument and plot rmsd in all the models with 'all' argument. 
-=======
-Run `structure_related/calc_and_plot_rmsd.py` to plot the minimum RMSD in IMP and EASAL models with respect to the native structure.
+2. Run `structure_related/plot_rmsd.py min` to plot the minimum rmsd using 'min' flag, plot the percentage of models within 5A of the min rmsd using 'within_5A' flag  and plot rmsd in all the models using 'all' flag. 
+
+## Superposing structures of the native structure, IMP and EASAL model
+
+Run `structure_related/align_ccm_pdbs.py`
+
+This will align and save the CA atoms of the specified IMP and EASAL model which has the minimum rmsd and the native structure.
+
 
 ## Comparison of time taken in IMP and EASAL sampling
 Run `time_related/compare_efficiency.py` to plot the time taken (in minutes) to sample models in each case.
