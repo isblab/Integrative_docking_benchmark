@@ -75,7 +75,10 @@ for idx, case in enumerate(input_cases):
     axs[row, col].set_ylim(0, 120)
     axs[row, col].tick_params(axis='both', which='major', labelsize=16)
     axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
-
+    if "DSSO" in case:
+        axs[row, col].axhline(y=32, color='r', linestyle='--', linewidth=3)
+    elif "EDC" in case:
+        axs[row, col].axhline(y=20, color='r', linestyle='--', linewidth=3)
 # Remove empty subplots
 for i in range(len(input_cases), 9):
     fig.delaxes(axs.flatten()[i])

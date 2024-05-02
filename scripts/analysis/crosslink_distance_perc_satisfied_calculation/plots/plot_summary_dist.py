@@ -65,9 +65,9 @@ for case in input_cases:
     # print(case, avg_imp, avg_easal)
 print(sat_imp, sat_easal) # Number of cases with avg distance within the cutoff
 
-plt.xlabel('Average Crosslink Distance in IMP Ensemble (Å)', fontsize=14)
-plt.ylabel('Average Crosslink Distance in EASAL Ensemble (Å)', fontsize=14)
-plt.tick_params(axis='both', which='major', labelsize=12)
+plt.xlabel('Average Crosslink Distance in IMP Ensemble (Å)', fontsize=16)
+plt.ylabel('Average Crosslink Distance in EASAL Ensemble (Å)', fontsize=16)
+plt.tick_params(axis='both', which='major', labelsize=14)
 plt.xlim(10, 60)
 plt.ylim(10, 60)
 
