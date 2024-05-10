@@ -50,7 +50,7 @@ input_cases = [["1clv_DSSO_2", "1dfj_DSSO_3", "1r0r_DSSO_3", "1kxp_DSSO_4", "2ay
     [ "1kxp_DSSO_11", "1dfj_DSSO_12", "2ayo_DSSO_13", "2hle_DSSO_14"],
     ["1dfj_EDC_4", "2ayo_EDC_5", "1r0r_EDC_6", "1kxp_EDC_7", "1clv_EDC_8", "2hle_EDC_9","2b42_EDC_10"],
     ["roca_putc_DSSO_2", "gata_gatc_DSSO_3", "sucd_succ_DSSO_4", "gcvpa_gcvpb_DSSO_5", "phes_phet_DSSO_8"],
-    ["2b42_DSSO_5", "roca_putc_DSSO_2" , "2hle_DSSO_14", "1dfj_EDC_4"]]
+    ["1clv_EDC_8","2b42_DSSO_5","2hle_DSSO_14", "roca_putc_DSSO_2"]]
 
 #Input cases for complexwise plots
 # selected_cases = [["2b42_DSSO_5", "roca_putc_DSSO_2" , "2hle_DSSO_14", "1dfj_EDC_4"]]
@@ -75,12 +75,12 @@ if flag == 'summary':
             plt.scatter(dist_imp, dist_easal, color=color)
             # print(case, dist_imp, dist_easal)
 
-    plt.xlabel('Crosslink distance difference in\n the native structure vs IMP model (Å)',fontsize=14)
-    plt.ylabel('Crosslink distance difference in\n the native structure vs EASAL model (Å)',fontsize=14)
-    plt.tick_params(axis='both', which='major', labelsize=12)
+    plt.xlabel('Crosslink distance difference, IMP vs native (Å)',fontsize=16)
+    plt.ylabel('Crosslink distance difference, EASAL vs native (Å)',fontsize=16)
+    plt.tick_params(axis='both', which='major', labelsize=14)
     plt.xlim(0, 50)
     plt.ylim(0, 50)
-    plt.legend(handles=legend_elements)
+    plt.legend(handles=legend_elements, fontsize = 14)
     plt.savefig('/home/muskaan/easal/plots/summary/F4.xlink_dist_to_native_summary.png',dpi=600)
     # plt.show()
 
@@ -100,7 +100,7 @@ elif flag == 'complexwise':
             axs[row,col].set_title(f'{title}', fontsize=20)
             axs[row,col].set_xlabel('Density',fontsize=18)
             axs[row, col].set_ylim(0, 105)
-            axs[row,col].set_ylabel('Crosslink distance diff\n in native structure\n vs model (Å)',fontsize=18)
+            axs[row,col].set_ylabel('Crosslink distance difference (Å)',fontsize=18)
             axs[row,col].tick_params(axis='both', which='major', labelsize=16)
             axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
         for i in range(len(cases), 9):

@@ -22,9 +22,7 @@ def get_perc_across_models(file_path, flag):
     # print(max_xlink_perc if max_xlink_perc < 75 else None)
 
     if flag == 'max':
-        return max_xlink_perc, (models_with_max_xlink_sat / total_lines) * 100
-    elif flag == 'avg':
-        return avg_perc
+        return max_xlink_perc
 
 def get_xlinks_satisfied_and_corres_mdls(name, flag):
     file1_path = os.path.join('/home/muskaan/easal/imp_output/xl_satisfaction/', name + '_perc_satisfied.txt')
@@ -36,14 +34,14 @@ def get_xlinks_satisfied_and_corres_mdls(name, flag):
 
     # Maximum crosslink satisfaction percentage
     if flag == 'max':
-        max_xlink_perc_imp, max_models_imp = get_perc_across_models(file1_path, flag) #For imp models
-        max_xlink_perc_easal, max_models_easal = get_perc_across_models(file2_path, flag) #For easal models
-        return max_xlink_perc_imp, max_models_imp, max_xlink_perc_easal, max_models_easal
+        max_xlink_perc_imp = get_perc_across_models(file1_path, flag) #For imp models
+        max_xlink_perc_easal = get_perc_across_models(file2_path, flag) #For easal models
+        return max_xlink_perc_imp, max_xlink_perc_easal
 
-    elif flag == 'avg':
-        avg_perc_imp = get_perc_across_models(file1_path, flag) #For imp models
-        avg_perc_easal = get_perc_across_models(file2_path, flag) #For easal models
-        return avg_perc_imp, avg_perc_easal
+    # elif flag == 'avg':
+        # avg_perc_imp = get_perc_across_models(file1_path, flag) #For imp models
+        # avg_perc_easal = get_perc_across_models(file2_path, flag) #For easal models
+        # return avg_perc_imp, avg_perc_easal
 
 
 
@@ -57,26 +55,8 @@ input_cases = [["1clv_DSSO_2", "1dfj_DSSO_3", "1r0r_DSSO_3", "1kxp_DSSO_4", "2ay
 
 flag = 'max'
 fig, ax = plt.subplots(figsize=(8, 8))
-for case_list in input_cases:
-    for case in case_list:
-        # print(case)
-        max_xlink_perc_imp, max_models_imp, max_xlink_perc_easal, max_models_easal = get_xlinks_satisfied_and_corres_mdls(case, flag)
-        plt.scatter(max_xlink_perc_imp, max_models_imp, color = 'blue')
-        plt.scatter(max_xlink_perc_easal, max_models_easal, color = 'orange')
-
-plt.xlabel('Highest percentage of crosslinks\n satisfied per model (%)', fontsize=16)
-plt.ylabel('Percentage of models at the highest\n crosslink satisfaction percentage (%)',fontsize=16)
-plt.tick_params(axis='both', which='major', labelsize=14)
-plt.xlim(0, 105)
-plt.ylim(0, 105)
-plt.legend(handles=[mpatches.Patch(color='blue'), mpatches.Patch(color='orange')], labels=['IMP', 'EASAL'])
-plt.savefig('/home/muskaan/easal/plots/summary/F2.xlink_per_sat_max.png', dpi=600)
-# plt.show()
-
-flag = 'avg'
-fig, ax = plt.subplots(figsize=(8, 8))
 colors = ['#c1d11f','#6ec007', '#00610e', 'red', 'blue']
-
+#
 legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (D) crosslinks'),
                    Line2D([0], [0], color='#6ec007', label='6-10 simulated (D) crosslinks'),
                    Line2D([0], [0], color='#00610e', label='>10 simulated (D) crosslinks'),
@@ -85,15 +65,44 @@ legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (D) cro
 
 for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
     for idx, case in enumerate(ic):
-        avg_imp, avg_easal = get_xlinks_satisfied_and_corres_mdls(case, flag)
-        print(avg_imp, avg_easal, case)
-        plt.scatter(avg_imp, avg_easal, color=color)
+        max_xlink_perc_imp, max_xlink_perc_easal = get_xlinks_satisfied_and_corres_mdls(case, flag)
+        if max_xlink_perc_imp == 100 and max_xlink_perc_easal == 100:
+            plt.scatter(max_xlink_perc_imp, max_xlink_perc_easal, color = color, s =150)
+        else:
+            plt.scatter(max_xlink_perc_imp, max_xlink_perc_easal, color = color)
+        # plt.scatter(max_xlink_perc_easal, color = 'orange')
+        print(max_xlink_perc_imp, max_xlink_perc_easal, case)
 
-plt.xlabel('Average percentage of crosslinks\n satisfied in IMP ensemble (%)', fontsize=16)
-plt.ylabel('Average percentage of crosslinks\n satisfied in EASAL ensemble (%)', fontsize=16)
+plt.xlabel('Highest percentage of crosslinks\n satisfied by an IMP model (%)', fontsize=16)
+plt.ylabel('Highest percentage of crosslinks\n satisfied by an EASAL model (%)',fontsize=16)
 plt.tick_params(axis='both', which='major', labelsize=14)
 plt.xlim(0, 105)
 plt.ylim(0, 105)
 plt.legend(handles=legend_elements, fontsize=14)
-plt.savefig('/home/muskaan/easal/plots/summary/F2.xlink_per_sat_avg.png', dpi=600)
+plt.savefig('/home/muskaan/easal/plots/summary/F2.xlink_per_sat_max.png', dpi=600)
 # plt.show()
+
+# flag = 'avg'
+# fig, ax = plt.subplots(figsize=(8, 8))
+# colors = ['#c1d11f','#6ec007', '#00610e', 'red', 'blue']
+#
+# legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (D) crosslinks'),
+#                    Line2D([0], [0], color='#6ec007', label='6-10 simulated (D) crosslinks'),
+#                    Line2D([0], [0], color='#00610e', label='>10 simulated (D) crosslinks'),
+#                    Line2D([0], [0], color='red', label='Simulated (E) crosslinks '),
+#                    Line2D([0], [0], color='blue', label='Experimental (D) crosslinks')]
+#
+# for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
+#     for idx, case in enumerate(ic):
+#         avg_imp, avg_easal = get_xlinks_satisfied_and_corres_mdls(case, flag)
+#         # print(avg_imp, avg_easal, case)
+#         plt.scatter(avg_imp, avg_easal, color=color)
+#
+# plt.xlabel('Average percentage of crosslinks\n satisfied in IMP ensemble (%)', fontsize=16)
+# plt.ylabel('Average percentage of crosslinks\n satisfied in EASAL ensemble (%)', fontsize=16)
+# plt.tick_params(axis='both', which='major', labelsize=14)
+# plt.xlim(0, 105)
+# plt.ylim(0, 105)
+# plt.legend(handles=legend_elements, fontsize=14)
+# plt.savefig('/home/muskaan/easal/plots/summary/F2.xlink_per_sat_avg.png', dpi=600)
+# # plt.show()
