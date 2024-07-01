@@ -16,7 +16,7 @@ This repository contains hetero-dimeric complexes and chemical crosslinks on the
 1. Store all the input pdb files in `easal-dev/scripts/pdb_files`.
 2. Change the following parameters for each case in `easal-dev/settings.ini`:
 
-[Input]:
+[Input]
 * file: name of pdb file containing two proteins. e.g., 1clv.pdb
 * chain_A, chain_B: chain name in pdb file. e.g., A,I for 1clv
 
