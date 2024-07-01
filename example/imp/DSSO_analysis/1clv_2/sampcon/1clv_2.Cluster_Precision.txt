@@ -1,0 +1,6 @@
+Cluster precision (average distance to cluster centroid) of cluster  0  is 8.379 A
+Cluster precision (average distance to cluster centroid) of cluster  1  is 8.396 A
+Cluster precision (average distance to cluster centroid) of cluster  2  is 8.005 A
+Cluster precision (average distance to cluster centroid) of cluster  3  is 7.457 A
+Cluster precision (average distance to cluster centroid) of cluster  4  is 6.980 A
+Cluster precision (average distance to cluster centroid) of cluster  5  is 6.622 A
