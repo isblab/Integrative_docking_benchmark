@@ -78,13 +78,6 @@ for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
     plt.xlabel('Minimum RMSD in IMP ensemble (Å)',fontsize=16)
     plt.ylabel('Minimum RMSD in EASAL ensemble (Å)',fontsize=16)
     plt.tick_params(axis='both', which='major', labelsize=14)
-
-    # Setting tick label weight to bold
-    # for tick in ax.xaxis.get_major_ticks():
-    #     tick.label.set_fontweight('bold')
-    # for tick in ax.yaxis.get_major_ticks():
-    #     tick.label.set_fontweight('bold')
-
     plt.xlim(0, 100)
     plt.ylim(0, 100)
     plt.legend(handles=legend_elements, fontsize=14)
@@ -132,20 +125,11 @@ for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
 
 print(np.mean(double_avg_imp), np.mean(double_avg_easal))
 plt.plot([0, 100], [0, 100], '--', color='gray')
-plt.xlabel('Average RMSD in IMP ensemble (Å)',fontsize=16, fontweight='bold')
-plt.ylabel('Average RMSD in EASAL ensemble (Å)',fontsize=16, fontweight='bold')
+plt.xlabel('Average RMSD in IMP ensemble (Å)',fontsize=16)
+plt.ylabel('Average RMSD in EASAL ensemble (Å)',fontsize=16)
 plt.xlim(0, 100)
 plt.ylim(0, 100)
-# Adjusting tick labels to bold
-plt.xticks(fontsize=14)
-plt.yticks(fontsize=14)
-
-# Setting tick label weight to bold
-for tick in ax.xaxis.get_major_ticks():
-    tick.label.set_fontweight('bold')
-for tick in ax.yaxis.get_major_ticks():
-    tick.label.set_fontweight('bold')
-# plt.tick_params(axis='both', which='major', labelsize=14, weight='bold')
+plt.tick_params(axis='both', which='major', labelsize=14)
 plt.legend(handles=legend_elements, fontsize=14)
 plt.savefig('/home/muskaan/easal/plots/structure_related/F5.avg_rmsd.png', dpi=600)
 # plt.show()
