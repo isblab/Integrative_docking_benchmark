@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import os
-import sys
 import matplotlib.patches as mpatches
 from matplotlib.lines import Line2D
 import numpy as np
@@ -54,13 +53,13 @@ input_cases = [["1clv_DSSO_2", "1dfj_DSSO_3", "1r0r_DSSO_3", "1kxp_DSSO_4", "2ay
 
 #Plotting
 
-colors = ['#c1d11f','#6ec007', '#00610e', 'red', 'blue']
+colors = ['#c1d11f','#6ec007', '#00610e', 'red', '#5C4033']
 
 legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (D) crosslinks'),
                    Line2D([0], [0], color='#6ec007', label='6-10 simulated (D) crosslinks'),
                    Line2D([0], [0], color='#00610e', label='>10 simulated (D) crosslinks'),
                    Line2D([0], [0], color='red', label='Simulated (E) crosslinks '),
-                   Line2D([0], [0], color='blue', label='Experimental (D) crosslinks')]
+                   Line2D([0], [0], color='#5C4033', label='Experimental (D) crosslinks')]
 
 flag = 'min'
 
@@ -75,9 +74,17 @@ for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
         plt.scatter(rmsd_imp, rmsd_easal, color=color)
 
     # print(count)
+    plt.plot([0, 100], [0, 100], '--', color='gray')
     plt.xlabel('Minimum RMSD in IMP ensemble (Å)',fontsize=16)
     plt.ylabel('Minimum RMSD in EASAL ensemble (Å)',fontsize=16)
     plt.tick_params(axis='both', which='major', labelsize=14)
+
+    # Setting tick label weight to bold
+    # for tick in ax.xaxis.get_major_ticks():
+    #     tick.label.set_fontweight('bold')
+    # for tick in ax.yaxis.get_major_ticks():
+    #     tick.label.set_fontweight('bold')
+
     plt.xlim(0, 100)
     plt.ylim(0, 100)
     plt.legend(handles=legend_elements, fontsize=14)
@@ -124,11 +131,21 @@ for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
         plt.scatter(avg_imp, avg_easal, color=color)
 
 print(np.mean(double_avg_imp), np.mean(double_avg_easal))
-plt.xlabel('Average RMSD in IMP ensemble (Å)',fontsize=16)
-plt.ylabel('Average RMSD in EASAL ensemble (Å)',fontsize=16)
+plt.plot([0, 100], [0, 100], '--', color='gray')
+plt.xlabel('Average RMSD in IMP ensemble (Å)',fontsize=16, fontweight='bold')
+plt.ylabel('Average RMSD in EASAL ensemble (Å)',fontsize=16, fontweight='bold')
 plt.xlim(0, 100)
 plt.ylim(0, 100)
-plt.tick_params(axis='both', which='major', labelsize=14)
+# Adjusting tick labels to bold
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
+
+# Setting tick label weight to bold
+for tick in ax.xaxis.get_major_ticks():
+    tick.label.set_fontweight('bold')
+for tick in ax.yaxis.get_major_ticks():
+    tick.label.set_fontweight('bold')
+# plt.tick_params(axis='both', which='major', labelsize=14, weight='bold')
 plt.legend(handles=legend_elements, fontsize=14)
 plt.savefig('/home/muskaan/easal/plots/structure_related/F5.avg_rmsd.png', dpi=600)
 # plt.show()

@@ -65,6 +65,7 @@ for case in input_cases:
     # print(case, avg_imp, avg_easal)
 print(sat_imp, sat_easal) # Number of cases with avg distance within the cutoff
 
+plt.plot([10,60], [10, 60], '--', color='gray')
 plt.xlabel('Average Crosslink Distance in IMP Ensemble (Å)', fontsize=16)
 plt.ylabel('Average Crosslink Distance in EASAL Ensemble (Å)', fontsize=16)
 plt.tick_params(axis='both', which='major', labelsize=14)
@@ -76,5 +77,5 @@ legend_elements = [Line2D([0], [0], marker='o', color='red', label='DSSO', marke
                    Line2D([0], [0], marker='^', color='green', label='EDC', markersize=10, linestyle='None')]
 
 plt.legend(handles=legend_elements)
-plt.savefig('/home/muskaan/easal/plots/F3.xlink_dist_summary.png',dpi=600)
+plt.savefig('/home/muskaan/easal/plots/summary/F3.xlink_dist_summary.png',dpi=600)
 plt.show()

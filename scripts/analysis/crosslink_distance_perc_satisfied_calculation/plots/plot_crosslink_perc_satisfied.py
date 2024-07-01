@@ -66,7 +66,7 @@ for idx, case in enumerate(input_cases):
         title = case.split('_')[0] + '_' +case.split('_')[1] + '/' +'/'.join(case.split('_')[2:])
     elif case.count('_') == 2:
         title = '/'.join(case.split('_'))
-    axs[row, col].violinplot(perc_imp, showmeans=False, showmedians=False)
+    axs[row, col].violinplot(perc_imp, showmeans=False, showmedians=False, widths = 1)
     axs[row, col].violinplot(perc_easal, showmeans=False, showmedians=False)
     axs[row, col].set_title(f'{title}', fontsize=20)
     axs[row, col].set_ylabel('Percentage of\n crosslinks satisfied (%)', fontsize=18)
@@ -79,5 +79,5 @@ for idx, case in enumerate(input_cases):
 for i in range(len(input_cases), 9):
     fig.delaxes(axs.flatten()[i])
 
-plt.savefig(f'/home/muskaan/easal/plots/percentage_satisfied/{outf}.png')
-# plt.show()
+# plt.savefig(f'/home/muskaan/easal/plots/percentage_satisfied/{outf}.png')
+plt.show()
