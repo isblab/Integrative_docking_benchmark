@@ -45,8 +45,10 @@ Make a directory for each complex containing the PDB file and crosslink file. Fo
 
 ### Run command
 1. Run the modeling script for each case as follows:
+   
 `~/imp-clean/build/setup_environment.sh python scripts/imp/modeling/sample_imp.py prod chainA chainB 1 DSSO 25`
-where prod is for production run (10000 frames), chain A and chain B names as in the PDB, 1 is run number, crosslinker name and crosslinker length. 
+
+where prod is for production run (10000 frames), chainA and chainB names are chain names in the PDB, 1 is the run index, DSSO is the crosslinker type and 25 is the average crosslinker length. 
 
 You can run the following wrapper script for 30 benchmark cases:
 ```
@@ -60,7 +62,8 @@ You can run the following wrapper script for 30 benchmark cases:
 ```
 sh scripts/imp/analysis/master_script_analysis.sh
 ```
-2. Run the following command to get RMF file containing all the models in the largest cluster. This will be used for comparing IMP and EASAL model ensembles. 
+
+2. Run the following command to get the RMF file containing all the models in the largest cluster. This will be used for comparing IMP and EASAL model ensembles. 
 
 ```
  ~/imp-clean/build/setup_environment.sh python scripts/imp/analysis/extract_sampcon.py sampcon_0_extracted.rmf3 model_analysis/A_models_clust1.rmf3 sampcon/cluster.0.sample_A.txt model_analysis/B_models_clust1.rmf3 sampcon/cluster.0.sample_B.txt
