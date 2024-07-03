@@ -36,7 +36,7 @@ You can run the following wrapper script to run EASAL for 30 benchmark cases:
 
 ### Outputs
 1. The above command will generate a text file names as `A_clB_ssC.txt` where A is the name of the input PDB file, B is the number of cross links, and C is the step size, corresponding to what you set in `settings.ini`. 
-2. Run `python3 result2pdb.py A_clB_ssC.txt D` where D is chain B.
+2. Run `python3 result2pdb.py F A B D` where F is path of `A_clB_ssC.txt`, A is name of the input PDB file, B is the number of crosslinks and D is Chain B name.
 
 ## **Runnning IMP:**
 

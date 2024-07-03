@@ -66,8 +66,8 @@ def main():
     all_rmsd_imp, all_rmsd_easal = get_rmsd_imp_easal(native_pdbfile, chain_A, chain_B, rmf_file, easal_output_direc)
     best_rmsd_imp.append(min(all_rmsd_imp))
     best_rmsd_easal.append(min(all_rmsd_easal))
-    # with open(outputfile, 'w') as outf:
-    #     outf.write(f'min imp {float(best_rmsd_imp [0])}\n min easal {float(best_rmsd_easal[0])}\n rmsd imp {list(all_rmsd_imp)}\n rmsd easal {list(all_rmsd_easal)}')
+    with open(outputfile, 'w') as outf:
+        outf.write(f'min imp {float(best_rmsd_imp [0])}\n min easal {float(best_rmsd_easal[0])}\n rmsd imp {list(all_rmsd_imp)}\n rmsd easal {list(all_rmsd_easal)}')
     # print(best_rmsd_imp, best_rmsd_easal)
     print('Frame with min rmsd', all_rmsd_imp.index(min(all_rmsd_imp)))
     print('PDB file with min rmsd',all_rmsd_easal.index(min(all_rmsd_easal)))

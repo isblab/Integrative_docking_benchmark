@@ -61,20 +61,20 @@ if flag == 'summary':
 
     fig, ax = plt.subplots(figsize=(8, 8))
 
-    colors = ['#c1d11f','#6ec007', '#00610e', 'red', 'blue']
+    colors = ['#c1d11f','#6ec007', '#00610e', 'red', 'purple']
 
     legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (D) crosslinks'),
                        Line2D([0], [0], color='#6ec007', label='6-10 simulated (D) crosslinks'),
                        Line2D([0], [0], color='#00610e', label='>10 simulated (D) crosslinks'),
                        Line2D([0], [0], color='red', label='Simulated (E) crosslinks '),
-                       Line2D([0], [0], color='blue', label='Experimental (D) crosslinks')]
+                       Line2D([0], [0], color='purple', label='Experimental (D) crosslinks')]
 
     for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
         for idx, case in enumerate(ic):
             dist_imp, dist_easal = read_file_and_get_dist(case, flag)
             plt.scatter(dist_imp, dist_easal, color=color)
             # print(case, dist_imp, dist_easal)
-
+    plt.plot([0, 50], [0, 50], '--', color='gray')
     plt.xlabel('Crosslink distance difference, IMP vs native (Å)',fontsize=16)
     plt.ylabel('Crosslink distance difference, EASAL vs native (Å)',fontsize=16)
     plt.tick_params(axis='both', which='major', labelsize=14)
@@ -98,7 +98,7 @@ elif flag == 'complexwise':
             axs[row,col].violinplot(dist_imp, showmeans=False, showmedians=False)
             axs[row,col].violinplot(dist_easal, showmeans=False, showmedians=False)
             axs[row,col].set_title(f'{title}', fontsize=20)
-            axs[row,col].set_xlabel('Density',fontsize=18)
+            axs[row,col].set_xlabel('Model density',fontsize=18)
             axs[row, col].set_ylim(0, 105)
             axs[row,col].set_ylabel('Crosslink distance difference (Å)',fontsize=18)
             axs[row,col].tick_params(axis='both', which='major', labelsize=16)

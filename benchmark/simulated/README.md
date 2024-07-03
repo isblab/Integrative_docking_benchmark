@@ -7,7 +7,7 @@ Obtained from cMNXL dataset (DOI: 10.1016/j.str.2018.04.016 ) which is a subset 
 
 The crosslinks are simulated on the protein complexes using JWALK, downloaded from http://jwalk.ismb.lon.ac.uk/jwalk/
 
-The pdbs are stored in ~/Jwalk_2.0/Jwalk/
+The PDBs are stored in ~/Jwalk_2.0/Jwalk/
 
 Run `python ~/Jwalk_2.0/Jwalk/Jwalk.v1.1.py -max_dist 20 -aa1 ASP -aa2 ASP`
 
@@ -21,11 +21,11 @@ Save the results for EDC and DSSO in separate directories and run the following 
 
 To filter the interprotein crosslinks: Run 
 
-`python ~/EASAL/scripts/preprocessing/generating_xlinks/1_processing_jwalk_output.py Jwalk_results/`
+`python ~/Integrative_docking_benchmark/scripts/preprocessing/generating_xlinks/1_processing_jwalk_output.py Jwalk_results/`
 
 To get a set of `n` random crosslinks: Run 
 
-`python ~/EASAL/scripts/preprocessing/generating_xlinks/2_getting_random_xlinks.py 1dfj_interprotein_crosslinks.csv DSSO 4` where n=4
+`python ~/Integrative_docking_benchmark/scripts/preprocessing/generating_xlinks/2_getting_random_xlinks.py 1dfj_interprotein_crosslinks.csv DSSO 4` where n=4
 
 You can use master script `master_script_simulated_crosslinks.sh` to get different combination of number of crosslinks and crosslinker. 
 

@@ -66,6 +66,10 @@ for case in input_cases:
 print(sat_imp, sat_easal) # Number of cases with avg distance within the cutoff
 
 plt.plot([10,60], [10, 60], '--', color='gray')
+plt.axvline(x=32, color='red', linestyle='--')
+plt.axhline(y=32, color='red', linestyle='--')
+plt.axvline(x=20, color='green', linestyle='--')
+plt.axhline(y=20, color='green', linestyle='--')
 plt.xlabel('Average Crosslink Distance in IMP Ensemble (Å)', fontsize=16)
 plt.ylabel('Average Crosslink Distance in EASAL Ensemble (Å)', fontsize=16)
 plt.tick_params(axis='both', which='major', labelsize=14)

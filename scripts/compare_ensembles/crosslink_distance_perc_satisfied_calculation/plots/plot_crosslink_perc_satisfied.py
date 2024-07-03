@@ -70,7 +70,7 @@ for idx, case in enumerate(input_cases):
     axs[row, col].violinplot(perc_easal, showmeans=False, showmedians=False)
     axs[row, col].set_title(f'{title}', fontsize=20)
     axs[row, col].set_ylabel('Percentage of\n crosslinks satisfied (%)', fontsize=18)
-    axs[row, col].set_xlabel('Density', fontsize=18)
+    axs[row, col].set_xlabel('Model density', fontsize=18)
     axs[row, col].set_ylim(0, 110)
     axs[row, col].tick_params(axis='both', which='major', labelsize=14)
     axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
@@ -79,5 +79,5 @@ for idx, case in enumerate(input_cases):
 for i in range(len(input_cases), 9):
     fig.delaxes(axs.flatten()[i])
 
-# plt.savefig(f'/home/muskaan/easal/plots/percentage_satisfied/{outf}.png')
-plt.show()
+plt.savefig(f'/home/muskaan/easal/plots/percentage_satisfied/{outf}.png')
+# plt.show()

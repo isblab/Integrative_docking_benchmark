@@ -53,13 +53,13 @@ input_cases = [["1clv_DSSO_2", "1dfj_DSSO_3", "1r0r_DSSO_3", "1kxp_DSSO_4", "2ay
 
 #Plotting
 
-colors = ['#c1d11f','#6ec007', '#00610e', 'red', '#5C4033']
+colors = ['#c1d11f','#6ec007', '#00610e', 'red', 'purple']
 
 legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (D) crosslinks'),
                    Line2D([0], [0], color='#6ec007', label='6-10 simulated (D) crosslinks'),
                    Line2D([0], [0], color='#00610e', label='>10 simulated (D) crosslinks'),
                    Line2D([0], [0], color='red', label='Simulated (E) crosslinks '),
-                   Line2D([0], [0], color='#5C4033', label='Experimental (D) crosslinks')]
+                   Line2D([0], [0], color='purple', label='Experimental (D) crosslinks')]
 
 flag = 'min'
 
@@ -78,13 +78,13 @@ for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
     plt.xlabel('Minimum RMSD in IMP ensemble (Å)',fontsize=16)
     plt.ylabel('Minimum RMSD in EASAL ensemble (Å)',fontsize=16)
     plt.tick_params(axis='both', which='major', labelsize=14)
-    plt.xlim(0, 100)
-    plt.ylim(0, 100)
+    plt.xlim(0, 80)
+    plt.ylim(0, 80)
     plt.legend(handles=legend_elements, fontsize=14)
     plt.savefig('/home/muskaan/easal/plots/structure_related/F5.minimum_rmsd.png',dpi=600)
-    # plt.show()
+# plt.show()
 
-
+# exit()
 flag = 'all'
 
 for idx, cases in enumerate(input_cases):
@@ -100,7 +100,7 @@ for idx, cases in enumerate(input_cases):
         axs[row,col].violinplot(rmsd_imp, showmeans=False, showmedians=False)
         axs[row,col].violinplot(rmsd_easal, showmeans=False, showmedians=False)
         axs[row,col].set_title(f'{title}', fontsize=20)
-        axs[row,col].set_xlabel('Density',fontsize=18)
+        axs[row,col].set_xlabel('Model density',fontsize=18)
         axs[row,col].set_ylabel('RMSD (Å)',fontsize=18)
         axs[row, col].set_ylim(0, 140)
         axs[row,col].tick_params(axis='both', which='major', labelsize=16)

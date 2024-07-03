@@ -1,6 +1,7 @@
 import os, sys
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+import numpy as np
 
 # easal
 
@@ -47,6 +48,35 @@ for case in input_cases:
     time_points_imp.append(time_total)
 
     # print(case, time_total)
+
+# print(np.mean(time_points_imp))
+# print(np.mean(time_points_easal))
+# print(np.mean(time_per_run))
+
+methods = ['IMP', 'EASAL']
+x_positions = np.arange(len(methods))+1
+
+fig, ax = plt.subplots(figsize=(10, 8))
+ax.bar(1, np.mean(time_points_imp), label = 'IMP', color ='#1f77b4')
+ax.bar(2, np.mean(time_points_easal), label = 'EASAL', color ='#ff7f0e')
+ax.set_xlabel('Method', fontsize=18)
+ax.set_ylabel('Runtime (CPU hours)', fontsize=18)
+ax.set_xticks(x_positions)
+ax.set_xticklabels(methods, fontsize=14)
+plt.savefig('/home/muskaan/easal/plots/time_related/F6.runtime.png',dpi=600)
+# plt.show()
+
+fig, ax = plt.subplots(figsize=(10, 8))
+ax.bar(1, np.mean(time_per_run), label = 'IMP', color ='#1f77b4')
+ax.bar(2, np.mean(time_points_easal), label = 'EASAL', color ='#ff7f0e')
+ax.set_xlabel('Method', fontsize=18)
+plt.ylabel('Sampling time (minutes per run)', fontsize=18)
+ax.set_xticks(x_positions)
+ax.set_xticklabels(methods, fontsize=14)
+plt.savefig('/home/muskaan/easal/plots/time_related/F6.runtime_per_run.png',dpi=600)
+# plt.show()
+
+exit()
 fig, ax = plt.subplots(figsize=(10, 8))
 plt.violinplot(time_points_imp, showmeans=False, showmedians=False)
 plt.violinplot(time_points_easal, showmeans=False, showmedians=False)
