@@ -39,5 +39,5 @@ for case in "1r0r_DSSO_3" "1clv_DSSO_2" "1kxp_DSSO_4" "2ayo_DSSO_4" "2b42_DSSO_5
 
     outputfile="$case.txt"
 
-    ~/imp-clean/build/setup_environment.sh python ~/EASAL/scripts/analysis/structure_related/calc_rmsd.py "$native_pdbfile" "$chain_A" "$chain_B" "$rmf_file" "$easal_output_direc" "$outputfile" &
+    ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/analysis/structure_related/calc_rmsd.py "$native_pdbfile" "$chain_A" "$chain_B" "$rmf_file" "$easal_output_direc" "$outputfile" &
 done

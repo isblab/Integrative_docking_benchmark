@@ -14,9 +14,9 @@ for dir in "${directories[@]}"; do
   else
       direc2="more_than_10"
   fi
-  csv_file="$HOME/EASAL/benchmark/simulated/DSSO/$direc2/${filename}_DSSO_${number}.csv"
+  csv_file="$HOME/Integrative_docking_benchmark/benchmark/simulated/DSSO/$direc2/${filename}_DSSO_${number}.csv"
 
-  ~/imp-clean/build/setup_environment.sh python ~/EASAL/scripts/analysis/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "32"
+  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "32"
 
 done
 
@@ -29,8 +29,8 @@ for dir in "${directories[@]}"; do
     filename+=$(echo "$dir" | cut -d'_' -f2)
     number=$(echo "$dir" | cut -d'_' -f3)
 
-    csv_file="$HOME/EASAL/benchmark/experimental/crosslinks/${filename}_DSSO_${number}.csv"
-    ~/imp-clean/build/setup_environment.sh python ~/EASAL/scripts/analysis/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "32"
+    csv_file="$HOME/Integrative_docking_benchmark/benchmark/experimental/crosslinks/${filename}_DSSO_${number}.csv"
+    ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "32"
 done
 
 ###EDC
@@ -39,8 +39,8 @@ directories=("1clv_8" "1dfj_4" "1kxp_7" "1r0r_6" "2ayo_5" "2b42_10" "2hle_9")
 for dir in "${directories[@]}"; do
   filename=$(echo "$dir" | cut -d'_' -f1)
   number=$(echo "$dir" | cut -d'_' -f2)
-  csv_file="$HOME/EASAL/benchmark/simulated/EDC/${filename}_EDC_${number}.csv"
+  csv_file="$HOME/Integrative_docking_benchmark/benchmark/simulated/EDC/${filename}_EDC_${number}.csv"
 
-  ~/imp-clean/build/setup_environment.sh python ~/EASAL/scripts/analysis/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "EDC_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "20"
+  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "EDC_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "20"
 
 done

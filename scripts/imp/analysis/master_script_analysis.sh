@@ -17,7 +17,7 @@ for protein in 1clv_2 1clv_6 1dfj_3 1dfj_9 1dfj_12 1kxp_4 1kxp_7 1kxp_11 1r0r_3 
     fi
 
     echo "$protein....."
-    python ~/EASAL/scripts/imp/analysis/end_to_end_analysis.py "$protein" "DSSO"
+    python ~/Integrative_docking_benchmark/scripts/imp/analysis/end_to_end_analysis.py "$protein" "DSSO"
 
     cd ..
 done
@@ -40,7 +40,7 @@ for protein in 1clv_8 1dfj_4 1kxp_7 1r0r_6 2ayo_5 2b42_10 2hle_9; do
         cp -r ../../density_A_B.txt .
     fi
     echo "$protein....."
-    python ~/EASAL/scripts/imp/analysis/end_to_end_analysis.py "$protein" "EDC"
+    python ~/Integrative_docking_benchmark/scripts/imp/analysis/end_to_end_analysis.py "$protein" "EDC"
 
     cd ..
 done

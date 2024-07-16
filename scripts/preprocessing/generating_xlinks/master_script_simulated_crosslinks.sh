@@ -18,7 +18,7 @@ if [[ $xlinker == "EDC" ]]; then
     for pattern in "${patterns[@]}"; do
         set -- $pattern
         pdb_file="${1}_interprotein.csv"
-        python ~/EASAL/scripts/preprocessing/generating_xlinks/2_getting_random_xlinks.py "$pdb_file" "$2" "$3" "/home/muskaan/EASAL/benchmark/simulated/pdbs/${1}.pdb"
+        python ~/Integrative_docking_benchmark/scripts/preprocessing/generating_xlinks/2_getting_random_xlinks.py "$pdb_file" "$2" "$3" "/home/muskaan/Integrative_docking_benchmark/benchmark/simulated/pdbs/${1}.pdb"
     done
 
 elif [[ $xlinker == "DSSO" ]]; then
@@ -46,6 +46,6 @@ elif [[ $xlinker == "DSSO" ]]; then
     for pattern in "${patterns[@]}"; do
         set -- $pattern
         pdb_file="${1}_interprotein.csv"
-        python ~/EASAL/scripts/preprocessing/generating_xlinks/2_getting_random_xlinks.py "$pdb_file" "$2" "$3" "/home/muskaan/EASAL/benchmark/simulated/pdbs/${1}.pdb"
+        python ~/Integrative_docking_benchmark/scripts/preprocessing/generating_xlinks/2_getting_random_xlinks.py "$pdb_file" "$2" "$3" "/home/muskaan/Integrative_docking_benchmark/benchmark/simulated/pdbs/${1}.pdb"
     done
 fi

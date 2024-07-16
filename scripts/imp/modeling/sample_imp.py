@@ -17,9 +17,10 @@ import ihm
 import glob
 
 def add_pdb_rep(mol,pdbname,chain,clr):
-	atomic = mol.add_structure(pdbname,chain_id=chain,soft_check=True)
-	mol.add_representation(atomic, resolutions=[1],color = clr)
-	return mol
+    print(chain)
+    atomic = mol.add_structure(pdbname,chain_id=chain,soft_check=True)
+    mol.add_representation(atomic, resolutions=[1],color = clr)
+    return mol
 
 def getAA_Alphabet(resnam):
 
@@ -75,16 +76,14 @@ def getSequenceFromPDB(pdbfile, chain):
         if ch != chain:
             continue
         for res in ch.get_children():
-            seq = seq + getAA_Alphabet(res.get_name())
-
+            seq += getAA_Alphabet(res.get_name())
     return seq
 
 ###################### SYSTEM SETUP #####################
 # Parameters to tweak
 
 runType = sys.argv[1] # "prod" for production run and "test" for test run
-# data_direc=sys.argv[2]
-rpdb_chain = sys.argv[2] #TODO command line args
+rpdb_chain = sys.argv[2]
 lpdb_chain = sys.argv[3]
 run_output_dir = 'run_' + sys.argv[4]
 crosslinker = sys.argv[5]
@@ -165,7 +164,7 @@ if runType == "prod":
     nframes = 10000
 
 elif runType == "test":
-    nframes = 600
+    nframes = 100
 
 # Run replica exchange Monte Carlo sampling
 rex=IMP.pmi.macros.ReplicaExchange(mdl,

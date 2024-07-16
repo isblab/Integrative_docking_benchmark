@@ -37,8 +37,8 @@ for dir in "${directories[@]}"; do
         chainB="B"
     fi
 
-    csv_file="$HOME/EASAL/benchmark/simulated/DSSO/$direc2/${filename}_DSSO_${number}.csv"
-    python /home/muskaan/EASAL/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_perc_pdb.py "$chainA" "$chainB" "$csv_file"
+    csv_file="$HOME/Integrative_docking_benchmark/benchmark/simulated/DSSO/$direc2/${filename}_DSSO_${number}.csv"
+    python /home/muskaan/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_perc_pdb.py "$chainA" "$chainB" "$csv_file"
 
     cd ../../..
 done
@@ -54,8 +54,8 @@ for dir in "${directories[@]}"; do
     filename+=$(echo "$dir" | cut -d'_' -f2)
     number=$(echo "$dir" | sed 's/.*_cl\([0-9]*\)/\1/')
 
-    csv_file="$HOME/EASAL/benchmark/experimental/crosslinks/${filename}_DSSO_${number}.csv"
-    python /home/muskaan/EASAL/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_perc_pdb.py "A" "B" "$csv_file"
+    csv_file="$HOME/Integrative_docking_benchmark/benchmark/experimental/crosslinks/${filename}_DSSO_${number}.csv"
+    python /home/muskaan/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_perc_pdb.py "A" "B" "$csv_file"
 
     cd ../../..
 done
@@ -84,8 +84,8 @@ for dir in "${directories[@]}"; do
         chainB="B"
     fi
 
-    csv_file="$HOME/EASAL/benchmark/simulated/EDC/${filename}_EDC_${number}.csv"
-    python /home/muskaan/EASAL/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_pdb.py "$chainA" "$chainB" "$csv_file"
+    csv_file="$HOME/Integrative_docking_benchmark/benchmark/simulated/EDC/${filename}_EDC_${number}.csv"
+    python /home/muskaan/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_pdb.py "$chainA" "$chainB" "$csv_file"
 
     cd ../../
 done
