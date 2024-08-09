@@ -16,7 +16,7 @@
 * `chain_A, chain_B`: chain name in PDB file. e.g., A,I for 1clv
 
 [Sampling]
-* `stepSize`: step size of sampling, smaller means finer (and slower) sample procedure. We have set it to 5
+* `stepSize`: step size of sampling, smaller means finer sampling (and slower sampling procedure). We have set it to 5 A. If you dont get enough models satisfying crosslinks, you can consider halving the step size. 
 
 [Constraint]
 * `activeUpperDelta`: change the upper limit to 32 or 20 here based on the crosslinker length
