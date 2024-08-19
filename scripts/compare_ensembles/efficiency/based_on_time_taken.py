@@ -2,6 +2,8 @@ import os, sys
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
+from datetime import datetime
+
 
 # easal
 
@@ -34,20 +36,21 @@ for case in input_cases:
 # imp
 for case in input_cases:
     if 'DSSO' in case and len(case) <15:
-        file = '/home/muskaan/easal/imp_output/DSSO/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/run_1/stat_replica.0.out'
+        file1 = '/home/muskaan/easal/imp_output/DSSO/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/run_1/stat_replica.0.out'
+        file2 = '/home/muskaan/easal/imp_output/DSSO/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/run_1/initial.0.rmf3'
 
     elif 'DSSO' in case and len(case) >15:
-        file = '/home/muskaan/easal/imp_output/DSSO/'+case.split('_DSSO')[0] + '/run_1/stat_replica.0.out'
+        file1 = '/home/muskaan/easal/imp_output/DSSO/'+case.split('_DSSO')[0] + '/run_1/stat_replica.0.out'
+        file2 = '/home/muskaan/easal/imp_output/DSSO/'+case.split('_DSSO')[0] + '/run_1/initial.0.rmf3'
 
     elif 'EDC' in case:
-        file = '/home/muskaan/easal/imp_output/EDC/'+case.split('EDC')[0] + case.split('_')[-1]+ '/run_1/stat_replica.0.out'
+        file1 = '/home/muskaan/easal/imp_output/EDC/'+case.split('EDC')[0] + case.split('_')[-1]+ '/run_1/stat_replica.0.out'
+        file2 = '/home/muskaan/easal/imp_output/EDC/'+case.split('EDC')[0] + case.split('_')[-1]+ '/run_1/initial.0.rmf3'
 
-    time = os.path.getmtime(file)-os.path.getatime(file)
+    time = os.path.getmtime(file1) - os.path.getmtime(file2)
     time_total = (time/60) * 20 * 4 #In minutes; per run for 4 replica and 20 runs, multiply by 20 *4
     time_per_run.append(time/60)
     time_points_imp.append(time_total)
-
-    # print(case, time_total)
 
 # print(np.mean(time_points_imp))
 # print(np.mean(time_points_easal))
@@ -64,7 +67,7 @@ ax.set_ylabel('Total runtime (CPU hours)', fontsize=18)
 ax.set_xticks(x_positions)
 ax.set_xticklabels(methods, fontsize=14)
 plt.savefig('/home/muskaan/easal/plots/time_related/F6.runtime.png',dpi=600)
-# plt.show()
+plt.show()
 
 fig, ax = plt.subplots(figsize=(10, 8))
 ax.bar(1, np.mean(time_per_run), yerr=[[0],[np.std(time_per_run)]], label = 'IMP', color ='#1f77b4',capsize=5)
@@ -74,4 +77,4 @@ plt.ylabel('Sampling time (minutes per run)', fontsize=18)
 ax.set_xticks(x_positions)
 ax.set_xticklabels(methods, fontsize=14)
 plt.savefig('/home/muskaan/easal/plots/time_related/F6.runtime_per_run.png',dpi=600)
-# plt.show()
+plt.show()

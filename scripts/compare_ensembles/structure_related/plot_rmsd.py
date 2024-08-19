@@ -22,12 +22,12 @@ def read_file_and_get_rmsd(name, flag):
                 min_rmsd_easal = float(line.split(' ')[-1])
 
             if 'rmsd imp' in line:
-                all_rmsd_imp = [float(x.strip(',[]')) for x in line.split()[3:]]  # Slice from index 3 to end and remove comma
+                all_rmsd_imp = [float(x.strip(',[]')) for x in line.split()[2:]]  # Slice from index 3 to end and remove comma
                 within_10A_count_imp = sum(1 for rmsd in all_rmsd_imp if abs(rmsd - min_rmsd_imp) <= 5)
                 # print(within_10A_count_imp, len(all_rmsd_imp))
 
             if 'rmsd easal' in line:
-                all_rmsd_easal = [float(x.strip(',[]')) for x in line.split()[3:]]  # Slice from index 3 to end
+                all_rmsd_easal = [float(x.strip(',[]')) for x in line.split()[2:]]  # Slice from index 3 to end
                 within_10A_count_easal = sum(1 for rmsd in all_rmsd_easal if abs(rmsd - min_rmsd_easal) <= 5)
                 # print(within_10A_count_easal, len(all_rmsd_easal))
 
@@ -62,18 +62,18 @@ legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (D) cro
                    Line2D([0], [0], color='purple', label='Experimental (D) crosslinks')]
 
 flag = 'min'
-
+count = 0
 fig, ax = plt.subplots(figsize=(8, 8))
 for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
     for idx, case in enumerate(ic):
         rmsd_imp, rmsd_easal = read_file_and_get_rmsd(case, flag)
         # print(case, rmsd_imp, rmsd_easal)
 
-        # if rmsd_easal < 10:
-        #     count +=1
+        if rmsd_imp < 10:
+            count +=1
         plt.scatter(rmsd_imp, rmsd_easal, color=color)
 
-    # print(count)
+    print(count)
     plt.plot([0, 100], [0, 100], '--', color='gray')
     plt.xlabel('Minimum RMSD in IMP ensemble (Å)',fontsize=16)
     plt.ylabel('Minimum RMSD in EASAL ensemble (Å)',fontsize=16)
@@ -82,7 +82,7 @@ for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
     plt.ylim(0, 80)
     plt.legend(handles=legend_elements, fontsize=14)
     plt.savefig('/home/muskaan/easal/plots/structure_related/F5.minimum_rmsd.png',dpi=600)
-# plt.show()
+    # plt.show()
 
 flag = 'all'
 
@@ -107,7 +107,7 @@ for idx, cases in enumerate(input_cases):
     for i in range(len(cases), 9):
         fig.delaxes(axs.flatten()[i])
     plt.savefig(f'/home/muskaan/easal/plots/structure_related/F5.{idx}.png')
-        plt.show()
+    # plt.show()
 
 flag = 'avg'
 fig, ax = plt.subplots(figsize=(10, 8))
@@ -118,7 +118,7 @@ for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
         avg_imp, avg_easal = read_file_and_get_rmsd(case, flag)
         double_avg_imp.append(avg_imp)
         double_avg_easal.append(avg_easal)
-        print(case, avg_imp, avg_easal)
+        # print(case, avg_imp, avg_easal)
 
         plt.scatter(avg_imp, avg_easal, color=color)
 
