@@ -62,7 +62,7 @@ for case in input_cases:
             sat_easal += 1
 
     plt.scatter(avg_imp, avg_easal, marker=marker, color=color)
-    # print(case, avg_imp, avg_easal)
+    print(case, avg_imp, avg_easal)
 print(sat_imp, sat_easal) # Number of cases with avg distance within the cutoff
 
 plt.plot([10,60], [10, 60], '--', color='gray')

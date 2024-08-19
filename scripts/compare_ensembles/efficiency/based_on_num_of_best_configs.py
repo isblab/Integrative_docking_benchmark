@@ -4,11 +4,11 @@ import glob
 import csv
 import matplotlib.pyplot as plt
 
-input_cases = [ "1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5", "2hle_DSSO_5",
-    "1dfj_EDC_4", "1clv_EDC_8", "1kxp_EDC_7", "1r0r_EDC_6", "2ayo_EDC_5", "2b42_EDC_10", "2hle_EDC_9",
-    "1dfj_DSSO_9", "1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "2b42_DSSO_10", "2hle_DSSO_10",
+input_cases = [ "1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5",
+    "1dfj_EDC_4", "1clv_EDC_8", "1kxp_EDC_7", "1r0r_EDC_6", "2ayo_EDC_5", "2hle_EDC_9",
+    "1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "2b42_DSSO_10", "2hle_DSSO_10",
     "1dfj_DSSO_12", "1kxp_DSSO_11", "2ayo_DSSO_13", "2hle_DSSO_14",
-    "gata_gatc_DSSO_3", "gcvpa_gcvpb_DSSO_5","roca_putc_DSSO_2", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"]
+    "gata_gatc_DSSO_3", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"]
 
 
 ## IMP
@@ -45,6 +45,7 @@ for case in input_cases:
     # print(models_with_max_xlink_sat)
     print(models_with_max_xlink_sat/(num_rows_A + num_rows_B), case)
     imp_ratio.append(models_with_max_xlink_sat/(num_rows_A + num_rows_B))
+    # imp_ratio.append(models_with_max_xlink_sat/8000000)
 
 ## EASAL
 for case in input_cases:
@@ -81,8 +82,9 @@ fig, ax = plt.subplots(figsize=(10, 8))
 ax.bar(1, np.mean(imp_ratio), yerr=[[0], [np.std(imp_ratio)]], label = 'IMP', color ='#1f77b4', capsize=5)
 ax.bar(2, np.mean(easal_ratio), yerr=[[0],[np.std(easal_ratio)]], label = 'EASAL', color ='#ff7f0e',capsize=5)
 ax.set_xlabel('Method', fontsize=18)
-ax.set_ylabel('Ratio of number of best configs found with total sample count', fontsize=18)
+ax.set_ylabel('Fraction of best configurations in the sample', fontsize=18)
 ax.set_xticks(x_positions)
 ax.set_xticklabels(methods, fontsize=14)
 plt.savefig('/home/muskaan/easal/plots/time_related/F6.efficiency.png',dpi=600)
+# plt.savefig('/home/muskaan/easal/plots/time_related/F6.efficiency_total.png',dpi=600)
 plt.show()

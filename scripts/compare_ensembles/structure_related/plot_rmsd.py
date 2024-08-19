@@ -84,7 +84,6 @@ for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
     plt.savefig('/home/muskaan/easal/plots/structure_related/F5.minimum_rmsd.png',dpi=600)
 # plt.show()
 
-# exit()
 flag = 'all'
 
 for idx, cases in enumerate(input_cases):
@@ -100,7 +99,7 @@ for idx, cases in enumerate(input_cases):
         axs[row,col].violinplot(rmsd_imp, showmeans=False, showmedians=False)
         axs[row,col].violinplot(rmsd_easal, showmeans=False, showmedians=False)
         axs[row,col].set_title(f'{title}', fontsize=20)
-        axs[row,col].set_xlabel('Model density',fontsize=18)
+        axs[row,col].set_xlabel('Density',fontsize=18)
         axs[row,col].set_ylabel('RMSD (Å)',fontsize=18)
         axs[row, col].set_ylim(0, 140)
         axs[row,col].tick_params(axis='both', which='major', labelsize=16)
@@ -108,7 +107,7 @@ for idx, cases in enumerate(input_cases):
     for i in range(len(cases), 9):
         fig.delaxes(axs.flatten()[i])
     plt.savefig(f'/home/muskaan/easal/plots/structure_related/F5.{idx}.png')
-        # plt.show()
+        plt.show()
 
 flag = 'avg'
 fig, ax = plt.subplots(figsize=(10, 8))

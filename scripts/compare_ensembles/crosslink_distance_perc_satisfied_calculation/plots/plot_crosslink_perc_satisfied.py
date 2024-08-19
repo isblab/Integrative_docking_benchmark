@@ -50,7 +50,7 @@ elif args.edc:
     input_cases = ["1dfj_EDC_4", "2ayo_EDC_5", "1r0r_EDC_6", "1kxp_EDC_7", "1clv_EDC_8", "2hle_EDC_9","2b42_EDC_10"]
     outf = 'S1.EDC'
 elif args.sel:
-    input_cases = ["2b42_DSSO_5", "1dfj_DSSO_9", "roca_putc_DSSO_2", "2hle_EDC_9"]
+    input_cases = ["2b42_DSSO_5", "roca_putc_DSSO_2", "2hle_EDC_9", "2b42_EDC_10"]
     outf = 'F2.xlink_per_sat_complexwise'
 
 #Plotting
@@ -70,7 +70,7 @@ for idx, case in enumerate(input_cases):
     axs[row, col].violinplot(perc_easal, showmeans=False, showmedians=False)
     axs[row, col].set_title(f'{title}', fontsize=20)
     axs[row, col].set_ylabel('Percentage of\n crosslinks satisfied (%)', fontsize=18)
-    axs[row, col].set_xlabel('Model density', fontsize=18)
+    axs[row, col].set_xlabel('Density', fontsize=18)
     axs[row, col].set_ylim(0, 110)
     axs[row, col].tick_params(axis='both', which='major', labelsize=14)
     axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])

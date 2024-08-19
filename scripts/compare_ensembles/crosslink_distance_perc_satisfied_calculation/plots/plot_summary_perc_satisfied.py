@@ -52,8 +52,7 @@ input_cases = [["1clv_DSSO_2", "1dfj_DSSO_3", "1r0r_DSSO_3", "1kxp_DSSO_4", "2ay
     ["1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "1dfj_DSSO_9","2b42_DSSO_10", "2hle_DSSO_10"],
     [ "1kxp_DSSO_11", "1dfj_DSSO_12", "2ayo_DSSO_13", "2hle_DSSO_14"],
     ["1dfj_EDC_4", "2ayo_EDC_5", "1r0r_EDC_6", "1kxp_EDC_7", "1clv_EDC_8", "2hle_EDC_9","2b42_EDC_10"],
-    ["roca_putc_DSSO_2", "gata_gatc_DSSO_3", "sucd_succ_DSSO_4", "gcvpa_gcvpb_DSSO_5", "phes_phet_DSSO_8"],
-    ["1dfj_DSSO_12", "2b42_EDC_10","2hle_DSSO_5","phes_phet_DSSO_8"] ]
+    ["roca_putc_DSSO_2", "gata_gatc_DSSO_3", "sucd_succ_DSSO_4", "gcvpa_gcvpb_DSSO_5", "phes_phet_DSSO_8"]]
 
 flag = 'max'
 fig, ax = plt.subplots(figsize=(8, 8))
@@ -84,28 +83,28 @@ plt.legend(handles=legend_elements, fontsize=14)
 plt.savefig('/home/muskaan/easal/plots/summary/F2.xlink_per_sat_max.png', dpi=600)
 # plt.show()
 
-flag = 'avg'
-fig, ax = plt.subplots(figsize=(8, 8))
-colors = ['#c1d11f','#6ec007', '#00610e', 'red', 'purple']
-
-legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (D) crosslinks'),
-                   Line2D([0], [0], color='#6ec007', label='6-10 simulated (D) crosslinks'),
-                   Line2D([0], [0], color='#00610e', label='>10 simulated (D) crosslinks'),
-                   Line2D([0], [0], color='red', label='Simulated (E) crosslinks '),
-                   Line2D([0], [0], color='purple', label='Experimental (D) crosslinks')]
-
-for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
-    for idx, case in enumerate(ic):
-        avg_imp, avg_easal = get_xlinks_satisfied_and_corres_mdls(case, flag)
-        # print(avg_imp, avg_easal, case)
-        plt.scatter(avg_imp, avg_easal, color=color)
-
-plt.plot([0, 105], [0, 105], '--', color='gray')
-plt.xlabel('Average percentage of crosslinks\n satisfied in IMP ensemble (%)', fontsize=16)
-plt.ylabel('Average percentage of crosslinks\n satisfied in EASAL ensemble (%)', fontsize=16)
-plt.tick_params(axis='both', which='major', labelsize=14)
-plt.xlim(0, 105)
-plt.ylim(0, 105)
-plt.legend(handles=legend_elements, fontsize=14)
-plt.savefig('/home/muskaan/easal/plots/summary/F2.xlink_per_sat_avg.png', dpi=600)
+# flag = 'avg'
+# fig, ax = plt.subplots(figsize=(8, 8))
+# colors = ['#c1d11f','#6ec007', '#00610e', 'red', 'purple']
+#
+# legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (D) crosslinks'),
+#                    Line2D([0], [0], color='#6ec007', label='6-10 simulated (D) crosslinks'),
+#                    Line2D([0], [0], color='#00610e', label='>10 simulated (D) crosslinks'),
+#                    Line2D([0], [0], color='red', label='Simulated (E) crosslinks '),
+#                    Line2D([0], [0], color='purple', label='Experimental (D) crosslinks')]
+#
+# for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
+#     for idx, case in enumerate(ic):
+#         avg_imp, avg_easal = get_xlinks_satisfied_and_corres_mdls(case, flag)
+#         print(avg_imp, avg_easal, case)
+#         plt.scatter(avg_imp, avg_easal, color=color)
+#
+# plt.plot([0, 105], [0, 105], '--', color='gray')
+# plt.xlabel('Average percentage of crosslinks\n satisfied in IMP ensemble (%)', fontsize=16)
+# plt.ylabel('Average percentage of crosslinks\n satisfied in EASAL ensemble (%)', fontsize=16)
+# plt.tick_params(axis='both', which='major', labelsize=14)
+# plt.xlim(0, 105)
+# plt.ylim(0, 105)
+# plt.legend(handles=legend_elements, fontsize=14)
+# plt.savefig('/home/muskaan/Dropbox/F2.xlink_per_sat_avg.png', dpi=600)
 # # plt.show()

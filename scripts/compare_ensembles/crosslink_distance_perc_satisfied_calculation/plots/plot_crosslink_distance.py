@@ -70,7 +70,7 @@ for idx, case in enumerate(input_cases):
     axs[row, col].violinplot(dist_imp, showmeans=False, showmedians=False)
     axs[row, col].violinplot(dist_easal, showmeans=False, showmedians=False)
     axs[row, col].set_title(f'{title}', fontsize=24)
-    axs[row, col].set_xlabel('Model density', fontsize=20)
+    axs[row, col].set_xlabel('Density', fontsize=20)
     axs[row, col].set_ylabel('Crosslink\n distances(Å)', fontsize=20)
     axs[row, col].set_ylim(0, 120)
     axs[row, col].tick_params(axis='both', which='major', labelsize=16)
