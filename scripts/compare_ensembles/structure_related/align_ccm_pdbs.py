@@ -12,13 +12,12 @@ from Bio.PDB import *
 ############################################# Inputs ##############################################
 ###################################################################################################
 
-all_pdb_files = ['/home/muskaan/easal/pdbfile/2b42.pdb', '/home/muskaan/easal/pdbfile/2hle.pdb', '/home/muskaan/easal/pdbfile/roca_putc.pdb', '/home/muskaan/easal/pdbfile/phes_phet.pdb']
+all_pdb_files = ['/home/muskaan/easal/pdbfile/2b42.pdb', '/home/muskaan/easal/pdbfile/1dfj.pdb', '/home/muskaan/easal/pdbfile/roca_putc.pdb', '/home/muskaan/easal/pdbfile/phes_phet.pdb']
 
-easal_files = ['/home/muskaan/easal/easal_output/DSSO/simulated/2b42_cl5/node6_flip1_11111_296.pdb',
-                # '/home/muskaan/easal/easal_output/EDC/1dfj_cl4/node6_flip5_1111_3.pdb',
-                '/home/muskaan/easal/easal_output/EDC/2hle_cl9/node201_flip6_110111110_40.pdb',
-                # '/home/muskaan/easal/easal_output/DSSO/experimental/roca_putc_cl2/node1_flip7_11_1573.pdb',
-                '/home/muskaan/easal/easal_output/DSSO/experimental/phes_phet_cl8/node177_flip6_11110111_11.pdb']
+easal_files = ['/home/muskaan/easal/easal_output/EDC/2b42_cl10/node71_flip0_1111111110_0.pdb',
+                '/home/muskaan/easal/easal_output/DSSO/simulated/1dfj_cl3/node1_flip5_111_0.pdb',
+                '/home/muskaan/easal/easal_output/DSSO/experimental/roca_putc_cl2/node6_flip5_11_0.pdb',
+                '/home/muskaan/easal/easal_output/DSSO/experimental/phes_phet_cl8/node226_flip2_11110111_0.pdb']
 
 for pdb in easal_files:
     mdl = IMP.Model()
@@ -36,22 +35,22 @@ for file in all_pdb_files:
 
     if '2b42.pdb' in file:
         all_proteins = [{'A':{'A':[0,range(1,42)]},'A':{'A':[0,range(47,69)]},'A':{'A':[0,range(78,263)]},'A':{'A':[0,range(266,382)]}}]
-        frame_num = 15095
-        input_file = '/home/muskaan/easal/imp_output/DSSO_analysis/2b42_5/sampcon_0_extracted.rmf3'
+        frame_num = 8
+        input_file = '/home/muskaan/easal/imp_output/EDC_analysis/2b42_10/sampcon_0_extracted.rmf3'
 
-    elif '2hle.pdb' in file:
-        all_proteins = [{'A':{'A':[0,range(9,196)]}}]
-        frame_num = 6689
-        input_file = '/home/muskaan/easal/imp_output/EDC_analysis/2hle_9/sampcon_0_extracted.rmf3'
+    elif '1dfj.pdb' in file:
+        all_proteins = [{'E':{'E':[0,range(1,124)]}, 'I':{'I':[0,range(1,456)]}}]
+        frame_num = 115
+        input_file = '/home/muskaan/easal/imp_output/DSSO_analysis/1dfj_3/sampcon_0_extracted.rmf3'
 
     elif 'roca_putc.pdb' in file:
         all_proteins = [{'A':{'A':[0,range(1,516)]}}]
-        frame_num = 19449
+        frame_num = 26
         input_file = '/home/muskaan/easal/imp_output/DSSO_analysis/roca_putc_2/sampcon_0_extracted.rmf3'
 
     elif 'phes_phet.pdb' in file:
         all_proteins = [{'A':{'A':[0,range(1,345)]}}]
-        frame_num = 1023
+        frame_num = 8
         input_file = '/home/muskaan/easal/imp_output/DSSO_analysis/phes_phet_8/sampcon_0_extracted.rmf3'
 
 ###################################################################################################

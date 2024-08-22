@@ -14,5 +14,5 @@ python plot_crosslink_perc_satisfied.py --edc
 python plot_crosslink_perc_satisfied.py --exp
 python plot_crosslink_perc_satisfied.py --sel
 
-python calc_and_plot_native_model_xlink_dist.py summary
-python calc_and_plot_native_model_xlink_dist.py complexwise
+# python calc_and_plot_native_model_xlink_dist.py summary
+# python calc_and_plot_native_model_xlink_dist.py complexwise

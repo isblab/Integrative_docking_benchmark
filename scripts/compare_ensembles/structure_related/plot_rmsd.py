@@ -67,13 +67,13 @@ fig, ax = plt.subplots(figsize=(8, 8))
 for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
     for idx, case in enumerate(ic):
         rmsd_imp, rmsd_easal = read_file_and_get_rmsd(case, flag)
-        # print(case, rmsd_imp, rmsd_easal)
+        print(case, rmsd_imp, rmsd_easal)
 
-        if rmsd_imp < 10:
-            count +=1
+        # if rmsd_imp < 10:
+        #     count +=1
         plt.scatter(rmsd_imp, rmsd_easal, color=color)
 
-    print(count)
+    # print(count)
     plt.plot([0, 100], [0, 100], '--', color='gray')
     plt.xlabel('Minimum RMSD in IMP ensemble (Å)',fontsize=16)
     plt.ylabel('Minimum RMSD in EASAL ensemble (Å)',fontsize=16)
