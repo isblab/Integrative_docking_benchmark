@@ -6,7 +6,7 @@ def_chainA='chain_A = "A"'
 def_chainB='chain_B = "B"'
 def_activeUpperDelta='32'
 def_crossLinkCount='crossLinkCount = 8'
-def_crossLinkSatisfyThres='crossLinkSatisfyThres = 3'
+def_crossLinkSatisfyThres='crossLinkSatisfyThres = 6'
 def_crossLinks='crossLinks = {78, 650, 85, 650, 87, 679, 321, 502, 342, 610, 181, 593, 75, 650, 237, 502}'
 log_file="logfile.txt"
 

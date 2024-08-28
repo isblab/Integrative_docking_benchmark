@@ -19,10 +19,12 @@
 * `stepSize`: step size of sampling, smaller means finer sampling (and slower sampling procedure). We have set it to 5 A. If you dont get enough models satisfying crosslinks, you can consider halving the step size. 
 
 [Constraint]
-* `activeUpperDelta`: change the upper limit to 32 or 20 here based on the crosslinker length
-* `crossLinkCount`: total count of cross links in input file
+* `activeUpperDelta`: change the upper limit to 32 or 20 here based on the crosslinker length.
+* `crossLinkCount`: total count of cross links in input file.
 * `crossLinkSatisfyThres`: threshold of taking a configuration into account. If no configuration has this many cross links feasible, no configuration will be stored. Left to 3 for all the benchmark cases. 
 * `crossLinks`: list of all cross links in the form of {A1, B1, A2, B2, ...} corresponding to cross link file you sent me before.
+* `activeLowerLambda`: lower bound on the crosslink distance.
+* `smartCrossLinkMode`: number of intermediate walls between the maximum and minimum crosslink distance.
 
 ### Run command
 In `easal-dev` directory, run the following command for each case:
