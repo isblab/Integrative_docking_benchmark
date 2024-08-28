@@ -11,14 +11,16 @@ def_crossLinks='crossLinks = {78, 650, 85, 650, 87, 679, 321, 502, 342, 610, 181
 log_file="logfile.txt"
 
 ###### DSSO simulated ######
+mkdir DSSO
 for protein in 1clv_2 1clv_6 1dfj_3 1dfj_9 1dfj_12 1kxp_4 1kxp_7 1kxp_11 1r0r_3 1r0r_7 2ayo_4 2ayo_8 2ayo_13 2b42_5 2b42_10 2hle_5 2hle_10 2hle_14; do
     crossLinkCount="crossLinkCount = $(echo "$protein" | cut -d'_' -f2)"
+    proteinName=$(echo "$protein" | cut -d'_' -f1)
     number=$(echo "$protein" | cut -d'_' -f2)
 
     if [[ $number -lt 3 ]]; then
       crossLinkSatisfyThres='crossLinkSatisfyThres = 2'
     else
-      crossLinkSatisfyThres='crossLinkSatisfyThres = 3'
+      crossLinkSatisfyThres="crossLinkSatisfyThres = $((number-2))"
     fi
 
     if [[ "$protein" == 1clv* ]]; then
@@ -96,7 +98,7 @@ for protein in 1clv_2 1clv_6 1dfj_3 1dfj_9 1dfj_12 1kxp_4 1kxp_7 1kxp_11 1r0r_3 
 
     fi
 
-    mkdir $protein
+    mkdir DSSO/$protein
     sed -i "s/$def_pdbfile/${protein:0:4}/g;
             s/$def_chainA/$chainA/g;
             s/$def_chainB/$chainB/g;
@@ -104,7 +106,9 @@ for protein in 1clv_2 1clv_6 1dfj_3 1dfj_9 1dfj_12 1kxp_4 1kxp_7 1kxp_11 1r0r_3 
             s/$def_crossLinkSatisfyThres/$crossLinkSatisfyThres/g;
             s/$def_crossLinks/$crossLinks/g" "/home/muskaan/easal-dev/settings.ini"
 
-    build/easal >> $protein/"$log_file" 2>&1
+    cp -r settings.ini DSSO/$protein
+    build/easal >> DSSO/$protein/"$log_file" 2>&1
+    mv $proteinName*.txt DSSO/$protein/
     def_pdbfile=${protein:0:4}
     def_chainA=$chainA
     def_chainB=$chainB
@@ -130,7 +134,7 @@ for protein in gata_gatc_3 gcvpa_gcvpb_5 phes_phet_8 roca_putc_2 sucd_succ_4; do
     if [[ $number -lt 3 ]]; then
       crossLinkSatisfyThres='crossLinkSatisfyThres = 2'
     else
-      crossLinkSatisfyThres='crossLinkSatisfyThres = 3'
+      crossLinkSatisfyThres="crossLinkSatisfyThres = $((number-2))"
     fi
 
     if [[ "$protein" == gata_gatc ]]; then
@@ -149,7 +153,7 @@ for protein in gata_gatc_3 gcvpa_gcvpb_5 phes_phet_8 roca_putc_2 sucd_succ_4; do
       crossLinks='crossLinks = {256, 146, 256, 56, 256, 1, 243, 1}'
     fi
 
-    mkdir $protein
+    mkdir DSSO/$protein
     sed -i "s/$def_pdbfile/$proteinName/g;
             s/$def_chainA/$chainA/g;
             s/$def_chainB/$chainB/g;
@@ -157,7 +161,9 @@ for protein in gata_gatc_3 gcvpa_gcvpb_5 phes_phet_8 roca_putc_2 sucd_succ_4; do
             s/$def_crossLinkSatisfyThres/$crossLinkSatisfyThres/g;
             s/$def_crossLinks/$crossLinks/g" "/home/muskaan/easal-dev/settings.ini"
 
-    build/easal >> $protein/"$log_file" 2>&1
+    cp -r settings.ini DSSO/$protein
+    build/easal >> DSSO/$protein/"$log_file" 2>&1
+    mv $proteinName*.txt DSSO/$protein/
     def_pdbfile=$proteinName
     def_chainA=$chainA
     def_chainB=$chainB
@@ -171,7 +177,9 @@ done
 mkdir EDC
 for protein in 1clv_8 1dfj_4 1kxp_7 1r0r_6 2ayo_5 2b42_10 2hle_9; do
   crossLinkCount="crossLinkCount = $(echo "$protein" | cut -d'_' -f2)"
-  crossLinkSatisfyThres='crossLinkSatisfyThres = 3'
+  number=$(echo "$protein" | cut -d'_' -f2)
+  crossLinkSatisfyThres="crossLinkSatisfyThres = $((number-2))"
+  proteinName=$(echo "$protein" | cut -d'_' -f1)
 
   if [[ "$protein" == 1clv* ]]; then
     chainA='chain_A = "A"'
@@ -219,7 +227,9 @@ for protein in 1clv_8 1dfj_4 1kxp_7 1r0r_6 2ayo_5 2b42_10 2hle_9; do
           s/$def_activeUpperDelta/20/g;
           s/$def_crossLinks/$crossLinks/g" "/home/muskaan/easal-dev/settings.ini"
 
+  cp -r settings.ini EDC/$protein
   build/easal >> EDC/$protein/"$log_file" 2>&1
+  mv $proteinName*.txt EDC/$protein/
   def_pdbfile=${protein:0:4}
   def_chainA=$chainA
   def_chainB=$chainB
