@@ -30,7 +30,7 @@ parser.add_argument('--lt5', action='store_true', help='DSSO less than 5')
 parser.add_argument('--b6_10', action='store_true', help='DSSO 6-10')
 parser.add_argument('--mt10', action='store_true', help='DSSO more than 10')
 parser.add_argument('--exp', action='store_true', help='DSSO experimental')
-parser.add_argument('--edc', action='store_true', help='DMTMM')
+parser.add_argument('--dmtmm', action='store_true', help='DMTMM')
 parser.add_argument('--sel', action='store_true', help='Selected cases')
 
 args = parser.parse_args()
@@ -46,7 +46,7 @@ elif args.mt10:
 elif args.exp:
     input_cases = ["roca_putc_DSSO_2", "gata_gatc_DSSO_3", "sucd_succ_DSSO_4", "gcvpa_gcvpb_DSSO_5", "phes_phet_DSSO_8"]
     outf = 'S1.experimental'
-elif args.edc:
+elif args.dmtmm:
     input_cases = ["1dfj_DMTMM_4", "2ayo_DMTMM_5", "1r0r_DMTMM_6", "1kxp_DMTMM_7", "1clv_DMTMM_8", "2hle_DMTMM_9","2b42_DMTMM_10"]
     outf = 'S1.DMTMM'
 elif args.sel:

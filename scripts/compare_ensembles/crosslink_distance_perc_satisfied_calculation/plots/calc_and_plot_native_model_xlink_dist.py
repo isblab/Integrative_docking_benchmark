@@ -63,11 +63,11 @@ if flag == 'summary':
 
     colors = ['#c1d11f','#6ec007', '#00610e', 'red', 'purple']
 
-    legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (D) crosslinks'),
-                       Line2D([0], [0], color='#6ec007', label='6-10 simulated (D) crosslinks'),
-                       Line2D([0], [0], color='#00610e', label='>10 simulated (D) crosslinks'),
-                       Line2D([0], [0], color='red', label='Simulated (E) crosslinks '),
-                       Line2D([0], [0], color='purple', label='Experimental (D) crosslinks')]
+    legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (DS) crosslinks'),
+                       Line2D([0], [0], color='#6ec007', label='6-10 simulated (DS) crosslinks'),
+                       Line2D([0], [0], color='#00610e', label='>10 simulated (DS) crosslinks'),
+                       Line2D([0], [0], color='red', label='Simulated (DM) crosslinks '),
+                       Line2D([0], [0], color='purple', label='Experimental (DS) crosslinks')]
 
     for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
         for idx, case in enumerate(ic):

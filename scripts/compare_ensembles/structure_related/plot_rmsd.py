@@ -55,11 +55,11 @@ input_cases = [["1clv_DSSO_2", "1dfj_DSSO_3", "1r0r_DSSO_3", "1kxp_DSSO_4", "2ay
 
 colors = ['#c1d11f','#6ec007', '#00610e', 'red', 'purple']
 
-legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (D) crosslinks'),
-                   Line2D([0], [0], color='#6ec007', label='6-10 simulated (D) crosslinks'),
-                   Line2D([0], [0], color='#00610e', label='>10 simulated (D) crosslinks'),
-                   Line2D([0], [0], color='red', label='Simulated (E) crosslinks '),
-                   Line2D([0], [0], color='purple', label='Experimental (D) crosslinks')]
+legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (DS) crosslinks'),
+                   Line2D([0], [0], color='#6ec007', label='6-10 simulated (DS) crosslinks'),
+                   Line2D([0], [0], color='#00610e', label='>10 simulated (DS) crosslinks'),
+                   Line2D([0], [0], color='red', label='Simulated (DM) crosslinks '),
+                   Line2D([0], [0], color='purple', label='Experimental (DS) crosslinks')]
 
 flag = 'min'
 count = 0

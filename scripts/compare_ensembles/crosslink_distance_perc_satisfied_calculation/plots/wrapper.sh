@@ -3,14 +3,14 @@
 python plot_crosslink_distance.py --lt5
 python plot_crosslink_distance.py --b6_10
 python plot_crosslink_distance.py --mt10
-python plot_crosslink_distance.py --edc
+python plot_crosslink_distance.py --dmtmm
 python plot_crosslink_distance.py --exp
 python plot_crosslink_distance.py --sel
 
 python plot_crosslink_perc_satisfied.py --lt5
 python plot_crosslink_perc_satisfied.py --b6_10
 python plot_crosslink_perc_satisfied.py --mt10
-python plot_crosslink_perc_satisfied.py --edc
+python plot_crosslink_perc_satisfied.py --dmtmm
 python plot_crosslink_perc_satisfied.py --exp
 python plot_crosslink_perc_satisfied.py --sel
 
