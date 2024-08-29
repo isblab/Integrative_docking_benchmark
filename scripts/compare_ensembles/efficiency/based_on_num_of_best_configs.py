@@ -5,7 +5,7 @@ import csv
 import matplotlib.pyplot as plt
 
 input_cases = [ "1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5",
-    "1dfj_EDC_4", "1clv_EDC_8", "1kxp_EDC_7", "1r0r_EDC_6", "2ayo_EDC_5", "2hle_EDC_9",
+    "1dfj_DMTMM_4", "1clv_DMTMM_8", "1kxp_DMTMM_7", "1r0r_DMTMM_6", "2ayo_DMTMM_5", "2hle_DMTMM_9",
     "1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "2b42_DSSO_10", "2hle_DSSO_10",
     "1dfj_DSSO_12", "1kxp_DSSO_11", "2ayo_DSSO_13", "2hle_DSSO_14",
     "gata_gatc_DSSO_3", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"]
@@ -19,7 +19,7 @@ for case in input_cases:
         sample_A_file = base_path + 'A_models*.txt'
         sample_B_file = base_path + 'B_models*.txt'
     else:
-        base_path = '/home/muskaan/easal/imp_output/EDC_analysis/' + case.split('EDC')[0] + case.split('_')[-1] + '/model_analysis/'
+        base_path = '/home/muskaan/easal/imp_output/DMTMM_analysis/' + case.split('DMTMM')[0] + case.split('_')[-1] + '/model_analysis/'
         sample_A_file = base_path + 'A_models*.txt'
         sample_B_file = base_path + 'B_models*.txt'
 
@@ -57,8 +57,8 @@ for case in input_cases:
         file = '/home/muskaan/easal/time_related/DSSO/experimental/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/logfile.txt'
         directory_path = '/home/muskaan/easal/easal_output/DSSO/experimental/' + case.split('DSSO')[0] + 'cl' + case.split('_')[-1]
     else:
-        file = '/home/muskaan/easal/time_related/EDC/'+case.split('EDC')[0] + case.split('_')[-1]+ '/logfile.txt'
-        directory_path = '/home/muskaan/easal/easal_output/EDC/' + case.split('EDC')[0] + 'cl' + case.split('_')[-1]
+        file = '/home/muskaan/easal/time_related/DMTMM/'+case.split('DMTMM')[0] + case.split('_')[-1]+ '/logfile.txt'
+        directory_path = '/home/muskaan/easal/easal_output/DMTMM/' + case.split('DMTMM')[0] + 'cl' + case.split('_')[-1]
 
     with open(file, 'r') as logfile:
         lines = logfile.readlines()

@@ -33,14 +33,14 @@ for dir in "${directories[@]}"; do
     ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "32"
 done
 
-###EDC
+###DMTMM
 directories=("1clv_8" "1dfj_4" "1kxp_7" "1r0r_6" "2ayo_5" "2b42_10" "2hle_9")
 
 for dir in "${directories[@]}"; do
   filename=$(echo "$dir" | cut -d'_' -f1)
   number=$(echo "$dir" | cut -d'_' -f2)
-  csv_file="$HOME/Integrative_docking_benchmark/benchmark/simulated/EDC/${filename}_EDC_${number}.csv"
+  csv_file="$HOME/Integrative_docking_benchmark/benchmark/simulated/DMTMM/${filename}_DMTMM_${number}.csv"
 
-  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "EDC_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "20"
+  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "DMTMM_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "20"
 
 done

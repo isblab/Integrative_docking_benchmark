@@ -31,7 +31,7 @@ parser.add_argument('--lt5', action='store_true', help='DSSO less than 5')
 parser.add_argument('--b6_10', action='store_true', help='DSSO 6-10')
 parser.add_argument('--mt10', action='store_true', help='DSSO more than 10')
 parser.add_argument('--exp', action='store_true', help='DSSO experimental')
-parser.add_argument('--edc', action='store_true', help='EDC')
+parser.add_argument('--edc', action='store_true', help='DMTMM')
 parser.add_argument('--sel', action='store_true', help='Selected cases')
 
 args = parser.parse_args()
@@ -48,10 +48,10 @@ elif args.exp:
     input_cases = ["roca_putc_DSSO_2", "gata_gatc_DSSO_3", "sucd_succ_DSSO_4", "gcvpa_gcvpb_DSSO_5", "phes_phet_DSSO_8"]
     outf = 'S2.experimental'
 elif args.edc:
-    input_cases = ["1dfj_EDC_4", "2ayo_EDC_5", "1r0r_EDC_6", "1kxp_EDC_7", "1clv_EDC_8", "2hle_EDC_9","2b42_EDC_10"]
-    outf = 'S2.EDC'
+    input_cases = ["1dfj_DMTMM_4", "2ayo_DMTMM_5", "1r0r_DMTMM_6", "1kxp_DMTMM_7", "1clv_DMTMM_8", "2hle_DMTMM_9","2b42_DMTMM_10"]
+    outf = 'S2.DMTMM'
 elif args.sel:
-    input_cases = ["gcvpa_gcvpb_DSSO_5","1clv_DSSO_2","1dfj_EDC_4", "1dfj_DSSO_9"]
+    input_cases = ["gcvpa_gcvpb_DSSO_5","1clv_DSSO_2","1dfj_DMTMM_4", "1dfj_DSSO_9"]
     outf = 'F3.xlink_dist_complexwise'
 
 #Plotting
@@ -77,7 +77,7 @@ for idx, case in enumerate(input_cases):
     axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
     if "DSSO" in case:
         axs[row, col].axhline(y=32, color='r', linestyle='--', linewidth=3)
-    elif "EDC" in case:
+    elif "DMTMM" in case:
         axs[row, col].axhline(y=20, color='r', linestyle='--', linewidth=3)
 # Remove empty subplots
 for i in range(len(input_cases), 9):

@@ -4,15 +4,15 @@ xlinker=$1
 
 cd '/home/muskaan/easal_benchmark_JWALK_results/Jwalk_results_'$xlinker
 
-if [[ $xlinker == "EDC" ]]; then
+if [[ $xlinker == "DMTMM" ]]; then
     patterns=(
-        "1clv 8 EDC"
-        "1r0r 6 EDC"
-        "2ayo 5 EDC"
-        "1kxp 7 EDC"
-        "2hle 9 EDC"
-        "1dfj 4 EDC"
-        "2b42 10 EDC"
+        "1clv 8 DMTMM"
+        "1r0r 6 DMTMM"
+        "2ayo 5 DMTMM"
+        "1kxp 7 DMTMM"
+        "2hle 9 DMTMM"
+        "1dfj 4 DMTMM"
+        "2b42 10 DMTMM"
     )
 
     for pattern in "${patterns[@]}"; do

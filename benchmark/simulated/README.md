@@ -11,13 +11,13 @@ The PDBs are stored in ~/Jwalk_2.0/Jwalk/
 
 Run `python ~/Jwalk_2.0/Jwalk/Jwalk.v1.1.py -max_dist 20 -aa1 ASP -aa2 ASP`
 
- -max_dist is the maximum distance between the crosslinked residues.  We used 32 Å and 20 Å for DSSO and EDC crosslinker, respectively.
+ -max_dist is the maximum distance between the crosslinked residues.  We used 32 Å and 20 Å for DSSO and DMTMM crosslinker, respectively.
 
- -aa1 and -aa2 are crosslinked amino acids. For EDC, aa1 and aa2 were set to all four combinations of ASP and GLU. For DSSO aa1 = aa2 = LYS (which is the default). 
+ -aa1 and -aa2 are crosslinked amino acids. For DMTMM, aa1 and aa2 were set to all four combinations of ASP and GLU. For DSSO aa1 = aa2 = LYS (which is the default). 
 
 This will give both inter- and intra-protein crosslinks in `Jwalk_results/` directory. 
 
-Save the results for EDC and DSSO in separate directories and run the following commands in them.
+Save the results for DMTMM and DSSO in separate directories and run the following commands in them.
 
 To filter the interprotein crosslinks: Run 
 

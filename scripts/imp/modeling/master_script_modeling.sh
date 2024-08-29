@@ -28,8 +28,8 @@ done
 
 sleep 600;
 
-###EDC
-cd ../EDC/
+###DMTMM
+cd ../DMTMM/
 for protein in 1clv_8 1dfj_4 1kxp_7 1r0r_6 2ayo_5 2b42_10 2hle_9; do
     cd "$protein"
 
@@ -49,7 +49,7 @@ for protein in 1clv_8 1dfj_4 1kxp_7 1r0r_6 2ayo_5 2b42_10 2hle_9; do
 
     for i in $(seq 20); do
         folder_name="$i"
-        mpirun -np 4 /home/muskaan/imp-clean/build/setup_environment.sh python ../../scripts/imp/modeling/sample_imp.py "prod" "$chainA" "$chainB" "$folder_name" "EDC" "16" 2> "err_$folder_name.log" &
+        mpirun -np 4 /home/muskaan/imp-clean/build/setup_environment.sh python ../../scripts/imp/modeling/sample_imp.py "prod" "$chainA" "$chainB" "$folder_name" "DMTMM" "16" 2> "err_$folder_name.log" &
     done
 
     cd ..

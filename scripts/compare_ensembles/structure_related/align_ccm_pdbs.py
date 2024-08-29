@@ -14,7 +14,7 @@ from Bio.PDB import *
 
 all_pdb_files = ['/home/muskaan/easal/pdbfile/2b42.pdb', '/home/muskaan/easal/pdbfile/1dfj.pdb', '/home/muskaan/easal/pdbfile/roca_putc.pdb', '/home/muskaan/easal/pdbfile/phes_phet.pdb']
 
-easal_files = ['/home/muskaan/easal/easal_output/EDC/2b42_cl10/node71_flip0_1111111110_0.pdb',
+easal_files = ['/home/muskaan/easal/easal_output/DMTMM/2b42_cl10/node71_flip0_1111111110_0.pdb',
                 '/home/muskaan/easal/easal_output/DSSO/simulated/1dfj_cl3/node1_flip5_111_0.pdb',
                 '/home/muskaan/easal/easal_output/DSSO/experimental/roca_putc_cl2/node6_flip5_11_0.pdb',
                 '/home/muskaan/easal/easal_output/DSSO/experimental/phes_phet_cl8/node226_flip2_11110111_0.pdb']
@@ -36,7 +36,7 @@ for file in all_pdb_files:
     if '2b42.pdb' in file:
         all_proteins = [{'A':{'A':[0,range(1,42)]},'A':{'A':[0,range(47,69)]},'A':{'A':[0,range(78,263)]},'A':{'A':[0,range(266,382)]}}]
         frame_num = 8
-        input_file = '/home/muskaan/easal/imp_output/EDC_analysis/2b42_10/sampcon_0_extracted.rmf3'
+        input_file = '/home/muskaan/easal/imp_output/DMTMM_analysis/2b42_10/sampcon_0_extracted.rmf3'
 
     elif '1dfj.pdb' in file:
         all_proteins = [{'E':{'E':[0,range(1,124)]}, 'I':{'I':[0,range(1,456)]}}]

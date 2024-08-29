@@ -36,7 +36,7 @@ def read_file_and_get_dist(name):
 
 
 input_cases = ["1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5", "2hle_DSSO_5",
-    "1dfj_EDC_4", "1clv_EDC_8", "1kxp_EDC_7", "1r0r_EDC_6", "2ayo_EDC_5", "2b42_EDC_10", "2hle_EDC_9",
+    "1dfj_DMTMM_4", "1clv_DMTMM_8", "1kxp_DMTMM_7", "1r0r_DMTMM_6", "2ayo_DMTMM_5", "2b42_DMTMM_10", "2hle_DMTMM_9",
     "1dfj_DSSO_9", "1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "2b42_DSSO_10", "2hle_DSSO_10",
     "1dfj_DSSO_12", "1kxp_DSSO_11", "2ayo_DSSO_13", "2hle_DSSO_14",
     "gata_gatc_DSSO_3", "gcvpa_gcvpb_DSSO_5","roca_putc_DSSO_2", "sucd_succ_DSSO_4", "phes_phet_DSSO_8"]
@@ -53,7 +53,7 @@ for case in input_cases:
             sat_imp+=1
         if avg_easal < 32:
             sat_easal += 1
-    elif 'EDC' in case:
+    elif 'DMTMM' in case:
         marker = '^'
         color = 'green'
         if avg_imp < 20:
@@ -78,7 +78,7 @@ plt.ylim(10, 60)
 
 
 legend_elements = [Line2D([0], [0], marker='o', color='red', label='DSSO', markersize=10, linestyle='None'),
-                   Line2D([0], [0], marker='^', color='green', label='EDC', markersize=10, linestyle='None')]
+                   Line2D([0], [0], marker='^', color='green', label='DMTMM', markersize=10, linestyle='None')]
 
 plt.legend(handles=legend_elements)
 plt.savefig('/home/muskaan/easal/plots/summary/F3.xlink_dist_summary.png',dpi=600)

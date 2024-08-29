@@ -43,7 +43,7 @@ You can run the following wrapper script to run EASAL for 30 benchmark cases:
 ## **Runnning IMP:**
 
 ### Inputs
-Make a directory for each complex containing the PDB file and crosslink file. For example, `imp/DSSO/1clv_2/` has 1clv.pdb and 1clv_DSSO_2.csv. Similarly, for cases with EDC crosslinks.
+Make a directory for each complex containing the PDB file and crosslink file. For example, `imp/DSSO/1clv_2/` has 1clv.pdb and 1clv_DSSO_2.csv. Similarly, for cases with DMTMM crosslinks.
 
 ### Run command
 1. Run the modeling script for each case as follows:

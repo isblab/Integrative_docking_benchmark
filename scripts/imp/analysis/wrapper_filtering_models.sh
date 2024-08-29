@@ -1,11 +1,4 @@
 #!/bin/bash
-
-# Run in filtered_rmfs/
-# ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/filtering_by_clashes.py ~/easal/imp_output/EDC_analysis/1clv_8/sampcon_0_extracted.rmf3 ~/easal/imp_output/EDC/1clv_8/1clv.pdb A I EDC/1clv_8_filtered.rmf3
-# ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/filtering_by_clashes.py ~/easal/imp_output/EDC_analysis/1dfj_4/sampcon_0_extracted.rmf3 ~/easal/imp_output/EDC/1dfj_4/1dfj.pdb E I EDC/1dfj_4_filtered.rmf3
-# ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/filtering_by_clashes.py ~/easal/imp_output/EDC_analysis/1kxp_7/sampcon_0_extracted.rmf3 ~/easal/imp_output/EDC/1kxp_7/1kxp.pdb A D EDC/1kxp_7_filtered.rmf3
-
-#!/bin/bash
 ###DSSO
 ##simulated
 directories=("1clv_2" "1clv_6" "1dfj_3" "1dfj_9" "1dfj_12" "1kxp_4" "1kxp_7" "1kxp_11" "1r0r_3" "1r0r_7" "2ayo_4" "2ayo_8" "2ayo_13" "2b42_5" "2b42_10" "2hle_5" "2hle_10" "2hle_14")
@@ -44,7 +37,7 @@ for dir in "${directories[@]}"; do
 
 done
 
-###EDC
+###DMTMM
 directories=("1clv_8" "1dfj_4" "1kxp_7" "1r0r_6" "2ayo_5" "2b42_10" "2hle_9")
 
 for dir in "${directories[@]}"; do
@@ -65,6 +58,6 @@ for dir in "${directories[@]}"; do
       chainB="B"
   fi
 
-  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/filtering_by_clashes.py "imp_output/EDC_analysis/$dir/sampcon_0_extracted.rmf3" "imp_output/EDC/$dir/${filename}.pdb" "$chainA" "$chainB" "filtered_rmfs/EDC/${dir}_filtered.rmf3" &
+  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/filtering_by_clashes.py "imp_output/DMTMM_analysis/$dir/sampcon_0_extracted.rmf3" "imp_output/DMTMM/$dir/${filename}.pdb" "$chainA" "$chainB" "filtered_rmfs/DMTMM/${dir}_filtered.rmf3" &
 
 done

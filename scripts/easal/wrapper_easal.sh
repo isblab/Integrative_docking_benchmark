@@ -173,8 +173,8 @@ for protein in gata_gatc_3 gcvpa_gcvpb_5 phes_phet_8 roca_putc_2 sucd_succ_4; do
 
 done
 
-###### EDC simulated ######
-mkdir EDC
+###### DMTMM simulated ######
+mkdir DMTMM
 for protein in 1clv_8 1dfj_4 1kxp_7 1r0r_6 2ayo_5 2b42_10 2hle_9; do
   crossLinkCount="crossLinkCount = $(echo "$protein" | cut -d'_' -f2)"
   number=$(echo "$protein" | cut -d'_' -f2)
@@ -218,7 +218,7 @@ for protein in 1clv_8 1dfj_4 1kxp_7 1r0r_6 2ayo_5 2b42_10 2hle_9; do
 
   fi
 
-  mkdir EDC/$protein
+  mkdir DMTMM/$protein
   sed -i "s/$def_pdbfile/${protein:0:4}/g;
           s/$def_chainA/$chainA/g;
           s/$def_chainB/$chainB/g;
@@ -227,9 +227,9 @@ for protein in 1clv_8 1dfj_4 1kxp_7 1r0r_6 2ayo_5 2b42_10 2hle_9; do
           s/$def_activeUpperDelta/20/g;
           s/$def_crossLinks/$crossLinks/g" "/home/muskaan/easal-dev/settings.ini"
 
-  cp -r settings.ini EDC/$protein
-  build/easal >> EDC/$protein/"$log_file" 2>&1
-  mv $proteinName*.txt EDC/$protein/
+  cp -r settings.ini DMTMM/$protein
+  build/easal >> DMTMM/$protein/"$log_file" 2>&1
+  mv $proteinName*.txt DMTMM/$protein/
   def_pdbfile=${protein:0:4}
   def_chainA=$chainA
   def_chainB=$chainB

@@ -60,11 +60,11 @@ for dir in "${directories[@]}"; do
     cd ../../..
 done
 
-###EDC
+###DMTMM
 directories=("1clv_cl8" "1dfj_cl4" "1kxp_cl7" "1r0r_cl6" "2ayo_cl5" "2b42_cl10" "2hle_cl9")
 
 for dir in "${directories[@]}"; do
-    cd "EDC/$dir"
+    cd "DMTMM/$dir"
 
     filename=$(echo "$dir" | cut -d'_' -f1)
     number=$(echo "$dir" | sed 's/.*_cl\([0-9]*\)/\1/')
@@ -84,7 +84,7 @@ for dir in "${directories[@]}"; do
         chainB="B"
     fi
 
-    csv_file="$HOME/Integrative_docking_benchmark/benchmark/simulated/EDC/${filename}_EDC_${number}.csv"
+    csv_file="$HOME/Integrative_docking_benchmark/benchmark/simulated/DMTMM/${filename}_DMTMM_${number}.csv"
     python /home/muskaan/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_pdb.py "$chainA" "$chainB" "$csv_file"
 
     cd ../../

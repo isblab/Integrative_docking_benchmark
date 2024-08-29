@@ -8,7 +8,7 @@ Run the following wrapper script for 30 cases:
 wrapper_xlink_dist_perc_pdb.sh  
 ```
 ### IMP models
-Run `crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py sampcon_0_extracted.rmf3 crosslinks.csv 32`, where sampcon_0_extracted.rmf3 is generated after analysis scripts, crosslinks.csv is the crosslink file and 32 is the max violation length for DSSO (20 for EDC), for each case.
+Run `crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py sampcon_0_extracted.rmf3 crosslinks.csv 32`, where sampcon_0_extracted.rmf3 is generated after analysis scripts, crosslinks.csv is the crosslink file and 32 is the max violation length for DSSO (20 for DMTMM), for each case.
 
 Run the following wrapper script for 30 cases:
 ```
