@@ -24,11 +24,9 @@
 * `activeLowerDelta`: parameter to set the lower bound on the crosslink distance. We have set it to 0.
 * `activeLowerLambda`: parameter to set the lower bound on the crosslink distance. We have set it to 2.
 * `crossLinkCount`: total count of cross links in input file.
-* `crossLinkSatisfyThres`:  threshold for the number of crosslinks to be satisfied by a configuration. We have set it to n-2 where n is the number of crosslinks. 
+* `crossLinkSatisfyThres`:  threshold for the number of crosslinks to be satisfied by a configuration. We have set it to `n-2` where n is the number of crosslinks. Decrease this number if no configurations were found satisfying these many crosslinks. 
 * `crossLinks`: list of all cross links in the form of {A1, B1, A2, B2, ...} corresponding to cross link file you sent me before.
-* `smartCrossLinkMode`: number of walls between the maximum and minimum crosslink distance. We have set it to 2 (default), i.e., two walls corresponding to the upper and lower bound on crosslink distance. You can increase this value to introduce intermediate walls or keep the default. 
- 
-#TODO what about upperlamda, lowerdelta: have all 4. Say the default. 
+* `smartCrossLinkMode`: number of walls between the maximum and minimum crosslink distance. We have set it to 2 (default), i.e., two walls corresponding to the upper and lower bound on crosslink distance. You can increase this value to introduce intermediate walls. 
 
 ### Run command
 In `easal-dev` directory, run the following command for each case:
