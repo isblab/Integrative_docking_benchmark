@@ -19,13 +19,15 @@
 * `stepSize`: step size of sampling, smaller corresponds to finer sampling (and slower sampling procedure). We have set it to 5 A. If you dont get enough models satisfying crosslinks, you can consider halving the step size. 
 
 [Constraint]
-* `activeUpperDelta`: #TODO is this correct? update to latest. change the upper limit to 32 or 20 here based on the crosslinker length.
+* `activeUpperDelta`: parameter to set the upper bound on the crosslink distance. We have set it to 32 or 20, based on the crosslinker length.
+* `activeUpperLambda`: parameter to set the upper bound on the crosslink distance. We have set it to 0.
+* `activeLowerDelta`: parameter to set the lower bound on the crosslink distance. We have set it to 0.
+* `activeLowerLambda`: parameter to set the lower bound on the crosslink distance. We have set it to 2.
 * `crossLinkCount`: total count of cross links in input file.
-* `crossLinkSatisfyThres`:  #TODO explanation is not clear. threshold of taking a configuration into account. If no configuration has this many cross links feasible, no configuration will be stored. Left to 3 for all the benchmark cases. 
+* `crossLinkSatisfyThres`:  threshold for the number of crosslinks to be satisfied by a configuration. We have set it to n-2 where n is the number of crosslinks. 
 * `crossLinks`: list of all cross links in the form of {A1, B1, A2, B2, ...} corresponding to cross link file you sent me before.
-* `activeLowerLambda`:  #TODO is this correct? update to latest. lower bound on the crosslink distance.
-* `smartCrossLinkMode`:  #TODO say what you set it to; mention that you can keep the default. number of intermediate walls between the maximum and minimum crosslink distance.
-
+* `smartCrossLinkMode`: number of walls between the maximum and minimum crosslink distance. We have set it to 2 (default), i.e., two walls corresponding to the upper and lower bound on crosslink distance. You can increase this value to introduce intermediate walls or keep the default. 
+ 
 #TODO what about upperlamda, lowerdelta: have all 4. Say the default. 
 
 ### Run command
@@ -38,13 +40,14 @@ You can run the following wrapper script to run EASAL for 30 benchmark cases:
  scripts/easal/wrapper_easal.sh
 ```
 
-The above command for a complex will generate a text file `A_clB_ssC.txt` where A is the name of the input PDB file, B is the number of cross links, and C is the step size, corresponding to what you set in `settings.ini`. #TODO is the text file corresponding to transformations? say that and then why you need to run the subsequent script will be clear. 
+The above command for a complex will generate a text file `A_clB_ssC.txt` where A is the name of the input PDB file, B is the number of cross links, and C is the step size, corresponding to what you set in `settings.ini`. This text file contains the translations and rotations on the second protein in the complex. 
 
-### #TODO This is part of the running: you didnt mention why we need to do this
+### Outputs
+To write the EASAL output as PDB files:
 
-Run `python3 result2pdb.py F A B D` where F is path of `A_clB_ssC.txt`, A is name of the input PDB file, B is the number of crosslinks and D is Chain B name.
+Run `python3 easal-dev/scripts/result2pdb.py F A B D` where F is path of `A_clB_ssC.txt`, A is name of the input PDB file, B is the number of crosslinks and D is Chain B name.
 
-#TODO what is the output? 
+This will return in `A_clB` directory containing pdb files based on the translations and rotations in the `A_clB_ssC.txt` file.
 
 ## **Runnning IMP:**
 
@@ -71,16 +74,26 @@ You can run the following wrapper script for 30 benchmark cases:
 sh scripts/imp/analysis/master_script_analysis.sh
 ```
 
-2. Run the following command to get the RMF file containing all the models in the largest cluster. This will be used for comparing IMP and EASAL model ensembles. 
-
-```
- ~/imp-clean/build/setup_environment.sh python scripts/imp/analysis/extract_sampcon.py sampcon_0_extracted.rmf3 model_analysis/A_models_clust1.rmf3 sampcon/cluster.0.sample_A.txt model_analysis/B_models_clust1.rmf3 sampcon/cluster.0.sample_B.txt
-```
-
-3. Subsequently, we used -s -ct commands to cluster the models at a precision worse than the sampling precision.
+2. Subsequently, we used -s -ct commands to cluster the models at a precision worse than the sampling precision.
 Run the following command in the directory containing the `sampcon` results for reclustering models at a worse precision.
 
 ```
 ~/imp-clean/build/setup_environment.sh python  ~/imp-clean/imp/modules/sampcon/pyext/src/exhaust.py -n 1clv_2 -a -m cpu_omp -c 0 -s -ct 12 -cc 4 -pr -d density_A_I.txt -gp -g 2.0  -sa model_analysis/A_models_clust1.txt -sb model_analysis/B_models_clust1.txt  -ra model_analysis/A_models_clust1.rmf3 -rb model_analysis/B_models_clust1.rmf3
 ```
-4. Finally filtering. #TODO
+
+3. Run the following command to get the RMF file containing all the models in the largest cluster. 
+
+```
+ ~/imp-clean/build/setup_environment.sh python scripts/imp/analysis/extract_sampcon.py sampcon_0_extracted.rmf3 model_analysis/A_models_clust1.rmf3 sampcon/cluster.0.sample_A.txt model_analysis/B_models_clust1.rmf3 sampcon/cluster.0.sample_B.txt
+```
+
+4. Finally, filter the model for clashes by removing the models having overlapping beads. Run the following script for each case:
+`~/imp-clean/build/setup_environment.sh scripts/imp/analysis/filtering_by_clashes.py sampcon_0_extracted.rmf3 pdbfile chainA chainB ouputfile`
+where sampcon_0_extracted.rmf3 is the RMF file conatining all the models in the largest cluser, pdbfile is the path to pdb file, chainA and chainB are chain names in the PDB, outputfile is the name of the output rmf3 file. 
+
+The filtered RMF will be used for comparing IMP and EASAL model ensembles. 
+
+You can run the following wrapper script for 30 benchmark cases:
+``` 
+scripts/imp/analysis/wrapper_filtering_models.sh
+```

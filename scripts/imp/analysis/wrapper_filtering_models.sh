@@ -20,7 +20,7 @@ for dir in "${directories[@]}"; do
       chainB="B"
   fi
 
-  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/filtering_by_clashes.py "imp_output/DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "imp_output/DSSO/$dir/${filename}.pdb" "$chainA" "$chainB" "filtered_rmfs/DSSO/${dir}_filtered.rmf3" &
+  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/analysis/filtering_by_clashes.py "imp_output/DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "imp_output/DSSO/$dir/${filename}.pdb" "$chainA" "$chainB" "filtered_rmfs/DSSO/${dir}_filtered.rmf3" &
 
 done
 
@@ -33,7 +33,7 @@ for dir in "${directories[@]}"; do
     filename+=$(echo "$dir" | cut -d'_' -f2)
     number=$(echo "$dir" | cut -d'_' -f3)
 
-    ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/filtering_by_clashes.py "imp_output/DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "imp_output/DSSO/$dir/${filename}.pdb" "A" "B" "filtered_rmfs/DSSO/${dir}_filtered.rmf3" &
+    ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/analysis/filtering_by_clashes.py "imp_output/DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "imp_output/DSSO/$dir/${filename}.pdb" "A" "B" "filtered_rmfs/DSSO/${dir}_filtered.rmf3" &
 
 done
 
@@ -58,6 +58,6 @@ for dir in "${directories[@]}"; do
       chainB="B"
   fi
 
-  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/filtering_by_clashes.py "imp_output/DMTMM_analysis/$dir/sampcon_0_extracted.rmf3" "imp_output/DMTMM/$dir/${filename}.pdb" "$chainA" "$chainB" "filtered_rmfs/DMTMM/${dir}_filtered.rmf3" &
+  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/analysis/filtering_by_clashes.py "imp_output/DMTMM_analysis/$dir/sampcon_0_extracted.rmf3" "imp_output/DMTMM/$dir/${filename}.pdb" "$chainA" "$chainB" "filtered_rmfs/DMTMM/${dir}_filtered.rmf3" &
 
 done
