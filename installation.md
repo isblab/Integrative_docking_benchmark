@@ -16,15 +16,17 @@
 * `chain_A, chain_B`: chain name in PDB file. e.g., A,I for 1clv
 
 [Sampling]
-* `stepSize`: step size of sampling, smaller means finer sampling (and slower sampling procedure). We have set it to 5 A. If you dont get enough models satisfying crosslinks, you can consider halving the step size. 
+* `stepSize`: step size of sampling, smaller corresponds to finer sampling (and slower sampling procedure). We have set it to 5 A. If you dont get enough models satisfying crosslinks, you can consider halving the step size. 
 
 [Constraint]
-* `activeUpperDelta`: change the upper limit to 32 or 20 here based on the crosslinker length.
+* `activeUpperDelta`: #TODO is this correct? update to latest. change the upper limit to 32 or 20 here based on the crosslinker length.
 * `crossLinkCount`: total count of cross links in input file.
-* `crossLinkSatisfyThres`: threshold of taking a configuration into account. If no configuration has this many cross links feasible, no configuration will be stored. Left to 3 for all the benchmark cases. 
+* `crossLinkSatisfyThres`:  #TODO explanation is not clear. threshold of taking a configuration into account. If no configuration has this many cross links feasible, no configuration will be stored. Left to 3 for all the benchmark cases. 
 * `crossLinks`: list of all cross links in the form of {A1, B1, A2, B2, ...} corresponding to cross link file you sent me before.
-* `activeLowerLambda`: lower bound on the crosslink distance.
-* `smartCrossLinkMode`: number of intermediate walls between the maximum and minimum crosslink distance.
+* `activeLowerLambda`:  #TODO is this correct? update to latest. lower bound on the crosslink distance.
+* `smartCrossLinkMode`:  #TODO say what you set it to; mention that you can keep the default. number of intermediate walls between the maximum and minimum crosslink distance.
+
+#TODO what about upperlamda, lowerdelta: have all 4. Say the default. 
 
 ### Run command
 In `easal-dev` directory, run the following command for each case:
@@ -36,9 +38,13 @@ You can run the following wrapper script to run EASAL for 30 benchmark cases:
  scripts/easal/wrapper_easal.sh
 ```
 
-### Outputs
-1. The above command will generate a text file names as `A_clB_ssC.txt` where A is the name of the input PDB file, B is the number of cross links, and C is the step size, corresponding to what you set in `settings.ini`. 
-2. Run `python3 result2pdb.py F A B D` where F is path of `A_clB_ssC.txt`, A is name of the input PDB file, B is the number of crosslinks and D is Chain B name.
+The above command for a complex will generate a text file `A_clB_ssC.txt` where A is the name of the input PDB file, B is the number of cross links, and C is the step size, corresponding to what you set in `settings.ini`. #TODO is the text file corresponding to transformations? say that and then why you need to run the subsequent script will be clear. 
+
+### #TODO This is part of the running: you didnt mention why we need to do this
+
+Run `python3 result2pdb.py F A B D` where F is path of `A_clB_ssC.txt`, A is name of the input PDB file, B is the number of crosslinks and D is Chain B name.
+
+#TODO what is the output? 
 
 ## **Runnning IMP:**
 
@@ -71,10 +77,10 @@ sh scripts/imp/analysis/master_script_analysis.sh
  ~/imp-clean/build/setup_environment.sh python scripts/imp/analysis/extract_sampcon.py sampcon_0_extracted.rmf3 model_analysis/A_models_clust1.rmf3 sampcon/cluster.0.sample_A.txt model_analysis/B_models_clust1.rmf3 sampcon/cluster.0.sample_B.txt
 ```
 
-**Note** 
-We used -s -ct commands to cluster the models at a precision worse than the sampling precision.
+3. Subsequently, we used -s -ct commands to cluster the models at a precision worse than the sampling precision.
 Run the following command in the directory containing the `sampcon` results for reclustering models at a worse precision.
 
 ```
 ~/imp-clean/build/setup_environment.sh python  ~/imp-clean/imp/modules/sampcon/pyext/src/exhaust.py -n 1clv_2 -a -m cpu_omp -c 0 -s -ct 12 -cc 4 -pr -d density_A_I.txt -gp -g 2.0  -sa model_analysis/A_models_clust1.txt -sb model_analysis/B_models_clust1.txt  -ra model_analysis/A_models_clust1.rmf3 -rb model_analysis/B_models_clust1.rmf3
 ```
+4. Finally filtering. #TODO
