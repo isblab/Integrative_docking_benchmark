@@ -1,6 +1,7 @@
 ## **Installation of integrative modeling software**
 ### EASAL:
 * Download EASAL from `https://bitbucket.org/geoplexity/easal-dev/branch/shruthi`
+Note: After cloning the shruthi branch, compile the EASAL without GUI.
 
 ### IMP:
 * Compile IMP from source code. See [IMP installation](https://github.com/salilab/imp)
