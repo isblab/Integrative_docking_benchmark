@@ -3,6 +3,16 @@
 * Download EASAL from `https://bitbucket.org/geoplexity/easal-dev/branch/shruthi`
 Note: After cloning the shruthi branch, compile the EASAL without GUI.
 
+Follow these steps for installing on Fedora system:
+1. sudo dnf install boost-devel
+2. sudo dnf groupinstall "Development Tools"
+3. git clone --single-branch --branch shruthi https://bitbucket.org/geoplexity/easal-dev.git
+4. cd easal-dev
+5. mkdir build
+6. cd build
+7. cmake ..
+8. make
+
 ### IMP:
 * Compile IMP from source code. See [IMP installation](https://github.com/salilab/imp)
 
@@ -34,10 +44,11 @@ In `easal-dev` directory, run the following command for each case:
 `'build/easal' `
 
 You can run the following wrapper script to run EASAL for 30 benchmark cases:
- 
+Note: Please make sure the parameters in `settings.ini` correspond to `phes_phet/DSSO/8` case, as mentioned in the wrapper script.
 ```
  scripts/easal/wrapper_easal.sh
 ```
+
 
 The above command for a complex will generate a text file `A_clB_ssC.txt` where A is the name of the input PDB file, B is the number of cross links, and C is the step size, corresponding to what you set in `settings.ini`. This text file contains the translations and rotations on the second protein in the complex. 
 
