@@ -55,7 +55,7 @@ The above command for a complex will generate a text file `A_clB_ssC.txt` where 
 ### Outputs
 To write the EASAL output as PDB files:
 
-Run `python3 easal-dev/scripts/result2pdb.py F A B D` where F is path of `A_clB_ssC.txt`, A is name of the input PDB file, B is the number of crosslinks and D is Chain B name.
+Run `python3 easal-dev/result2pdb.py F A B D` where F is path of `A_clB_ssC.txt`, A is name of the input PDB file, B is the number of crosslinks and D is Chain B name.
 
 This will return in `A_clB` directory containing pdb files based on the translations and rotations in the `A_clB_ssC.txt` file.
 
