@@ -29,10 +29,10 @@ def main():
     xlink_filename = os.path.splitext(os.path.basename(xlink_file))[0]
 
     if flag != 'native':
-        output_file = os.path.join('/home/muskaan/easal/easal_output/crosslink_distances/', f'{xlink_filename}_distances.txt')
-        output_xl_satisfaction = os.path.join('/home/muskaan/easal/easal_output/xl_satisfaction/', f'{xlink_filename}_perc_satisfied.txt')
+        output_file = os.path.join('easal/easal_output/crosslink_distances/', f'{xlink_filename}_distances.txt')
+        output_xl_satisfaction = os.path.join('easal/easal_output/xl_satisfaction/', f'{xlink_filename}_perc_satisfied.txt')
     else:
-        output_file = os.path.join('/home/muskaan/easal/native_pdb_distances/', f'{xlink_filename}_true_structure_distances.txt')
+        output_file = os.path.join('easal/native_pdb_distances/', f'{xlink_filename}_true_structure_distances.txt')
 
     for pdb_file in os.listdir(os.getcwd()):
         if pdb_file.endswith(".pdb"):

@@ -39,8 +39,8 @@ with open(xl_file, "r") as xlf:
 
 
 xlink_filename = os.path.splitext(os.path.basename(xl_file))[0]
-xl_dist = os.path.join('/home/muskaan/easal/imp_output/crosslink_distances/', f'{xlink_filename}_distances.txt')
-percentage_satisfied = os.path.join('/home/muskaan/easal/imp_output/xl_satisfaction/', f'{xlink_filename}_perc_satisfied.txt')
+xl_dist = os.path.join('easal/imp_output/crosslink_distances/', f'{xlink_filename}_distances.txt')
+percentage_satisfied = os.path.join('easal/imp_output/xl_satisfaction/', f'{xlink_filename}_perc_satisfied.txt')
 
 with open(xl_dist, 'w') as output_dist_file, open(percentage_satisfied, 'w') as output_perc_sat_file:
 

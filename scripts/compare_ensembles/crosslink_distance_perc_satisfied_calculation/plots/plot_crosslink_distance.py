@@ -16,8 +16,8 @@ def calc_crosslink_distances(file_path):
 #TODO see comments for the plot_crosslink_perc_satisfied and follow the same
 
 def read_file_and_get_dist(name):
-    file1_path = os.path.join('/home/muskaan/easal/imp_output/crosslink_distances/', name + '_distances.txt')
-    file2_path = os.path.join('/home/muskaan/easal/easal_output/crosslink_distances/', name + '_distances.txt')
+    file1_path = os.path.join('~/easal/imp_output/crosslink_distances/', name + '_distances.txt')
+    file2_path = os.path.join('~/easal/easal_output/crosslink_distances/', name + '_distances.txt')
 
     dist_imp = calc_crosslink_distances(file1_path)
     dist_easal = calc_crosslink_distances(file2_path)
@@ -83,5 +83,5 @@ for idx, case in enumerate(input_cases):
 for i in range(len(input_cases), 9):
     fig.delaxes(axs.flatten()[i])
 
-plt.savefig(f'/home/muskaan/easal/plots/distance_distribution/violin/{outf}.png')
+plt.savefig(f'~/easal/plots/distance_distribution/violin/{outf}.png')
 # plt.show()

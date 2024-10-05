@@ -19,7 +19,7 @@ Follow these steps for installing on Fedora system:
 ## **Runnning EASAL:**
 
 ### Inputs
-1. Store all the input PDB files in `easal-dev/scripts/pdb_files`.
+1. Store all the input PDB files in `easal-dev/files`.
 2. Change the following parameters for each case in `easal-dev/settings.ini`:
 
 [Input]
@@ -44,7 +44,7 @@ In `easal-dev` directory, run the following command for each case:
 `'build/easal' `
 
 You can run the following wrapper script to run EASAL for 30 benchmark cases:
-Note: Please make sure the parameters in `settings.ini` correspond to `phes_phet/DSSO/8` case, as mentioned in the wrapper script.
+Note: Please make sure the parameters in `settings.ini` correspond to `phes_phet/DSSO/8` case, as mentioned in the wrapper script. Also, change the path of `easal-dev` directory accordingly to run the wrapper script.
 ```
  scripts/easal/wrapper_easal.sh
 ```
@@ -55,7 +55,7 @@ The above command for a complex will generate a text file `A_clB_ssC.txt` where 
 ### Outputs
 To write the EASAL output as PDB files:
 
-Run `python3 easal-dev/result2pdb.py F A B D` where F is path of `A_clB_ssC.txt`, A is name of the input PDB file, B is the number of crosslinks and D is Chain B name.
+Run `python3 easal-dev/result2pdb.py F A B D` where F is path of `A_clB_ssC.txt`, A is name of the input PDB file, B is the number of crosslinks and D is Chain ID of the second protein in PDB.
 
 This will return in `A_clB` directory containing pdb files based on the translations and rotations in the `A_clB_ssC.txt` file.
 

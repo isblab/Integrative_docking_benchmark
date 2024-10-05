@@ -104,7 +104,7 @@ for protein in 1clv_2 1clv_6 1dfj_3 1dfj_9 1dfj_12 1kxp_4 1kxp_7 1kxp_11 1r0r_3 
             s/$def_chainB/$chainB/g;
             s/$def_crossLinkCount/$crossLinkCount/g;
             s/$def_crossLinkSatisfyThres/$crossLinkSatisfyThres/g;
-            s/$def_crossLinks/$crossLinks/g" "/home/muskaan/easal-dev/settings.ini"
+            s/$def_crossLinks/$crossLinks/g" "~/easal-dev/settings.ini"
 
     cp -r settings.ini DSSO/$protein
     build/easal >> DSSO/$protein/"$log_file" 2>&1
@@ -159,7 +159,7 @@ for protein in gata_gatc_3 gcvpa_gcvpb_5 phes_phet_8 roca_putc_2 sucd_succ_4; do
             s/$def_chainB/$chainB/g;
             s/$def_crossLinkCount/$crossLinkCount/g;
             s/$def_crossLinkSatisfyThres/$crossLinkSatisfyThres/g;
-            s/$def_crossLinks/$crossLinks/g" "/home/muskaan/easal-dev/settings.ini"
+            s/$def_crossLinks/$crossLinks/g" "~/easal-dev/settings.ini"
 
     cp -r settings.ini DSSO/$protein
     build/easal >> DSSO/$protein/"$log_file" 2>&1
@@ -225,7 +225,7 @@ for protein in 1clv_8 1dfj_4 1kxp_7 1r0r_6 2ayo_5 2b42_10 2hle_9; do
           s/$def_crossLinkCount/$crossLinkCount/g;
           s/$def_crossLinkSatisfyThres/$crossLinkSatisfyThres/g;
           s/$def_activeUpperDelta/20/g;
-          s/$def_crossLinks/$crossLinks/g" "/home/muskaan/easal-dev/settings.ini"
+          s/$def_crossLinks/$crossLinks/g" "~/easal-dev/settings.ini"
 
   cp -r settings.ini DMTMM/$protein
   build/easal >> DMTMM/$protein/"$log_file" 2>&1

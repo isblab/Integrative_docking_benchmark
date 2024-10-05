@@ -5,7 +5,7 @@ from matplotlib.lines import Line2D
 import numpy as np
 
 def read_file_and_get_rmsd(name, flag):
-    mdl = os.path.join('/home/muskaan/easal/plots/structure_related/rmsd/', name + '.txt')
+    mdl = os.path.join('~/easal/plots/structure_related/rmsd/', name + '.txt')
 
      # Initialize variables to store RMSD values
     min_rmsd_imp = None
@@ -81,7 +81,7 @@ for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
     plt.xlim(0, 80)
     plt.ylim(0, 80)
     plt.legend(handles=legend_elements, fontsize=14)
-    plt.savefig('/home/muskaan/easal/plots/structure_related/F5.minimum_rmsd.png',dpi=600)
+    plt.savefig('~/easal/plots/structure_related/F5.minimum_rmsd.png',dpi=600)
     # plt.show()
 
 flag = 'all'
@@ -106,7 +106,7 @@ for idx, cases in enumerate(input_cases):
         axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
     for i in range(len(cases), 9):
         fig.delaxes(axs.flatten()[i])
-    plt.savefig(f'/home/muskaan/easal/plots/structure_related/F5.{idx}.png')
+    plt.savefig(f'~/easal/plots/structure_related/F5.{idx}.png')
     # plt.show()
 
 flag = 'avg'
@@ -130,5 +130,5 @@ plt.xlim(0, 100)
 plt.ylim(0, 100)
 plt.tick_params(axis='both', which='major', labelsize=14)
 plt.legend(handles=legend_elements, fontsize=14)
-plt.savefig('/home/muskaan/easal/plots/structure_related/F5.avg_rmsd.png', dpi=600)
+plt.savefig('~/easal/plots/structure_related/F5.avg_rmsd.png', dpi=600)
 # plt.show()

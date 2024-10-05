@@ -15,8 +15,8 @@ def calc_crosslink_satisfaction(file_path):
     return percentages
 
 def reading_file_and_get_perc(name):
-    file1_path = os.path.join('/home/muskaan/easal/imp_output/xl_satisfaction/', name + '_perc_satisfied.txt')
-    file2_path = os.path.join('/home/muskaan/easal/easal_output/xl_satisfaction/', name + '_perc_satisfied.txt')
+    file1_path = os.path.join('~/easal/imp_output/xl_satisfaction/', name + '_perc_satisfied.txt')
+    file2_path = os.path.join('~/easal/easal_output/xl_satisfaction/', name + '_perc_satisfied.txt')
 
     perc_imp = calc_crosslink_satisfaction(file1_path)
     perc_easal = calc_crosslink_satisfaction(file2_path)
@@ -79,5 +79,5 @@ for idx, case in enumerate(input_cases):
 for i in range(len(input_cases), 9):
     fig.delaxes(axs.flatten()[i])
 
-plt.savefig(f'/home/muskaan/easal/plots/percentage_satisfied/{outf}.png')
+plt.savefig(f'~/easal/plots/percentage_satisfied/{outf}.png')
 # plt.show()

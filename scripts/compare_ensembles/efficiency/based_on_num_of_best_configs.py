@@ -15,11 +15,11 @@ input_cases = [ "1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ay
 imp_ratio, easal_ratio = [],[]
 for case in input_cases:
     if 'DSSO' in case:
-        base_path = '/home/muskaan/easal/imp_output/DSSO_analysis/' + case.split('DSSO')[0] + case.split('_')[-1] + '/model_analysis/'
+        base_path = '~/easal/imp_output/DSSO_analysis/' + case.split('DSSO')[0] + case.split('_')[-1] + '/model_analysis/'
         sample_A_file = base_path + 'A_models*.txt'
         sample_B_file = base_path + 'B_models*.txt'
     else:
-        base_path = '/home/muskaan/easal/imp_output/DMTMM_analysis/' + case.split('DMTMM')[0] + case.split('_')[-1] + '/model_analysis/'
+        base_path = '~/easal/imp_output/DMTMM_analysis/' + case.split('DMTMM')[0] + case.split('_')[-1] + '/model_analysis/'
         sample_A_file = base_path + 'A_models*.txt'
         sample_B_file = base_path + 'B_models*.txt'
 
@@ -31,7 +31,7 @@ for case in input_cases:
 
     # print(num_rows_A + num_rows_B)
 
-    xl_sat_file = '/home/muskaan/easal/imp_output/xl_satisfaction/' + f'{case}_perc_satisfied.txt'
+    xl_sat_file = '~/easal/imp_output/xl_satisfaction/' + f'{case}_perc_satisfied.txt'
 
     total_perc = []
     with open(xl_sat_file, 'r') as xl_sat_file:
@@ -50,15 +50,15 @@ for case in input_cases:
 ## EASAL
 for case in input_cases:
     if 'DSSO' in case and len(case) <15:
-        file = '/home/muskaan/easal/time_related/DSSO/simulated/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/logfile.txt'
-        directory_path = '/home/muskaan/easal/easal_output/DSSO/simulated/' + case.split('DSSO')[0] + 'cl' + case.split('_')[-1]
+        file = '~/easal/time_related/DSSO/simulated/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/logfile.txt'
+        directory_path = '~/easal/easal_output/DSSO/simulated/' + case.split('DSSO')[0] + 'cl' + case.split('_')[-1]
 
     elif 'DSSO' in case and len(case) >15:
-        file = '/home/muskaan/easal/time_related/DSSO/experimental/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/logfile.txt'
-        directory_path = '/home/muskaan/easal/easal_output/DSSO/experimental/' + case.split('DSSO')[0] + 'cl' + case.split('_')[-1]
+        file = '~/easal/time_related/DSSO/experimental/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/logfile.txt'
+        directory_path = '~/easal/easal_output/DSSO/experimental/' + case.split('DSSO')[0] + 'cl' + case.split('_')[-1]
     else:
-        file = '/home/muskaan/easal/time_related/DMTMM/'+case.split('DMTMM')[0] + case.split('_')[-1]+ '/logfile.txt'
-        directory_path = '/home/muskaan/easal/easal_output/DMTMM/' + case.split('DMTMM')[0] + 'cl' + case.split('_')[-1]
+        file = '~/easal/time_related/DMTMM/'+case.split('DMTMM')[0] + case.split('_')[-1]+ '/logfile.txt'
+        directory_path = '~/easal/easal_output/DMTMM/' + case.split('DMTMM')[0] + 'cl' + case.split('_')[-1]
 
     with open(file, 'r') as logfile:
         lines = logfile.readlines()
@@ -85,6 +85,6 @@ ax.set_xlabel('Method', fontsize=18)
 ax.set_ylabel('Fraction of best configurations in the sample', fontsize=18)
 ax.set_xticks(x_positions)
 ax.set_xticklabels(methods, fontsize=14)
-plt.savefig('/home/muskaan/easal/plots/time_related/F6.efficiency.png',dpi=600)
-# plt.savefig('/home/muskaan/easal/plots/time_related/F6.efficiency_total.png',dpi=600)
+plt.savefig('~/easal/plots/time_related/F6.efficiency.png',dpi=600)
+# plt.savefig('~/easal/plots/time_related/F6.efficiency_total.png',dpi=600)
 plt.show()

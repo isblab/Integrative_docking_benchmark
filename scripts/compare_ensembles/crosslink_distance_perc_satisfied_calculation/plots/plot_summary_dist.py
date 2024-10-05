@@ -21,8 +21,8 @@ def get_avg_dist(file_path, num):
     return np.mean(avg_distances) #This is avg distance across all models
 
 def read_file_and_get_dist(name):
-    file1_path = os.path.join('/home/muskaan/easal/imp_output/crosslink_distances/', name + '_distances.txt')
-    file2_path = os.path.join('/home/muskaan/easal/easal_output/crosslink_distances/', name + '_distances.txt')
+    file1_path = os.path.join('~/easal/imp_output/crosslink_distances/', name + '_distances.txt')
+    file2_path = os.path.join('~/easal/easal_output/crosslink_distances/', name + '_distances.txt')
 
     try:
         num = int(name.split('_')[2])
@@ -81,5 +81,5 @@ legend_elements = [Line2D([0], [0], marker='o', color='red', label='DSSO', marke
                    Line2D([0], [0], marker='^', color='green', label='DMTMM', markersize=10, linestyle='None')]
 
 plt.legend(handles=legend_elements)
-plt.savefig('/home/muskaan/easal/plots/summary/F3.xlink_dist_summary.png',dpi=600)
+plt.savefig('~/easal/plots/summary/F3.xlink_dist_summary.png',dpi=600)
 plt.show()

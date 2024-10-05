@@ -16,7 +16,7 @@ import glob
 # Check all the path variables before proceeding.
 
 # Define the protein pairs and protein lengths for contact map script.
-imp_path = "/home/muskaan/imp-clean/build/setup_environment.sh"
+imp_path = "~/imp-clean/build/setup_environment.sh"
 pdb_id = sys.argv[1]
 xlinker = sys.argv[2]
 modeling_dir_path = f"../../{xlinker}/{pdb_id}/"
@@ -48,7 +48,7 @@ def return_major_cluster():
 ############# PMI Analysis ##############
 ##-------------------------------------##
 print("\n<-----------PMI Analysis----------->")
-subprocess.call( [f"{imp_path}", "python", "/home/muskaan/EASAL/scripts/imp/analysis/run_analysis_trajectories.py", f"{modeling_dir_path}", f"{xlinker}"] )
+subprocess.call( [f"{imp_path}", "python", "~/EASAL/scripts/imp/analysis/run_analysis_trajectories.py", f"{modeling_dir_path}", f"{xlinker}"] )
 cluster = return_major_cluster()
 
 
@@ -58,17 +58,17 @@ print("\n<-----------Model Extraction----------->")
 if int( cluster[1] ) >= 30000:
 	print(">30000 models....\n using Variable filter \n")
 
-	subprocess.call( ["python", "/home/muskaan/EASAL/scripts/imp/analysis/variable_filter_v1.py", "-c", f"{cluster[0]}", "-g", "model_analysis"] )
-	subprocess.call( [f"{imp_path}", "python", "/home/muskaan/EASAL/scripts/imp/analysis/run_extract_models.py", f"{modeling_dir_path}", f"{cluster[0]}"] )
+	subprocess.call( ["python", "~/EASAL/scripts/imp/analysis/variable_filter_v1.py", "-c", f"{cluster[0]}", "-g", "model_analysis"] )
+	subprocess.call( [f"{imp_path}", "python", "~/EASAL/scripts/imp/analysis/run_extract_models.py", f"{modeling_dir_path}", f"{cluster[0]}"] )
 	
 else:
-	subprocess.call( [f"{imp_path}", "python", "/home/muskaan/EASAL/scripts/imp/analysis/run_extract_models.py", f"{modeling_dir_path}", f"{cluster[0]}"] )
+	subprocess.call( [f"{imp_path}", "python", "~/EASAL/scripts/imp/analysis/run_extract_models.py", f"{modeling_dir_path}", f"{cluster[0]}"] )
 
 
 ########### Sampcon analysis ############
 ##-------------------------------------##
 print("\n<-----------Sampcon----------->")
-sampcon_path = "/home/muskaan/imp-clean/imp/modules/sampcon/pyext/src/exhaust.py"
+sampcon_path = "~/imp-clean/imp/modules/sampcon/pyext/src/exhaust.py"
 subprocess.call([
 	f"{imp_path}",
 	"python",

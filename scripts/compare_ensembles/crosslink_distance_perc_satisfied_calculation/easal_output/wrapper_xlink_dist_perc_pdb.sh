@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# run it in /home/muskaan/easal_output_muskaan/
+# run it in easal_output/
 
 ###DSSO
 #simulated
@@ -38,7 +38,7 @@ for dir in "${directories[@]}"; do
     fi
 
     csv_file="$HOME/Integrative_docking_benchmark/benchmark/simulated/DSSO/$direc2/${filename}_DSSO_${number}.csv"
-    python /home/muskaan/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_perc_pdb.py "$chainA" "$chainB" "$csv_file"
+    python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_perc_pdb.py "$chainA" "$chainB" "$csv_file"
 
     cd ../../..
 done
@@ -55,7 +55,7 @@ for dir in "${directories[@]}"; do
     number=$(echo "$dir" | sed 's/.*_cl\([0-9]*\)/\1/')
 
     csv_file="$HOME/Integrative_docking_benchmark/benchmark/experimental/crosslinks/${filename}_DSSO_${number}.csv"
-    python /home/muskaan/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_perc_pdb.py "A" "B" "$csv_file"
+    python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_perc_pdb.py "A" "B" "$csv_file"
 
     cd ../../..
 done
@@ -85,7 +85,7 @@ for dir in "${directories[@]}"; do
     fi
 
     csv_file="$HOME/Integrative_docking_benchmark/benchmark/simulated/DMTMM/${filename}_DMTMM_${number}.csv"
-    python /home/muskaan/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_pdb.py "$chainA" "$chainB" "$csv_file"
+    python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_pdb.py "$chainA" "$chainB" "$csv_file"
 
     cd ../../
 done

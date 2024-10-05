@@ -27,8 +27,8 @@ def get_perc_across_models(file_path, flag):
         return avg_perc
 
 def get_xlinks_satisfied_and_corres_mdls(name, flag):
-    file1_path = os.path.join('/home/muskaan/easal/imp_output/xl_satisfaction/', name + '_perc_satisfied.txt')
-    file2_path = os.path.join('/home/muskaan/easal/easal_output/xl_satisfaction/', name + '_perc_satisfied.txt')
+    file1_path = os.path.join('~/easal/imp_output/xl_satisfaction/', name + '_perc_satisfied.txt')
+    file2_path = os.path.join('~/easal/easal_output/xl_satisfaction/', name + '_perc_satisfied.txt')
     try:
         num = int(name.split('_')[2])
     except:
@@ -80,7 +80,7 @@ plt.tick_params(axis='both', which='major', labelsize=14)
 plt.xlim(40, 105)
 plt.ylim(40, 105)
 plt.legend(handles=legend_elements, fontsize=14)
-plt.savefig('/home/muskaan/easal/plots/summary/F2.xlink_per_sat_max.png', dpi=600)
+plt.savefig('~/easal/plots/summary/F2.xlink_per_sat_max.png', dpi=600)
 # plt.show()
 
 # flag = 'avg'
@@ -106,5 +106,5 @@ plt.savefig('/home/muskaan/easal/plots/summary/F2.xlink_per_sat_max.png', dpi=60
 # plt.xlim(0, 105)
 # plt.ylim(0, 105)
 # plt.legend(handles=legend_elements, fontsize=14)
-# plt.savefig('/home/muskaan/Dropbox/F2.xlink_per_sat_avg.png', dpi=600)
+# plt.savefig('~/Dropbox/F2.xlink_per_sat_avg.png', dpi=600)
 # # plt.show()

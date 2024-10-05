@@ -17,12 +17,12 @@ time_points_easal, time_per_run, time_points_imp = [],[],[]
 
 for case in input_cases:
     if 'DSSO' in case and len(case) <15:
-        file = '/home/muskaan/easal/time_related/DSSO/simulated/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/logfile.txt'
+        file = '~/easal/time_related/DSSO/simulated/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/logfile.txt'
 
     elif 'DSSO' in case and len(case) >15:
-        file = '/home/muskaan/easal/time_related/DSSO/experimental/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/logfile.txt'
+        file = '~/easal/time_related/DSSO/experimental/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/logfile.txt'
     else:
-        file = '/home/muskaan/easal/time_related/DMTMM/'+case.split('DMTMM')[0] + case.split('_')[-1]+ '/logfile.txt'
+        file = '~/easal/time_related/DMTMM/'+case.split('DMTMM')[0] + case.split('_')[-1]+ '/logfile.txt'
 
     with open(file, 'r') as logfile:
         for line in logfile.readlines():
@@ -36,16 +36,16 @@ for case in input_cases:
 # imp
 for case in input_cases:
     if 'DSSO' in case and len(case) <15:
-        file1 = '/home/muskaan/easal/imp_output/DSSO/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/run_1/stat_replica.0.out'
-        file2 = '/home/muskaan/easal/imp_output/DSSO/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/run_1/initial.0.rmf3'
+        file1 = '~/easal/imp_output/DSSO/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/run_1/stat_replica.0.out'
+        file2 = '~/easal/imp_output/DSSO/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/run_1/initial.0.rmf3'
 
     elif 'DSSO' in case and len(case) >15:
-        file1 = '/home/muskaan/easal/imp_output/DSSO/'+case.split('_DSSO')[0] + '/run_1/stat_replica.0.out'
-        file2 = '/home/muskaan/easal/imp_output/DSSO/'+case.split('_DSSO')[0] + '/run_1/initial.0.rmf3'
+        file1 = '~/easal/imp_output/DSSO/'+case.split('_DSSO')[0] + '/run_1/stat_replica.0.out'
+        file2 = '~/easal/imp_output/DSSO/'+case.split('_DSSO')[0] + '/run_1/initial.0.rmf3'
 
     elif 'DMTMM' in case:
-        file1 = '/home/muskaan/easal/imp_output/DMTMM/'+case.split('DMTMM')[0] + case.split('_')[-1]+ '/run_1/stat_replica.0.out'
-        file2 = '/home/muskaan/easal/imp_output/DMTMM/'+case.split('DMTMM')[0] + case.split('_')[-1]+ '/run_1/initial.0.rmf3'
+        file1 = '~/easal/imp_output/DMTMM/'+case.split('DMTMM')[0] + case.split('_')[-1]+ '/run_1/stat_replica.0.out'
+        file2 = '~/easal/imp_output/DMTMM/'+case.split('DMTMM')[0] + case.split('_')[-1]+ '/run_1/initial.0.rmf3'
 
     time = os.path.getmtime(file1) - os.path.getmtime(file2)
     time_total = (time/60) * 20 * 4 #In minutes; per run for 4 replica and 20 runs, multiply by 20 *4
@@ -66,7 +66,7 @@ ax.set_xlabel('Method', fontsize=18)
 ax.set_ylabel('Total runtime (CPU hours)', fontsize=18)
 ax.set_xticks(x_positions)
 ax.set_xticklabels(methods, fontsize=14)
-plt.savefig('/home/muskaan/easal/plots/time_related/F6.runtime.png',dpi=600)
+plt.savefig('~/easal/plots/time_related/F6.runtime.png',dpi=600)
 plt.show()
 
 fig, ax = plt.subplots(figsize=(10, 8))
@@ -76,5 +76,5 @@ ax.set_xlabel('Method', fontsize=18)
 plt.ylabel('Sampling time (minutes per run)', fontsize=18)
 ax.set_xticks(x_positions)
 ax.set_xticklabels(methods, fontsize=14)
-plt.savefig('/home/muskaan/easal/plots/time_related/F6.runtime_per_run.png',dpi=600)
+plt.savefig('~/easal/plots/time_related/F6.runtime_per_run.png',dpi=600)
 plt.show()

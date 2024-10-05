@@ -30,9 +30,9 @@ def get_xlink_dist_diff(mdl, native, num, flag):
         return np.mean(diff_dist)
 
 def read_file_and_get_dist(name, flag):
-    imp_mdl = os.path.join('/home/muskaan/easal/imp_output/crosslink_distances/', name + '_distances.txt')
-    easal_mdl = os.path.join('/home/muskaan/easal/easal_output/crosslink_distances/', name + '_distances.txt')
-    native = os.path.join('/home/muskaan/easal/native_pdb_distances/', name + '_true_structure_distances.txt')
+    imp_mdl = os.path.join('~/easal/imp_output/crosslink_distances/', name + '_distances.txt')
+    easal_mdl = os.path.join('~/easal/easal_output/crosslink_distances/', name + '_distances.txt')
+    native = os.path.join('~/easal/native_pdb_distances/', name + '_true_structure_distances.txt')
 
     try:
         num = int(name.split('_')[2]) # Number of crosslinks
@@ -81,7 +81,7 @@ if flag == 'summary':
     plt.xlim(0, 50)
     plt.ylim(0, 50)
     plt.legend(handles=legend_elements, fontsize = 14)
-    plt.savefig('/home/muskaan/easal/plots/summary/F4.xlink_dist_to_native_summary.png',dpi=600)
+    plt.savefig('~/easal/plots/summary/F4.xlink_dist_to_native_summary.png',dpi=600)
     # plt.show()
 
 elif flag == 'complexwise':
@@ -105,4 +105,4 @@ elif flag == 'complexwise':
             axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
         for i in range(len(cases), 9):
             fig.delaxes(axs.flatten()[i])
-        plt.savefig(f'/home/muskaan/easal/plots/compare_xlink_dist_native/S3.xlink_dist_to_native_{idx}.png')
+        plt.savefig(f'~/easal/plots/compare_xlink_dist_native/S3.xlink_dist_to_native_{idx}.png')
