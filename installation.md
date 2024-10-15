@@ -44,7 +44,7 @@ In `easal-dev` directory, run the following command for each case:
 `'build/easal' `
 
 You can run the following wrapper script to run EASAL for 30 benchmark cases:
-Note: Please make sure the parameters in `settings.ini` correspond to `phes_phet/DSSO/8` case, as mentioned in the wrapper script. Also, change the path of `easal-dev` directory accordingly to run the wrapper script.
+Note: Please make sure the parameters in `settings.ini` correspond to `phes_phet/DSSO/8` case, as mentioned in the wrapper script. Also, change the path of `easal-dev` directory accordingly to run the wrapper script. Please run the following command in `easal-dev/` directory.
 ```
  scripts/easal/wrapper_easal.sh
 ```
