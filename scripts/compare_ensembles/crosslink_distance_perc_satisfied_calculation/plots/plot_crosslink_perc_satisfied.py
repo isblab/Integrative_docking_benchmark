@@ -51,7 +51,7 @@ elif args.dmtmm:
     outf = 'S1.DMTMM'
 elif args.sel:
     input_cases = ["2b42_DSSO_5", "roca_putc_DSSO_2", "2hle_DMTMM_9", "2b42_DMTMM_10"]
-    outf = 'F2.xlink_per_sat_complexwise'
+    outf = 'F5.xlink_per_sat_complexwise'
 
 #Plotting
 
@@ -73,7 +73,7 @@ for idx, case in enumerate(input_cases):
     axs[row, col].set_xlabel('Density', fontsize=18)
     axs[row, col].set_ylim(0, 110)
     axs[row, col].tick_params(axis='both', which='major', labelsize=14)
-    axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
+    axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'Wall-EASAL'])
 
 # Remove empty subplots
 for i in range(len(input_cases), 9):

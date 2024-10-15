@@ -76,12 +76,16 @@ if flag == 'summary':
             print(case, dist_imp, dist_easal)
     plt.plot([0, 50], [0, 50], '--', color='gray')
     plt.xlabel('Average crosslink distance difference, IMP vs native (Å)',fontsize=16)
-    plt.ylabel('Average crosslink distance difference, EASAL vs native (Å)',fontsize=16)
+    plt.ylabel('Average crosslink distance difference, wall-EASAL vs native (Å)',fontsize=16)
     plt.tick_params(axis='both', which='major', labelsize=14)
     plt.xlim(0, 50)
     plt.ylim(0, 50)
     plt.legend(handles=legend_elements, fontsize = 14)
+<<<<<<< HEAD
+    plt.savefig('/home/muskaan/easal/plots/summary/F7.xlink_dist_to_native_summary.png',dpi=600)
+=======
     plt.savefig('~/easal/plots/summary/F4.xlink_dist_to_native_summary.png',dpi=600)
+>>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
     # plt.show()
 
 elif flag == 'complexwise':
@@ -102,7 +106,7 @@ elif flag == 'complexwise':
             axs[row, col].set_ylim(0, 105)
             axs[row,col].set_ylabel('Crosslink distance difference (Å)',fontsize=18)
             axs[row,col].tick_params(axis='both', which='major', labelsize=16)
-            axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
+            axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'Wall-EASAL'])
         for i in range(len(cases), 9):
             fig.delaxes(axs.flatten()[i])
         plt.savefig(f'~/easal/plots/compare_xlink_dist_native/S3.xlink_dist_to_native_{idx}.png')

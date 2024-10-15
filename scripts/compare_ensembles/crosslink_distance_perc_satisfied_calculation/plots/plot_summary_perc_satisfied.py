@@ -74,13 +74,17 @@ for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
         # plt.scatter(max_xlink_perc_easal, color = 'orange')
         print(max_xlink_perc_imp, max_xlink_perc_easal, case)
 plt.plot([40, 105], [40, 105], '--', color='gray')
-plt.xlabel('Highest percentage of crosslinks\n satisfied by an IMP model (%)', fontsize=16)
-plt.ylabel('Highest percentage of crosslinks\n satisfied by an EASAL model (%)',fontsize=16)
+plt.xlabel('Highest percentage of crosslinks\n satisfied by an IMP structure (%)', fontsize=16)
+plt.ylabel('Highest percentage of crosslinks\n satisfied by an wall-EASAL structure (%)',fontsize=16)
 plt.tick_params(axis='both', which='major', labelsize=14)
 plt.xlim(40, 105)
 plt.ylim(40, 105)
 plt.legend(handles=legend_elements, fontsize=14)
+<<<<<<< HEAD
+plt.savefig('/home/muskaan/easal/plots/summary/F5.xlink_per_sat_max.png', dpi=600)
+=======
 plt.savefig('~/easal/plots/summary/F2.xlink_per_sat_max.png', dpi=600)
+>>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
 # plt.show()
 
 # flag = 'avg'
@@ -106,5 +110,9 @@ plt.savefig('~/easal/plots/summary/F2.xlink_per_sat_max.png', dpi=600)
 # plt.xlim(0, 105)
 # plt.ylim(0, 105)
 # plt.legend(handles=legend_elements, fontsize=14)
+<<<<<<< HEAD
+# plt.savefig('/home/muskaan/Dropbox/F5.xlink_per_sat_avg.png', dpi=600)
+=======
 # plt.savefig('~/Dropbox/F2.xlink_per_sat_avg.png', dpi=600)
+>>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
 # # plt.show()

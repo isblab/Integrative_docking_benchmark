@@ -56,25 +56,33 @@ for case in input_cases:
 # print(np.mean(time_points_easal))
 # print(np.mean(time_per_run))
 
-methods = ['IMP', 'EASAL']
+methods = ['IMP', 'Wall-EASAL']
 x_positions = np.arange(len(methods))+1
 
 fig, ax = plt.subplots(figsize=(10, 8))
 ax.bar(1, np.mean(time_points_imp), yerr=[[0], [np.std(time_points_imp)]], label = 'IMP', color ='#1f77b4', capsize=5)
-ax.bar(2, np.mean(time_points_easal), yerr=[[0],[np.std(time_points_easal)]], label = 'EASAL', color ='#ff7f0e',capsize=5)
+ax.bar(2, np.mean(time_points_easal), yerr=[[0],[np.std(time_points_easal)]], label = 'Wall-EASAL', color ='#ff7f0e',capsize=5)
 ax.set_xlabel('Method', fontsize=18)
 ax.set_ylabel('Total runtime (CPU hours)', fontsize=18)
 ax.set_xticks(x_positions)
 ax.set_xticklabels(methods, fontsize=14)
+<<<<<<< HEAD
+plt.savefig('/home/muskaan/easal/plots/time_related/F9.runtime.png',dpi=600)
+=======
 plt.savefig('~/easal/plots/time_related/F6.runtime.png',dpi=600)
+>>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
 plt.show()
 
 fig, ax = plt.subplots(figsize=(10, 8))
 ax.bar(1, np.mean(time_per_run), yerr=[[0],[np.std(time_per_run)]], label = 'IMP', color ='#1f77b4',capsize=5)
-ax.bar(2, np.mean(time_points_easal), yerr=[[0],[np.std(time_points_easal)]], label = 'EASAL', color ='#ff7f0e',capsize=5)
+ax.bar(2, np.mean(time_points_easal), yerr=[[0],[np.std(time_points_easal)]], label = 'Wall-EASAL', color ='#ff7f0e',capsize=5)
 ax.set_xlabel('Method', fontsize=18)
 plt.ylabel('Sampling time (minutes per run)', fontsize=18)
 ax.set_xticks(x_positions)
 ax.set_xticklabels(methods, fontsize=14)
+<<<<<<< HEAD
+plt.savefig('/home/muskaan/easal/plots/time_related/F9.runtime_per_run.png',dpi=600)
+=======
 plt.savefig('~/easal/plots/time_related/F6.runtime_per_run.png',dpi=600)
+>>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
 plt.show()

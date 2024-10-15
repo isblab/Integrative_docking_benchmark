@@ -71,7 +71,7 @@ plt.axhline(y=32, color='red', linestyle='--')
 plt.axvline(x=20, color='green', linestyle='--')
 plt.axhline(y=20, color='green', linestyle='--')
 plt.xlabel('Average Crosslink Distance in IMP Ensemble (Å)', fontsize=16)
-plt.ylabel('Average Crosslink Distance in EASAL Ensemble (Å)', fontsize=16)
+plt.ylabel('Average Crosslink Distance in wall-EASAL Ensemble (Å)', fontsize=16)
 plt.tick_params(axis='both', which='major', labelsize=14)
 plt.xlim(10, 60)
 plt.ylim(10, 60)
@@ -81,5 +81,9 @@ legend_elements = [Line2D([0], [0], marker='o', color='red', label='DSSO', marke
                    Line2D([0], [0], marker='^', color='green', label='DMTMM', markersize=10, linestyle='None')]
 
 plt.legend(handles=legend_elements)
+<<<<<<< HEAD
+plt.savefig('/home/muskaan/easal/plots/summary/F6.xlink_dist_summary.png',dpi=600)
+=======
 plt.savefig('~/easal/plots/summary/F3.xlink_dist_summary.png',dpi=600)
+>>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
 plt.show()

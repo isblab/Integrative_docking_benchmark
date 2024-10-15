@@ -6,7 +6,7 @@ Note: After cloning the shruthi branch, compile the EASAL without GUI.
 Follow these steps for installing on Fedora system:
 1. sudo dnf install boost-devel
 2. sudo dnf groupinstall "Development Tools"
-3. git clone --single-branch --branch shruthi https://bitbucket.org/geoplexity/easal-dev.git
+3. git clone --single-branch --branch Crosslink https://bitbucket.org/geoplexity/easal-dev.git
 4. cd easal-dev
 5. mkdir build
 6. cd build

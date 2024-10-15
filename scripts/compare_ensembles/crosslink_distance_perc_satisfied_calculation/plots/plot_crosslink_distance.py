@@ -52,7 +52,7 @@ elif args.dmtmm:
     outf = 'S2.DMTMM'
 elif args.sel:
     input_cases = ["gcvpa_gcvpb_DSSO_5","1clv_DSSO_2","1dfj_DMTMM_4", "1dfj_DSSO_9"]
-    outf = 'F3.xlink_dist_complexwise'
+    outf = 'F6.xlink_dist_complexwise'
 
 #Plotting
 
@@ -74,7 +74,7 @@ for idx, case in enumerate(input_cases):
     axs[row, col].set_ylabel('Crosslink\n distances(Å)', fontsize=20)
     axs[row, col].set_ylim(0, 120)
     axs[row, col].tick_params(axis='both', which='major', labelsize=16)
-    axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'EASAL'])
+    axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'Wall-EASAL'])
     if "DSSO" in case:
         axs[row, col].axhline(y=32, color='r', linestyle='--', linewidth=3)
     elif "DMTMM" in case:
