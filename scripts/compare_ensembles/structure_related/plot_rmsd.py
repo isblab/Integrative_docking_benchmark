@@ -81,11 +81,7 @@ for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
     plt.xlim(0, 80)
     plt.ylim(0, 80)
     plt.legend(handles=legend_elements, fontsize=14)
-<<<<<<< HEAD
     plt.savefig('/home/muskaan/easal/plots/structure_related/F8.minimum_rmsd.png',dpi=600)
-=======
-    plt.savefig('~/easal/plots/structure_related/F5.minimum_rmsd.png',dpi=600)
->>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
     # plt.show()
 
 flag = 'all'
@@ -110,11 +106,7 @@ for idx, cases in enumerate(input_cases):
         axs[row, col].legend(handles=[mpatches.Patch(color='#1f77b4'), mpatches.Patch(color='#ff7f0e')], labels=['IMP', 'Wall-EASAL'])
     for i in range(len(cases), 9):
         fig.delaxes(axs.flatten()[i])
-<<<<<<< HEAD
     plt.savefig(f'/home/muskaan/easal/plots/structure_related/F8.{idx}.png')
-=======
-    plt.savefig(f'~/easal/plots/structure_related/F5.{idx}.png')
->>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
     # plt.show()
 
 flag = 'avg'
@@ -138,9 +130,5 @@ plt.xlim(0, 100)
 plt.ylim(0, 100)
 plt.tick_params(axis='both', which='major', labelsize=14)
 plt.legend(handles=legend_elements, fontsize=14)
-<<<<<<< HEAD
 plt.savefig('/home/muskaan/easal/plots/structure_related/F8.avg_rmsd.png', dpi=600)
-=======
-plt.savefig('~/easal/plots/structure_related/F5.avg_rmsd.png', dpi=600)
->>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
 # plt.show()

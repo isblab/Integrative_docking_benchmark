@@ -86,11 +86,6 @@ ax.set_xlabel('Method', fontsize=18)
 ax.set_ylabel('Fraction of best configurations in the sample', fontsize=18)
 ax.set_xticks(x_positions)
 ax.set_xticklabels(methods, fontsize=14)
-<<<<<<< HEAD
 plt.savefig('/home/muskaan/easal/plots/time_related/F10.sampling_efficiency.png',dpi=600)
 # plt.savefig('/home/muskaan/easal/plots/time_related/F10.efficiency_total.png',dpi=600)
-=======
-plt.savefig('~/easal/plots/time_related/F6.efficiency.png',dpi=600)
-# plt.savefig('~/easal/plots/time_related/F6.efficiency_total.png',dpi=600)
->>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
 plt.show()

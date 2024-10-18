@@ -66,11 +66,7 @@ ax.set_xlabel('Method', fontsize=18)
 ax.set_ylabel('Total runtime (CPU hours)', fontsize=18)
 ax.set_xticks(x_positions)
 ax.set_xticklabels(methods, fontsize=14)
-<<<<<<< HEAD
 plt.savefig('/home/muskaan/easal/plots/time_related/F9.runtime.png',dpi=600)
-=======
-plt.savefig('~/easal/plots/time_related/F6.runtime.png',dpi=600)
->>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
 plt.show()
 
 fig, ax = plt.subplots(figsize=(10, 8))
@@ -80,9 +76,5 @@ ax.set_xlabel('Method', fontsize=18)
 plt.ylabel('Sampling time (minutes per run)', fontsize=18)
 ax.set_xticks(x_positions)
 ax.set_xticklabels(methods, fontsize=14)
-<<<<<<< HEAD
 plt.savefig('/home/muskaan/easal/plots/time_related/F9.runtime_per_run.png',dpi=600)
-=======
-plt.savefig('~/easal/plots/time_related/F6.runtime_per_run.png',dpi=600)
->>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
 plt.show()

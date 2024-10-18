@@ -13,8 +13,6 @@ def calc_crosslink_distances(file_path):
 
     return distances
 
-#TODO see comments for the plot_crosslink_perc_satisfied and follow the same
-
 def read_file_and_get_dist(name):
     file1_path = os.path.join('~/easal/imp_output/crosslink_distances/', name + '_distances.txt')
     file2_path = os.path.join('~/easal/easal_output/crosslink_distances/', name + '_distances.txt')

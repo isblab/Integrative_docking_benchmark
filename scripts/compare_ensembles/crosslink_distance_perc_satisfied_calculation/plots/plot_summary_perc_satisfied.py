@@ -80,11 +80,7 @@ plt.tick_params(axis='both', which='major', labelsize=14)
 plt.xlim(40, 105)
 plt.ylim(40, 105)
 plt.legend(handles=legend_elements, fontsize=14)
-<<<<<<< HEAD
 plt.savefig('/home/muskaan/easal/plots/summary/F5.xlink_per_sat_max.png', dpi=600)
-=======
-plt.savefig('~/easal/plots/summary/F2.xlink_per_sat_max.png', dpi=600)
->>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
 # plt.show()
 
 # flag = 'avg'
@@ -110,9 +106,5 @@ plt.savefig('~/easal/plots/summary/F2.xlink_per_sat_max.png', dpi=600)
 # plt.xlim(0, 105)
 # plt.ylim(0, 105)
 # plt.legend(handles=legend_elements, fontsize=14)
-<<<<<<< HEAD
 # plt.savefig('/home/muskaan/Dropbox/F5.xlink_per_sat_avg.png', dpi=600)
-=======
-# plt.savefig('~/Dropbox/F2.xlink_per_sat_avg.png', dpi=600)
->>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
 # # plt.show()

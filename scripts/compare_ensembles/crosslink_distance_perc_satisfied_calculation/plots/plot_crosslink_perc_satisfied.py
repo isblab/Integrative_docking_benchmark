@@ -22,7 +22,7 @@ def reading_file_and_get_perc(name):
     perc_easal = calc_crosslink_satisfaction(file2_path)
 
     return perc_imp, perc_easal
-#TODO instead of commenting out, use sys.argv to choose what to plot each time. Reduces human errors.
+
 #Input cases
 parser = argparse.ArgumentParser(description='Input cases.')
 

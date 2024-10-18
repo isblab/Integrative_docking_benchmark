@@ -81,11 +81,7 @@ if flag == 'summary':
     plt.xlim(0, 50)
     plt.ylim(0, 50)
     plt.legend(handles=legend_elements, fontsize = 14)
-<<<<<<< HEAD
     plt.savefig('/home/muskaan/easal/plots/summary/F7.xlink_dist_to_native_summary.png',dpi=600)
-=======
-    plt.savefig('~/easal/plots/summary/F4.xlink_dist_to_native_summary.png',dpi=600)
->>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
     # plt.show()
 
 elif flag == 'complexwise':

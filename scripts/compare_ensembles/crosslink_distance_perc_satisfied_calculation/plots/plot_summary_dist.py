@@ -81,9 +81,5 @@ legend_elements = [Line2D([0], [0], marker='o', color='red', label='DSSO', marke
                    Line2D([0], [0], marker='^', color='green', label='DMTMM', markersize=10, linestyle='None')]
 
 plt.legend(handles=legend_elements)
-<<<<<<< HEAD
 plt.savefig('/home/muskaan/easal/plots/summary/F6.xlink_dist_summary.png',dpi=600)
-=======
-plt.savefig('~/easal/plots/summary/F3.xlink_dist_summary.png',dpi=600)
->>>>>>> 14ef746d127796c41a1e377857343bc9fbf011df
 plt.show()
