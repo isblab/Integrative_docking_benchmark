@@ -46,7 +46,7 @@ for case in input_cases:
     # print(models_with_max_xlink_sat/(num_rows_A + num_rows_B), case)
     # imp_ratio.append(models_with_max_xlink_sat/(num_rows_A + num_rows_B))
     imp_ratio.append(models_with_max_xlink_sat/8000000)
-    print(models_with_max_xlink_sat, imp_ratio, case)
+    # print(models_with_max_xlink_sat, imp_ratio, case)
 
 ## EASAL
 for case in input_cases:
@@ -74,18 +74,18 @@ for case in input_cases:
     # print(file_count/total_sample_count, case)
     easal_ratio.append(file_count/total_sample_count)
 
+easal_ratio = [ratio * 100 for ratio in easal_ratio]
+imp_ratio = [ratio * 100 for ratio in imp_ratio]
 
+plt.figure(figsize=(12, 6))
+plt.scatter(input_cases, easal_ratio, color='#ff7f0e', label='Wall-EASAL', alpha=0.7)
+plt.scatter(input_cases, imp_ratio, color='#1f77b4', label='IMP', alpha=0.7)
 
-methods = ['IMP', 'Wall-EASAL']
-x_positions = np.arange(len(methods))+1
-
-fig, ax = plt.subplots(figsize=(10, 8))
-ax.bar(1, np.mean(imp_ratio), yerr=[[0], [np.std(imp_ratio)]], label = 'IMP', color ='#1f77b4', capsize=5)
-ax.bar(2, np.mean(easal_ratio), yerr=[[0],[np.std(easal_ratio)]], label = 'Wall-EASAL', color ='#ff7f0e',capsize=5)
-ax.set_xlabel('Method', fontsize=18)
-ax.set_ylabel('Fraction of best configurations in the sample', fontsize=18)
-ax.set_xticks(x_positions)
-ax.set_xticklabels(methods, fontsize=14)
-plt.savefig('/home/muskaan/easal/plots/time_related/F10.sampling_efficiency.png',dpi=600)
-# plt.savefig('/home/muskaan/easal/plots/time_related/F10.efficiency_total.png',dpi=600)
+plt.xlabel('Input Cases',  fontsize=14)
+plt.ylabel('Fraction of best configurations in the sample',  fontsize=14)
+plt.xticks(rotation=45, ha='right')
+plt.legend()
+plt.text(0.01, 1.05, r'$x10^{-4}$', transform=plt.gca().transAxes, fontsize=12, verticalalignment='top')
+plt.tight_layout()
+plt.savefig('~/easal/plots/time_related/F10.sampling_efficiency.png',dpi=600)
 plt.show()

@@ -6,7 +6,6 @@ from datetime import datetime
 
 
 # easal
-
 input_cases = [ "1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5", "2hle_DSSO_5",
     "1dfj_DMTMM_4", "1clv_DMTMM_8", "1kxp_DMTMM_7", "1r0r_DMTMM_6", "2ayo_DMTMM_5", "2b42_DMTMM_10", "2hle_DMTMM_9",
     "1dfj_DSSO_9", "1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "2b42_DSSO_10", "2hle_DSSO_10",
@@ -52,29 +51,29 @@ for case in input_cases:
     time_per_run.append(time/60)
     time_points_imp.append(time_total)
 
-# print(np.mean(time_points_imp))
-# print(np.mean(time_points_easal))
-# print(np.mean(time_per_run))
 
-methods = ['IMP', 'Wall-EASAL']
-x_positions = np.arange(len(methods))+1
+# Create a scatter plot
+plt.figure(figsize=(12, 6))
+plt.scatter(input_cases, time_points_easal, color='#ff7f0e', label='Wall-EASAL', alpha=0.7)
+plt.scatter(input_cases, time_points_imp, color='#1f77b4', label='IMP', alpha=0.7)
 
-fig, ax = plt.subplots(figsize=(10, 8))
-ax.bar(1, np.mean(time_points_imp), yerr=[[0], [np.std(time_points_imp)]], label = 'IMP', color ='#1f77b4', capsize=5)
-ax.bar(2, np.mean(time_points_easal), yerr=[[0],[np.std(time_points_easal)]], label = 'Wall-EASAL', color ='#ff7f0e',capsize=5)
-ax.set_xlabel('Method', fontsize=18)
-ax.set_ylabel('Total runtime (CPU hours)', fontsize=18)
-ax.set_xticks(x_positions)
-ax.set_xticklabels(methods, fontsize=14)
-plt.savefig('/home/muskaan/easal/plots/time_related/F9.runtime.png',dpi=600)
-plt.show()
+plt.xlabel('Input Cases',  fontsize=16)
+plt.ylabel('Total runtime (CPU hours)',  fontsize=16)
+plt.xticks(rotation=45, ha='right')
+plt.legend()
+plt.tight_layout()
+# plt.show()
+plt.savefig('~/easal/plots/time_related/F9.runtime.png',dpi=600)
 
-fig, ax = plt.subplots(figsize=(10, 8))
-ax.bar(1, np.mean(time_per_run), yerr=[[0],[np.std(time_per_run)]], label = 'IMP', color ='#1f77b4',capsize=5)
-ax.bar(2, np.mean(time_points_easal), yerr=[[0],[np.std(time_points_easal)]], label = 'Wall-EASAL', color ='#ff7f0e',capsize=5)
-ax.set_xlabel('Method', fontsize=18)
-plt.ylabel('Sampling time (minutes per run)', fontsize=18)
-ax.set_xticks(x_positions)
-ax.set_xticklabels(methods, fontsize=14)
-plt.savefig('/home/muskaan/easal/plots/time_related/F9.runtime_per_run.png',dpi=600)
-plt.show()
+
+plt.figure(figsize=(12, 6))
+plt.scatter(input_cases, time_points_easal, color='#ff7f0e', label='Wall-EASAL', alpha=0.7)
+plt.scatter(input_cases, time_per_run, color='#1f77b4', label='IMP', alpha=0.7)
+
+plt.xlabel('Input Cases' , fontsize=16)
+plt.ylabel('Sampling time (minutes per run)',  fontsize=16)
+plt.xticks(rotation=45, ha='right')
+plt.legend()
+plt.tight_layout()
+# plt.show()
+plt.savefig('~/easal/plots/time_related/F9.runtime_per_run.png',dpi=600)
