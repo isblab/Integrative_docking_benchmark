@@ -8,7 +8,7 @@ input_folder = sys.argv[1]
 for file in glob.glob(os.path.join(input_folder, '*.txt')):
     try:
         df = pd.read_csv(file, delim_whitespace=True, skiprows=1, header=None)
-        df.columns = ["Index", "Model", "Atom1", "Atom2", "SASD"]
+        df.columns = ["Index", "Model", "Atom1", "Atom2", "SASD", "Euclidean Distance"]
 
         filtered_df = df[df["Atom1"].str.split('-').str[2] != df["Atom2"].str.split('-').str[2]]
         df2 = pd.concat([
