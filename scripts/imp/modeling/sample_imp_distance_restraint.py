@@ -141,18 +141,16 @@ evr.set_weight(0.5)
 evr.add_to_model()
 output_objects.append(evr)
 
-# Crosslink restraint
-# Not using the proxl database loader for now
-kw = IMP.pmi.io.crosslink.CrossLinkDataBaseKeywordsConverter()
-kw.set_protein1_key("prot1")
-kw.set_protein2_key("prot2")
-kw.set_residue1_key("res1")
-kw.set_residue2_key("res2")
-xldb = IMP.pmi.io.crosslink.CrossLinkDataBase(kw)
-xldb.create_set_from_file(xlink_file)
+# Harmonic distance restraint for crosslink data
+xl = []
+with open(xlink_file, 'r') as xlfile:
+    for line in xlfile.readlines()[1:]:
+        xl.append(((int(line.strip().split(',')[0]), int(line.strip().split(',')[0]), str(rpdb_chain),0), (int(line.strip().split(',')[2]), int(line.strip().split(',')[2]), str(lpdb_chain),0)))
 
-xlr = IMP.pmi.restraints.crosslinking.CrossLinkingMassSpectrometryRestraint(root_hier=root_hier,length=xl_length,label=crosslinker,database=xldb,linker=ihm.ChemDescriptor(crosslinker),resolution=1,slope=0.05)
-xlr.add_to_model()
+for t in xl:
+    xlr = IMP.pmi.restraints.basic.DistanceRestraint(root_hier=root_hier, tuple_selection1=t[0], tuple_selection2=t[1], distancemax=xl_length, distancemin=10)
+    xlr.add_to_model()
+
 output_objects.append(xlr)
 display_restraints.append(xlr)
 
