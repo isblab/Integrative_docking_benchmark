@@ -17,7 +17,6 @@ import ihm
 import glob
 
 def add_pdb_rep(mol,pdbname,chain,clr):
-    print(chain)
     atomic = mol.add_structure(pdbname,chain_id=chain,soft_check=True)
     mol.add_representation(atomic, resolutions=[1],color = clr)
     return mol
@@ -113,8 +112,8 @@ mols = [receptor,ligand]
 ###  However these functions will only return BUILT representations
 root_hier = s.build()
 
-RB_MAX_TRANS = 5.0
-RB_MAX_ROT = 0.5
+RB_MAX_TRANS = 0.7
+RB_MAX_ROT = 0.3
 
 ## Setup degrees of freedom
 ##  The DOF functions automatically select all resolutions
@@ -137,7 +136,7 @@ for mol in mols:
 
 # Excluded volume - automatically more efficient due to rigid bodies
 evr = IMP.pmi.restraints.stereochemistry.ExcludedVolumeSphere(included_objects = mols)
-evr.set_weight(0.5)
+evr.set_weight(4)
 evr.add_to_model()
 output_objects.append(evr)
 
@@ -148,11 +147,10 @@ with open(xlink_file, 'r') as xlfile:
         xl.append(((int(line.strip().split(',')[0]), int(line.strip().split(',')[0]), str(rpdb_chain),0), (int(line.strip().split(',')[2]), int(line.strip().split(',')[2]), str(lpdb_chain),0)))
 
 for t in xl:
-    xlr = IMP.pmi.restraints.basic.DistanceRestraint(root_hier=root_hier, tuple_selection1=t[0], tuple_selection2=t[1], distancemax=xl_length, distancemin=10)
+    xlr = IMP.pmi.restraints.basic.DistanceRestraint(root_hier=root_hier, tuple_selection1=t[0], tuple_selection2=t[1], distancemax=xl_length, distancemin=10, weight = 0.5)
     xlr.add_to_model()
-
-output_objects.append(xlr)
-display_restraints.append(xlr)
+    output_objects.append(xlr)
+    display_restraints.append(xlr)
 
 ######################## SAMPLING #####################
 ## First shuffle the system
@@ -162,7 +160,7 @@ if runType == "prod":
     nframes = 10000
 
 elif runType == "test":
-    nframes = 100
+    nframes = 1000
 
 # Run replica exchange Monte Carlo sampling
 rex=IMP.pmi.macros.ReplicaExchange(mdl,

@@ -12,12 +12,12 @@ from Bio.PDB import *
 ############################################# Inputs ##############################################
 ###################################################################################################
 
-all_pdb_files = ['~/easal/pdbfile/2b42.pdb', '~/easal/pdbfile/1dfj.pdb', '~/easal/pdbfile/roca_putc.pdb', '~/easal/pdbfile/phes_phet.pdb']
+all_pdb_files = ['~/easal/pdbfile/2b42.pdb', '~/easal/pdbfile/1dfj.pdb', '~/easal/pdbfile/gcvpa_gcvpb.pdb', '~/easal/pdbfile/phes_phet.pdb']
 
-easal_files = ['~/easal/easal_output/DMTMM/2b42_cl10/node71_flip0_1111111110_0.pdb',
+easal_files = ['~/easal/easal_output/DMTMM/2b42_cl10/node116_flip0_1111011111_0.pdb',
                 '~/easal/easal_output/DSSO/simulated/1dfj_cl3/node1_flip5_111_0.pdb',
-                '~/easal/easal_output/DSSO/experimental/roca_putc_cl2/node6_flip5_11_0.pdb',
-                '~/easal/easal_output/DSSO/experimental/phes_phet_cl8/node226_flip2_11110111_0.pdb']
+                '~/easal/easal_output/DSSO/experimental/gcvpa_gcvpb_cl5/node30_flip6_11110_0.pdb',
+                '~/easal/easal_output/DSSO/experimental/phes_phet_cl8/node271_flip4_11110111_0.pdb']
 
 for pdb in easal_files:
     mdl = IMP.Model()
@@ -35,22 +35,22 @@ for file in all_pdb_files:
 
     if '2b42.pdb' in file:
         all_proteins = [{'A':{'A':[0,range(1,42)]},'A':{'A':[0,range(47,69)]},'A':{'A':[0,range(78,263)]},'A':{'A':[0,range(266,382)]}}]
-        frame_num = 8
+        frame_num = 939
         input_file = '~/easal/imp_output/DMTMM_analysis/2b42_10/sampcon_0_extracted.rmf3'
 
     elif '1dfj.pdb' in file:
-        all_proteins = [{'E':{'E':[0,range(1,124)]}, 'I':{'I':[0,range(1,456)]}}]
-        frame_num = 115
+        all_proteins = [{'E':{'E':[0,range(1,124)]}}]
+        frame_num = 6941
         input_file = '~/easal/imp_output/DSSO_analysis/1dfj_3/sampcon_0_extracted.rmf3'
 
-    elif 'roca_putc.pdb' in file:
-        all_proteins = [{'A':{'A':[0,range(1,516)]}}]
-        frame_num = 26
-        input_file = '~/easal/imp_output/DSSO_analysis/roca_putc_2/sampcon_0_extracted.rmf3'
+    elif 'gcvpa_gcvpb.pdb' in file:
+        all_proteins = [{'A':{'A':[0,range(1,448)]}}]
+        frame_num = 14435
+        input_file = '~/easal/imp_output/DSSO_analysis/gcvpa_gcvpb_5/sampcon_0_extracted.rmf3'
 
     elif 'phes_phet.pdb' in file:
         all_proteins = [{'A':{'A':[0,range(1,345)]}}]
-        frame_num = 8
+        frame_num = 17953
         input_file = '~/easal/imp_output/DSSO_analysis/phes_phet_8/sampcon_0_extracted.rmf3'
 
 ###################################################################################################

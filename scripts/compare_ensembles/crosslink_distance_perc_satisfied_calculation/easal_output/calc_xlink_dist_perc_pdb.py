@@ -16,9 +16,7 @@ def get_xlink_dist(pdb_file, chain_A, chain_B, xlink_file, output_file):
         next(reader)
         for row in reader:
             residue1, residue2 = map(int, (row[0], row[2]))
-            distance = model_A[residue1]['CA']-model_B[residue2]['CA']
-            #TODO can calculate in-line in this function instead of passing structure objects to another function
-            #TODO this is all we need distance = model_A['CA']-model_B['CA']
+            distance = model_A[residue1]['CA']-model_B[residue2]['CA']      
             distances.append(f'{pdb_file} {distance}')
 
     with open(output_file, 'a') as output:

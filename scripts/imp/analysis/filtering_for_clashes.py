@@ -16,6 +16,7 @@ import os,sys,math,numpy
 import ihm
 import glob
 from tqdm import tqdm
+import numpy as np
 
 all_rmf = sys.argv[1]
 threshold = 2.51577 * 2
@@ -34,23 +35,26 @@ IMP.rmf.add_hierarchy(fh_out, hier)
 chain_A_in_rmf = IMP.atom.Selection(hier,resolution=1,molecule=chain_A).get_selected_particles()
 chain_B_in_rmf = IMP.atom.Selection(hier,resolution=1,molecule=chain_B).get_selected_particles()
 
-
+total_counts = []
 for frame in tqdm(range(rmf_fh.get_number_of_frames())):
     IMP.rmf.load_frame(rmf_fh, frame)
     mdl.update()
 
     stop_iteration = False  # Flag to stop outer loop
 
-    for i in chain_A_in_rmf:
-        for j in chain_B_in_rmf:
-            dist = IMP.core.get_distance(IMP.core.XYZ(i), IMP.core.XYZ(j))
-            if dist < threshold:
-                print(dist)
-                stop_iteration = True
-                break
+    chain_A_coords = np.array([IMP.core.XYZ(i).get_coordinates() for i in chain_A_in_rmf])
+    chain_B_coords = np.array([IMP.core.XYZ(j).get_coordinates() for j in chain_B_in_rmf])
 
-        if stop_iteration:
-            break
+    from scipy.spatial import distance_matrix
+
+    dist_matrix = distance_matrix(chain_A_coords, chain_B_coords)
+
+    count_not_in_threshold = np.sum(dist_matrix < (threshold))
+    total_counts.append(count_not_in_threshold)
+
+    if count_not_in_threshold > 0:
+        stop_iteration = True
 
     if not stop_iteration:
+        print(f'saved_{frame}')
         IMP.rmf.save_frame(fh_out, str(frame))

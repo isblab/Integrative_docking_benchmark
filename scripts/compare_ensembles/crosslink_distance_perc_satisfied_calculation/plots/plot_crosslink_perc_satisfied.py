@@ -50,7 +50,7 @@ elif args.dmtmm:
     input_cases = ["1dfj_DMTMM_4", "2ayo_DMTMM_5", "1r0r_DMTMM_6", "1kxp_DMTMM_7", "1clv_DMTMM_8", "2hle_DMTMM_9","2b42_DMTMM_10"]
     outf = 'S1.DMTMM'
 elif args.sel:
-    input_cases = ["2b42_DSSO_5", "roca_putc_DSSO_2", "2hle_DMTMM_9", "2b42_DMTMM_10"]
+    input_cases = ["2b42_DSSO_5", "1r0r_DSSO_3", "phes_phet_DSSO_8", "2b42_DMTMM_10"]
     outf = 'F5.xlink_per_sat_complexwise'
 
 #Plotting

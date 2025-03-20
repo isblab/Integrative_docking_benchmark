@@ -80,8 +80,8 @@ plt.tick_params(axis='both', which='major', labelsize=14)
 plt.xlim(40, 105)
 plt.ylim(40, 105)
 plt.legend(handles=legend_elements, fontsize=14)
-plt.savefig('/home/muskaan/easal/plots/summary/F5.xlink_per_sat_max.png', dpi=600)
-# plt.show()
+plt.savefig('~/easal/plots/summary/F5.xlink_per_sat_max.png', dpi=600)
+plt.show()
 
 # flag = 'avg'
 # fig, ax = plt.subplots(figsize=(8, 8))

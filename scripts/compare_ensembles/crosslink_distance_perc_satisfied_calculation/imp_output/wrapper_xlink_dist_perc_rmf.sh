@@ -16,7 +16,7 @@ for dir in "${directories[@]}"; do
   fi
   csv_file="$HOME/Integrative_docking_benchmark/benchmark/simulated/DSSO/$direc2/${filename}_DSSO_${number}.csv"
 
-  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "32"
+  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/compare_ensembles/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "filtered_rmfs/DSSO/${dir}_filtered.rmf3" "$csv_file" "32" &
 
 done
 
@@ -30,7 +30,7 @@ for dir in "${directories[@]}"; do
     number=$(echo "$dir" | cut -d'_' -f3)
 
     csv_file="$HOME/Integrative_docking_benchmark/benchmark/experimental/crosslinks/${filename}_DSSO_${number}.csv"
-    ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "32"
+    ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/compare_ensembles/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "filtered_rmfs/DSSO/${dir}_filtered.rmf3" "$csv_file" "32" &
 done
 
 ###DMTMM
@@ -41,6 +41,6 @@ for dir in "${directories[@]}"; do
   number=$(echo "$dir" | cut -d'_' -f2)
   csv_file="$HOME/Integrative_docking_benchmark/benchmark/simulated/DMTMM/${filename}_DMTMM_${number}.csv"
 
-  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "DMTMM_analysis/$dir/sampcon_0_extracted.rmf3" "$csv_file" "20"
+  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/compare_ensembles/crosslink_distance_perc_satisfied_calculation/imp_output/calc_xlink_dist_perc_rmf.py "filtered_rmfs/DMTMM/${dir}_filtered.rmf3" "$csv_file" "20" &
 
 done

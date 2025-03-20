@@ -50,7 +50,7 @@ input_cases = [["1clv_DSSO_2", "1dfj_DSSO_3", "1r0r_DSSO_3", "1kxp_DSSO_4", "2ay
     [ "1kxp_DSSO_11", "1dfj_DSSO_12", "2ayo_DSSO_13", "2hle_DSSO_14"],
     ["1dfj_DMTMM_4", "2ayo_DMTMM_5", "1r0r_DMTMM_6", "1kxp_DMTMM_7", "1clv_DMTMM_8", "2hle_DMTMM_9","2b42_DMTMM_10"],
     ["roca_putc_DSSO_2", "gata_gatc_DSSO_3", "sucd_succ_DSSO_4", "gcvpa_gcvpb_DSSO_5", "phes_phet_DSSO_8"],
-    ["1clv_DMTMM_8","2b42_DSSO_5","2hle_DSSO_14", "roca_putc_DSSO_2"]]
+    ["phes_phet_DSSO_8","2ayo_DSSO_4","1clv_DMTMM_8", "gcvpa_gcvpb_DSSO_5"]]
 
 #Input cases for complexwise plots
 # selected_cases = [["2b42_DSSO_5", "roca_putc_DSSO_2" , "2hle_DSSO_14", "1dfj_DMTMM_4"]]
@@ -81,8 +81,8 @@ if flag == 'summary':
     plt.xlim(0, 50)
     plt.ylim(0, 50)
     plt.legend(handles=legend_elements, fontsize = 14)
-    plt.savefig('/home/muskaan/easal/plots/summary/F7.xlink_dist_to_native_summary.png',dpi=600)
-    # plt.show()
+    # plt.savefig('~/easal/plots/summary/F7.xlink_dist_to_native_summary.png',dpi=600)
+    plt.show()
 
 elif flag == 'complexwise':
     for idx, cases in enumerate(input_cases):

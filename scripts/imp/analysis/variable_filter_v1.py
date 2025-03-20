@@ -86,7 +86,7 @@ dfA = pd.read_csv(cluster_csv_fileA)
 dfB = pd.read_csv(cluster_csv_fileB)
 
 for multiplier in std_mult_dtrst:
-    default_restraints = ['EV_sum', 'XLs_sum','Total_Score'] 
+    default_restraints = ['EV_sum', 'DR_sum','Total_Score']
     sel_dfA = variable_filter(multiplier, dfA, default_restraints)
     sel_dfB = variable_filter(multiplier, dfB, default_restraints)
     # Combining the score files for checking for run representation.

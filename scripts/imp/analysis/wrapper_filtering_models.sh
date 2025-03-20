@@ -1,7 +1,7 @@
 #!/bin/bash
 ###DSSO
 ##simulated
-directories=("1clv_2" "1clv_6" "1dfj_3" "1dfj_9" "1dfj_12" "1kxp_4" "1kxp_7" "1kxp_11" "1r0r_3" "1r0r_7" "2ayo_4" "2ayo_8" "2ayo_13" "2b42_5" "2b42_10" "2hle_5" "2hle_10" "2hle_14")
+directories=("1clv_2" "1clv_6" "1dfj_3" "1dfj_9" "1dfj_12" "1kxp_4" "1kxp_7" "1kxp_11" "1r0r_3" "1r0r_7" "2ayo_4" "2ayo_8" "2ayo_13"  "2b42_5" "2b42_10" "2hle_5" "2hle_10" "2hle_14")
 
 for dir in "${directories[@]}"; do
   filename=$(echo "$dir" | cut -d'_' -f1)
@@ -20,7 +20,7 @@ for dir in "${directories[@]}"; do
       chainB="B"
   fi
 
-  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/analysis/filtering_by_clashes.py "imp_output/DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "imp_output/DSSO/$dir/${filename}.pdb" "$chainA" "$chainB" "filtered_rmfs/DSSO/${dir}_filtered.rmf3" &
+  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/analysis/filtering_for_clashes.py "imp_distance_restraint/DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "imp_distance_restraint/DSSO/$dir/${filename}.pdb" "$chainA" "$chainB" "filtered_rmfs/DSSO/${dir}_filtered.rmf3" &
 
 done
 
@@ -33,7 +33,7 @@ for dir in "${directories[@]}"; do
     filename+=$(echo "$dir" | cut -d'_' -f2)
     number=$(echo "$dir" | cut -d'_' -f3)
 
-    ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/analysis/filtering_by_clashes.py "imp_output/DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "imp_output/DSSO/$dir/${filename}.pdb" "A" "B" "filtered_rmfs/DSSO/${dir}_filtered.rmf3" &
+    ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/analysis/filtering_for_clashes.py "imp_distance_restraint/DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "imp_distance_restraint/DSSO/$dir/${filename}.pdb" "A" "B" "filtered_rmfs/DSSO/${dir}_filtered.rmf3" &
 
 done
 
@@ -58,6 +58,33 @@ for dir in "${directories[@]}"; do
       chainB="B"
   fi
 
-  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/analysis/filtering_by_clashes.py "imp_output/DMTMM_analysis/$dir/sampcon_0_extracted.rmf3" "imp_output/DMTMM/$dir/${filename}.pdb" "$chainA" "$chainB" "filtered_rmfs/DMTMM/${dir}_filtered.rmf3" &
+  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/analysis/filtering_for_clashes.py "imp_distance_restraint/DMTMM_analysis/$dir/sampcon_0_extracted.rmf3" "imp_distance_restraint/DMTMM/$dir/${filename}.pdb" "$chainA" "$chainB" "filtered_rmfs/DMTMM/${dir}_filtered.rmf3" &
+
+done
+
+
+### FP
+
+directories=("1clv_5" "1dfj_10" "1dfj_11" "1kxp_10" "1r0r_5" "2ayo_10" "2ayo_15" "2b42_10" "2hle_10" "2hle_15")
+
+for dir in "${directories[@]}"; do
+  filename=$(echo "$dir" | cut -d'_' -f1)
+  number=$(echo "$dir" | cut -d'_' -f2)
+
+  if [[ "$filename" == 1clv* ]]; then
+      chainA="A"
+      chainB="I"
+  elif [[ "$filename" == 1dfj* ||  "$filename" == 1r0r* ]]; then
+      chainA="E"
+      chainB="I"
+  elif [[ "$filename" == 1kxp* ]]; then
+      chainA="A"
+      chainB="D"
+  else
+      chainA="A"
+      chainB="B"
+  fi
+
+  ~/imp-clean/build/setup_environment.sh python ~/Integrative_docking_benchmark/scripts/imp/analysis/filtering_for_clashes.py "DSSO_analysis/$dir/sampcon_0_extracted.rmf3" "DSSO/$dir/${filename}.pdb" "$chainA" "$chainB" "filtered_rmfs/${dir}_filtered.rmf3" &
 
 done

@@ -49,7 +49,7 @@ elif args.dmtmm:
     input_cases = ["1dfj_DMTMM_4", "2ayo_DMTMM_5", "1r0r_DMTMM_6", "1kxp_DMTMM_7", "1clv_DMTMM_8", "2hle_DMTMM_9","2b42_DMTMM_10"]
     outf = 'S2.DMTMM'
 elif args.sel:
-    input_cases = ["gcvpa_gcvpb_DSSO_5","1clv_DSSO_2","1dfj_DMTMM_4", "1dfj_DSSO_9"]
+    input_cases = ["gcvpa_gcvpb_DSSO_5","phes_phet_DSSO_8","2b42_DMTMM_10", "1dfj_DSSO_9"]
     outf = 'F6.xlink_dist_complexwise'
 
 #Plotting
