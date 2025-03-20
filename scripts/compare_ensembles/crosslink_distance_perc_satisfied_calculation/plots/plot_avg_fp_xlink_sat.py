@@ -15,7 +15,7 @@ def get_avg_dist(file_path, num, fp):
 
     per_model = []
     for i in range(0, len(distances), num):
-        fp_dist = distances[i:i+num][-fp:]
+        fp_dist = distances[i:i+num][-fp:] # FP are in the end of the xlinks csv file 
         sat = 0
         for j in range(len(fp_dist)):
             if fp_dist[j] < 32.0: # Check if distance is less than violation threshold or not
