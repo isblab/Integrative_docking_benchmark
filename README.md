@@ -11,7 +11,7 @@ There are 30 cases in benchmark, varying in crosslinker type, number of crosslin
 
 ## **Installing and running integrative modeling softwares**
 
-See `installation.md` for instructions for installing and running IMP and EASAL 
+See `installation_and_running.md` for instructions for installing and running IMP and EASAL 
 
 ## **Comparing IMP and EASAL generated model ensembles**
 
