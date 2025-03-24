@@ -56,6 +56,7 @@ for case in input_cases:
 easal_ratio = [ratio * 100 for ratio in easal_ratio]
 imp_ratio = [ratio * 100 for ratio in imp_ratio]
 
+print(imp_ratio, easal_ratio )
 plt.figure(figsize=(12, 6))
 plt.scatter(input_cases, easal_ratio, color='#ff7f0e', label='Wall-EASAL', alpha=0.7)
 plt.scatter(input_cases, imp_ratio, color='#1f77b4', label='IMP', alpha=0.7)
@@ -64,7 +65,7 @@ plt.xlabel('Input Cases',  fontsize=14)
 plt.ylabel('Fraction of best configurations in the sample',  fontsize=14)
 plt.xticks(rotation=45, ha='right')
 plt.legend()
-plt.text(0.01, 1.05, r'$x10^{-4}$', transform=plt.gca().transAxes, fontsize=12, verticalalignment='top')
+plt.text(0.01, 1.05, r'$x10^{-2}$', transform=plt.gca().transAxes, fontsize=12, verticalalignment='top')
 plt.tight_layout()
 plt.savefig('~/easal/plots/time_related/F10.sampling_efficiency.png',dpi=600)
 plt.show()
