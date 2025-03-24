@@ -49,8 +49,7 @@ input_cases = [["1clv_DSSO_2", "1dfj_DSSO_3", "1r0r_DSSO_3", "1kxp_DSSO_4", "2ay
     ["1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "1dfj_DSSO_9","2b42_DSSO_10", "2hle_DSSO_10"],
     [ "1kxp_DSSO_11", "1dfj_DSSO_12", "2ayo_DSSO_13", "2hle_DSSO_14"],
     ["1dfj_DMTMM_4", "2ayo_DMTMM_5", "1r0r_DMTMM_6", "1kxp_DMTMM_7", "1clv_DMTMM_8", "2hle_DMTMM_9","2b42_DMTMM_10"],
-    ["roca_putc_DSSO_2", "gata_gatc_DSSO_3", "sucd_succ_DSSO_4", "gcvpa_gcvpb_DSSO_5", "phes_phet_DSSO_8"],
-    ["phes_phet_DSSO_8","2ayo_DSSO_4","1clv_DMTMM_8", "gcvpa_gcvpb_DSSO_5"]]
+    ["1clv_DMTMM_8", "2ayo_DSSO_13", "2ayo_DSSO_4", "1dfj_DSSO_9"]]
 
 #Input cases for complexwise plots
 # selected_cases = [["2b42_DSSO_5", "roca_putc_DSSO_2" , "2hle_DSSO_14", "1dfj_DMTMM_4"]]
@@ -61,27 +60,26 @@ if flag == 'summary':
 
     fig, ax = plt.subplots(figsize=(8, 8))
 
-    colors = ['#c1d11f','#6ec007', '#00610e', 'red', 'purple']
+    colors = ['#c1d11f','#6ec007', '#00610e', 'red']
 
     legend_elements = [Line2D([0], [0], color='#c1d11f', label='<5 simulated (DS) crosslinks'),
                        Line2D([0], [0], color='#6ec007', label='6-10 simulated (DS) crosslinks'),
                        Line2D([0], [0], color='#00610e', label='>10 simulated (DS) crosslinks'),
-                       Line2D([0], [0], color='red', label='Simulated (DM) crosslinks '),
-                       Line2D([0], [0], color='purple', label='Experimental (DS) crosslinks')]
+                       Line2D([0], [0], color='red', label='Simulated (DM) crosslinks ')]
 
     for color_idx, (ic, color) in enumerate(zip(input_cases, colors)):
         for idx, case in enumerate(ic):
             dist_imp, dist_easal = read_file_and_get_dist(case, flag)
             plt.scatter(dist_imp, dist_easal, color=color)
             print(case, dist_imp, dist_easal)
-    plt.plot([0, 50], [0, 50], '--', color='gray')
+    plt.plot([0, 40], [0, 40], '--', color='gray')
     plt.xlabel('Average crosslink distance difference, IMP vs native (Å)',fontsize=16)
     plt.ylabel('Average crosslink distance difference, wall-EASAL vs native (Å)',fontsize=16)
     plt.tick_params(axis='both', which='major', labelsize=14)
-    plt.xlim(0, 50)
-    plt.ylim(0, 50)
+    plt.xlim(0, 40)
+    plt.ylim(0, 40)
     plt.legend(handles=legend_elements, fontsize = 14)
-    # plt.savefig('~/easal/plots/summary/F7.xlink_dist_to_native_summary.png',dpi=600)
+    plt.savefig('~/easal/plots/summary/F7.xlink_dist_to_native_summary.png',dpi=600)
     plt.show()
 
 elif flag == 'complexwise':

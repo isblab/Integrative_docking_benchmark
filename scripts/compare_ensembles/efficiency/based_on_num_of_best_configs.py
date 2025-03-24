@@ -4,35 +4,17 @@ import glob
 import csv
 import matplotlib.pyplot as plt
 
-input_cases = [ "1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5",
-    "1dfj_DMTMM_4", "1clv_DMTMM_8", "1kxp_DMTMM_7", "1r0r_DMTMM_6", "2ayo_DMTMM_5", "2hle_DMTMM_9",
-    "1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "2b42_DSSO_10", "2hle_DSSO_10",
+input_cases = [ "1dfj_DSSO_3", "1clv_DSSO_2", "1kxp_DSSO_4", "1r0r_DSSO_3", "2ayo_DSSO_4", "2b42_DSSO_5","2hle_DSSO_5",
+    "1dfj_DMTMM_4", "1clv_DMTMM_8", "1kxp_DMTMM_7", "1r0r_DMTMM_6", "2ayo_DMTMM_5",
+    "1clv_DSSO_6", "1kxp_DSSO_7", "1r0r_DSSO_7", "2ayo_DSSO_8", "2b42_DSSO_10", "2hle_DSSO_10", "1dfj_DSSO_9",
     "1dfj_DSSO_12", "1kxp_DSSO_11", "2ayo_DSSO_13", "2hle_DSSO_14",
-    "gata_gatc_DSSO_3", "sucd_succ_DSSO_4", "phes_phet_DSSO_8", "2b42_DMTMM_10"]
-
+    "gata_gatc_DSSO_3", "sucd_succ_DSSO_4", "roca_putc_DSSO_2"]
 
 ## IMP
 imp_ratio, easal_ratio = [],[]
+
 for case in input_cases:
-    if 'DSSO' in case:
-        base_path = '~/easal/imp_output/DSSO_analysis/' + case.split('DSSO')[0] + case.split('_')[-1] + '/model_analysis/'
-        sample_A_file = base_path + 'A_models*.txt'
-        sample_B_file = base_path + 'B_models*.txt'
-    else:
-        base_path = '~/easal/imp_output/DMTMM_analysis/' + case.split('DMTMM')[0] + case.split('_')[-1] + '/model_analysis/'
-        sample_A_file = base_path + 'A_models*.txt'
-        sample_B_file = base_path + 'B_models*.txt'
-
-    A_files = glob.glob(sample_A_file)
-    num_rows_A = sum(sum(1 for line in open(a_file, 'r')) for a_file in A_files)
-
-    B_files = glob.glob(sample_B_file)
-    num_rows_B = sum(sum(1 for line in open(b_file, 'r')) for b_file in B_files)
-
-    # print(num_rows_A + num_rows_B)
-
     xl_sat_file = '~/easal/imp_output/xl_satisfaction/' + f'{case}_perc_satisfied.txt'
-
     total_perc = []
     with open(xl_sat_file, 'r') as xl_sat_file:
         for line in xl_sat_file:
@@ -42,9 +24,6 @@ for case in input_cases:
     max_xlink_perc = max(total_perc)
     models_with_max_xlink_sat = sum(1 for perc in total_perc if perc >= max_xlink_perc)
 
-    # print(models_with_max_xlink_sat)
-    # print(models_with_max_xlink_sat/(num_rows_A + num_rows_B), case)
-    # imp_ratio.append(models_with_max_xlink_sat/(num_rows_A + num_rows_B))
     imp_ratio.append(models_with_max_xlink_sat/8000000)
     # print(models_with_max_xlink_sat, imp_ratio, case)
 
