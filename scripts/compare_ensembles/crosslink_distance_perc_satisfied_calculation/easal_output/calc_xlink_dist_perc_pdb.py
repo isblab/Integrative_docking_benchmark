@@ -16,7 +16,7 @@ def get_xlink_dist(pdb_file, chain_A, chain_B, xlink_file, output_file):
         next(reader)
         for row in reader:
             residue1, residue2 = map(int, (row[0], row[2]))
-            distance = model_A[residue1]['CA']-model_B[residue2]['CA']      
+            distance = model_A[residue1]['CA']-model_B[residue2]['CA']
             distances.append(f'{pdb_file} {distance}')
 
     with open(output_file, 'a') as output:

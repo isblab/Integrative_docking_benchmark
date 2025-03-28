@@ -7,7 +7,7 @@
 directories=("1clv_cl2" "1clv_cl6" "1dfj_cl3" "1dfj_cl9" "1dfj_cl12" "1kxp_cl4" "1kxp_cl7" "1kxp_cl11" "1r0r_cl3" "1r0r_cl7" "2ayo_cl4" "2ayo_cl8" "2ayo_cl13" "2b42_cl5" "2b42_cl10" "2hle_cl5" "2hle_cl10" "2hle_cl14")
 
 for dir in "${directories[@]}"; do
-    cd "DSSO/simulated/$dir"
+    cd "DSSO_pdbs/$dir"
 
     filename=$(echo "$dir" | cut -d'_' -f1)
     number=$(echo "$dir" | sed 's/.*_cl\([0-9]*\)/\1/')
@@ -38,7 +38,7 @@ for dir in "${directories[@]}"; do
     fi
 
     csv_file="$HOME/Integrative_docking_benchmark/benchmark/simulated/DSSO/$direc2/${filename}_DSSO_${number}.csv"
-    python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_perc_pdb.py "$chainA" "$chainB" "$csv_file"
+    python ~/Integrative_docking_benchmark/scripts/compare_ensembles/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_perc_pdb.py "$chainA" "$chainB" "$csv_file" "og"
 
     cd ../../..
 done
@@ -47,7 +47,7 @@ done
 directories=("gata_gatc_cl3" "gcvpa_gcvpb_cl5" "phes_phet_cl8" "roca_putc_cl2" "sucd_succ_cl4")
 
 for dir in "${directories[@]}"; do
-    cd "DSSO/experimental/$dir"
+    cd "DSSO_pdbs/$dir"
 
     filename=$(echo "$dir" | cut -d'_' -f1)
     filename+="_"
@@ -55,7 +55,7 @@ for dir in "${directories[@]}"; do
     number=$(echo "$dir" | sed 's/.*_cl\([0-9]*\)/\1/')
 
     csv_file="$HOME/Integrative_docking_benchmark/benchmark/experimental/crosslinks/${filename}_DSSO_${number}.csv"
-    python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_perc_pdb.py "A" "B" "$csv_file"
+    python ~/Integrative_docking_benchmark/scripts/compare_ensembles/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_perc_pdb.py "A" "B" "$csv_file" "og"
 
     cd ../../..
 done
@@ -64,7 +64,7 @@ done
 directories=("1clv_cl8" "1dfj_cl4" "1kxp_cl7" "1r0r_cl6" "2ayo_cl5" "2b42_cl10" "2hle_cl9")
 
 for dir in "${directories[@]}"; do
-    cd "DMTMM/$dir"
+    cd "DMTMM_pdbs/$dir"
 
     filename=$(echo "$dir" | cut -d'_' -f1)
     number=$(echo "$dir" | sed 's/.*_cl\([0-9]*\)/\1/')
@@ -85,7 +85,7 @@ for dir in "${directories[@]}"; do
     fi
 
     csv_file="$HOME/Integrative_docking_benchmark/benchmark/simulated/DMTMM/${filename}_DMTMM_${number}.csv"
-    python ~/Integrative_docking_benchmark/scripts/analysis/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_pdb.py "$chainA" "$chainB" "$csv_file"
+    python ~/Integrative_docking_benchmark/scripts/compare_ensembles/crosslink_distance_perc_satisfied_calculation/easal_output/calc_xlink_dist_pdb.py "$chainA" "$chainB" "$csv_file" "og"
 
     cd ../../
 done

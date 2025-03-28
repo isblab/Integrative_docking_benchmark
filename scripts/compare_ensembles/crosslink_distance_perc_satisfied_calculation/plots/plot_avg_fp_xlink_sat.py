@@ -25,8 +25,8 @@ def get_avg_fp_xlink_sat(file_path, num, fp):
     return np.mean(per_model)
 
 def read_file_and_get_xlink_sat(name):
-    file1_path = os.path.join('~/easal/imp_output/test_fp/crosslink_distances/', name + '_distances.txt')
-    file2_path = os.path.join('~/easal/easal_output/test_fp/crosslink_distances/', name + '_distances.txt')
+    file1_path = os.path.join('/home/muskaan/projects/easal_related/easal/imp_output/test_fp/crosslink_distances/', name + '_distances.txt')
+    file2_path = os.path.join('/home/muskaan/projects/easal_related/easal/easal_output/with_fp/crosslink_distances/', name + '_distances.txt')
 
     num = int(name.split('_')[2])
     fp = 1 if num == 5 else 2 if num == 10 else 3
@@ -53,5 +53,5 @@ plt.ylabel('Average false positive crosslink\n satisfaction in wall-EASAL Ensemb
 plt.tick_params(axis='both', which='major', labelsize=14)
 plt.xlim(0, 110)
 plt.ylim(0, 110)
-plt.savefig('~/easal/plots/summary/F10.effect_of_fp.png',dpi=600)
+plt.savefig('/home/muskaan/projects/easal_related/easal/plots/summary/F10.effect_of_fp.png',dpi=600)
 plt.show()
