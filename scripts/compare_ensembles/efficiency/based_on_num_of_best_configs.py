@@ -8,9 +8,9 @@ def get_imp_easal_efficiency_data(input_cases, fp=True):
     # IMP
     for case in input_cases:
         if fp:
-            xl_sat_file_imp = '/home/muskaan/projects/easal_related/easal/imp_output/test_fp/xl_satisfaction/' + f'{case}_perc_satisfied.txt'
+            xl_sat_file_imp = '/home/muskaan/projects/easal/results/imp_output/with_fp/xl_satisfaction/' + f'{case}_perc_satisfied.txt'
         else:
-            xl_sat_file_imp = '/home/muskaan/projects/easal_related/easal/imp_output/xl_satisfaction/' + f'{case}_perc_satisfied.txt'
+            xl_sat_file_imp = '/home/muskaan/projects/easal/results/imp_output/without_fp/xl_satisfaction/' + f'{case}_perc_satisfied.txt'
 
         total_perc_imp = []
         with open(xl_sat_file_imp, 'r') as xl_sat_file_imp:
@@ -24,18 +24,14 @@ def get_imp_easal_efficiency_data(input_cases, fp=True):
 
         ## EASAL
         if fp:
-            xl_sat_file_easal = '/home/muskaan/projects/easal_related/easal/easal_output/with_fp/xl_satisfaction/' + f'{case}_perc_satisfied.txt'
-            file = '/home/muskaan/projects/easal_related/easal/easal_output/with_fp/DSSO/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/logfile.txt'
+            xl_sat_file_easal = '/home/muskaan/projects/easal/results/easal_output/with_fp/xl_satisfaction/' + f'{case}_perc_satisfied.txt'
+            file = '/home/muskaan/projects/easal/results/easal_output/with_fp/DSSO/text_output/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/logfile.txt'
         else:
-            # Using newer EASAL results
-            xl_sat_file_easal = '/home/muskaan/projects/easal_related/easal/easal_output/without_fp/xl_satisfaction/' + f'{case}_perc_satisfied.txt'
+            xl_sat_file_easal = '/home/muskaan/projects/easal/results/easal_output/without_fp/xl_satisfaction/' + f'{case}_perc_satisfied.txt'
             if 'DSSO' in case:
-                file = '/home/muskaan/projects/easal_related/easal/easal_output/without_fp/DSSO/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/logfile.txt'
+                file = '/home/muskaan/projects/easal/results/easal_output/without_fp/DSSO/text_output/'+case.split('DSSO')[0] + case.split('_')[-1]+ '/logfile.txt'
             elif 'DMTMM' in case:
-                file = '/home/muskaan/projects/easal_related/easal/easal_output/without_fp/DMTMM/'+case.split('DMTMM')[0] + case.split('_')[-1]+ '/logfile.txt'
-
-            # Using older EASAL results
-            xl_sat_file_easal = '/home/muskaan/projects/easal_related/easal/easal_output/older_version/xl_satisfaction/' + f'{case}_perc_satisfied.txt'
+                file = '/home/muskaan/projects/easal/results/easal_output/without_fp/DMTMM/text_output/'+case.split('DMTMM')[0] + case.split('_')[-1]+ '/logfile.txt'
 
         total_perc_easal = []
 
@@ -119,5 +115,5 @@ axs[1, 1].legend()
 
 fig.subplots_adjust(hspace=0.4, wspace=0.4)
 plt.tight_layout()
-plt.savefig('/home/muskaan/projects/easal_related/easal/plots/time_related/F10.sampling_efficiency_newer.png',dpi=600)
+plt.savefig('/home/muskaan/projects/easal/results/plots/time_related/F10.sampling_efficiency_newer.png',dpi=600)
 plt.show()
