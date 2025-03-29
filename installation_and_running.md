@@ -35,7 +35,7 @@ Follow these steps for installing on Fedora system:
 * `activeLowerDelta`: parameter to set the lower bound on the crosslink distance. We have set it to 0.
 * `activeLowerLambda`: parameter to set the lower bound on the crosslink distance. We have set it to 2.
 * `crossLinkCount`: total count of cross links in input file.
-* `crossLinkSatisfyThres`:  threshold for the number of crosslinks to be satisfied by a configuration. We have set it to `n-2` where n is the number of crosslinks. Decrease this number if no configurations were found satisfying these many crosslinks or if you have false positive crosslinks in the dataset. 
+* `crossLinkSatisfyThres`:  threshold for the number of crosslinks to be satisfied by a configuration. For cases with no false positives, we use `n` where n is the number of crosslinks. We decrease the threshold to `0.75n` for e.g. if the input contains 20% false positive crosslinks in the input. 
 * `crossLinks`: list of all cross links in the form of {A1, B1, A2, B2, ...} corresponding to cross link file you sent me before.
 * `smartCrossLinkMode`: number of walls between the maximum and minimum crosslink distance. We have set it to 2 (default), i.e., two walls corresponding to the upper and lower bound on crosslink distance. You can increase this value to introduce intermediate walls.
 
