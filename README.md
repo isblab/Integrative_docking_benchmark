@@ -1,5 +1,5 @@
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13959115.svg)](https://doi.org/10.5281/zenodo.13959115)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13959114.svg)](https://doi.org/10.5281/zenodo.13959114)
 
 # Integrative docking benchmark 
 
